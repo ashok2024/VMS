@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VMSDBModelStoreContainer" CdmEntityContainer="VMSDBEntities">
+    <EntitySetMapping Name="ApiMonitorTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.ApiMonitorTB">
+        <MappingFragment StoreEntitySet="ApiMonitorTB">
+          <ScalarProperty Name="Command" ColumnName="Command" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+          <ScalarProperty Name="DeviceSRNO" ColumnName="DeviceSRNO" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Page" ColumnName="Page" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BranchTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.BranchTB">
+        <MappingFragment StoreEntitySet="BranchTB">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.CompanyTB">
+        <MappingFragment StoreEntitySet="CompanyTB">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourierTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.CourierTB">
+        <MappingFragment StoreEntitySet="CourierTB">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="CourierPersonName" ColumnName="CourierPersonName" />
+          <ScalarProperty Name="CourierCompany" ColumnName="CourierCompany" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="CourierNo" ColumnName="CourierNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBSettingTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.DBSettingTB">
+        <MappingFragment StoreEntitySet="DBSettingTB">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DBName" ColumnName="DBName" />
+          <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartmentTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.DepartmentTB">
+        <MappingFragment StoreEntitySet="DepartmentTB">
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DesignationTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.DesignationTB">
+        <MappingFragment StoreEntitySet="DesignationTB">
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceLogsTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.DeviceLogsTB">
+        <MappingFragment StoreEntitySet="DeviceLogsTB">
+          <ScalarProperty Name="ATime" ColumnName="ATime" />
+          <ScalarProperty Name="ADate" ColumnName="ADate" />
+          <ScalarProperty Name="AccessCardNo" ColumnName="AccessCardNo" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="PunchStatus" ColumnName="PunchStatus" />
+          <ScalarProperty Name="AttendDate" ColumnName="AttendDate" />
+          <ScalarProperty Name="DownloadDate" ColumnName="DownloadDate" />
+          <ScalarProperty Name="DeviceAccountId" ColumnName="DeviceAccountId" />
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DevicesTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.DevicesTB">
+        <MappingFragment StoreEntitySet="DevicesTB">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="DeviceIPAddress" ColumnName="DeviceIPAddress" />
+          <ScalarProperty Name="DeviceDirection" ColumnName="DeviceDirection" />
+          <ScalarProperty Name="DeviceAccountId" ColumnName="DeviceAccountId" />
+          <ScalarProperty Name="DeviceLocation" ColumnName="DeviceLocation" />
+          <ScalarProperty Name="DownloadDate" ColumnName="DownloadDate" />
+          <ScalarProperty Name="DeviceStatus" ColumnName="DeviceStatus" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="DeviceSerialNo" ColumnName="DeviceSerialNo" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePunchTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.EmployeePunchTB">
+        <MappingFragment StoreEntitySet="EmployeePunchTB">
+          <ScalarProperty Name="DeviceAccountId" ColumnName="DeviceAccountId" />
+          <ScalarProperty Name="deviceIndex" ColumnName="deviceIndex" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mask" ColumnName="mask" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+          <ScalarProperty Name="currentVerifyMode" ColumnName="currentVerifyMode" />
+          <ScalarProperty Name="doorNo" ColumnName="doorNo" />
+          <ScalarProperty Name="cardReaderNo" ColumnName="cardReaderNo" />
+          <ScalarProperty Name="cardNo" ColumnName="cardNo" />
+          <ScalarProperty Name="employeeNoString" ColumnName="employeeNoString" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="minor" ColumnName="minor" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeScheduledVisitTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.EmployeeScheduledVisitTB">
+        <MappingFragment StoreEntitySet="EmployeeScheduledVisitTB">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailSettingTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.MailSettingTB">
+        <MappingFragment StoreEntitySet="MailSettingTB">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="port" ColumnName="port" />
+          <ScalarProperty Name="smtpfrom" ColumnName="smtpfrom" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.UserTB">
+        <MappingFragment StoreEntitySet="UserTB">
+          <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="IdProofNumber" ColumnName="IdProofNumber" />
+          <ScalarProperty Name="IdProof" ColumnName="IdProof" />
+          <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorEntryTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.VisitorEntryTB">
+        <MappingFragment StoreEntitySet="VisitorEntryTB">
+          <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+          <ScalarProperty Name="VisitorType" ColumnName="VisitorType" />
+          <ScalarProperty Name="PUCEndDate" ColumnName="PUCEndDate" />
+          <ScalarProperty Name="VehiclePUCNo" ColumnName="VehiclePUCNo" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="IdProofNumber" ColumnName="IdProofNumber" />
+          <ScalarProperty Name="IdProof" ColumnName="IdProof" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+          <ScalarProperty Name="InTime" ColumnName="InTime" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+          <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorStatusTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.VisitorStatusTB">
+        <MappingFragment StoreEntitySet="VisitorStatusTB">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorTBs">
+      <EntityTypeMapping TypeName="VMSDBModel.VisitorTB">
+        <MappingFragment StoreEntitySet="VisitorTB">
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

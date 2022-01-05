@@ -1,0 +1,855 @@
+D:\Net Core\VMS\VMS\VMS\bin\VMS.dll.config
+D:\Net Core\VMS\VMS\VMS\bin\VMS.dll
+D:\Net Core\VMS\VMS\VMS\bin\VMS.pdb
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csc.exe
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csc.exe.config
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csc.rsp
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csi.exe
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csi.exe.config
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\csi.rsp
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.AppContext.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Console.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\vbc.exe
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\vbc.exe.config
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\vbc.rsp
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+D:\Net Core\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+D:\Net Core\VMS\VMS\VMS\bin\Antlr3.Runtime.dll
+D:\Net Core\VMS\VMS\VMS\bin\EntityFramework.dll
+D:\Net Core\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Net Core\VMS\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+D:\Net Core\VMS\VMS\VMS\bin\Newtonsoft.Json.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Net.Http.Extensions.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Net.Http.Formatting.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Net.Http.Primitives.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Helpers.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Mvc.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Optimization.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Razor.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.dll
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+D:\Net Core\VMS\VMS\VMS\bin\WebGrease.dll
+D:\Net Core\VMS\VMS\VMS\bin\EntityFramework.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Helpers.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Mvc.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Optimization.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.Razor.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+D:\Net Core\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+D:\Net Core\VMS\VMS\VMS\bin\Newtonsoft.Json.xml
+D:\Net Core\VMS\VMS\VMS\bin\Antlr3.Runtime.pdb
+D:\Net Core\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Net Core\VMS\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+D:\Net Core\VMS\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+D:\Net Core\VMS\VMS\VMS\obj\Debug\VMS.dll
+D:\Net Core\VMS\VMS\VMS\obj\Debug\VMS.pdb
+D:\Net Core\VMS\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\VMS.dll.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csi.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csi.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\csi.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.AppContext.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Console.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\vbc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\vbc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\vbc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Antlr3.Runtime.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\EntityFramework.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Newtonsoft.Json.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Net.Http.Extensions.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Net.Http.Formatting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Net.Http.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Helpers.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Mvc.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Optimization.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\WebGrease.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\EntityFramework.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Helpers.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Mvc.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Optimization.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Newtonsoft.Json.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Antlr3.Runtime.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\obj\Debug\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\obj\Debug\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\BouncyCastle.Crypto.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\ClosedXML.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\ExcelNumberFormat.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\itextsharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\System.IO.Packaging.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\ClosedXML.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\ClosedXML.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\ExcelNumberFormat.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS\VMS\bin\itextsharp.xml
+E:\VMS-20Sept\VMS\VMS\bin\VMS.dll.config
+E:\VMS-20Sept\VMS\VMS\bin\VMS.dll
+E:\VMS-20Sept\VMS\VMS\bin\VMS.pdb
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe.config
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csc.rsp
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe.config
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\csi.rsp
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.AppContext.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Console.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe.config
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.rsp
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+E:\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+E:\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.dll
+E:\VMS-20Sept\VMS\VMS\bin\BouncyCastle.Crypto.dll
+E:\VMS-20Sept\VMS\VMS\bin\ClosedXML.dll
+E:\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+E:\VMS-20Sept\VMS\VMS\bin\EntityFramework.dll
+E:\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.dll
+E:\VMS-20Sept\VMS\VMS\bin\itextsharp.dll
+E:\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\VMS-20Sept\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+E:\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.IO.Packaging.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Extensions.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Formatting.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Primitives.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.dll
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+E:\VMS-20Sept\VMS\VMS\bin\WebGrease.dll
+E:\VMS-20Sept\VMS\VMS\bin\ClosedXML.pdb
+E:\VMS-20Sept\VMS\VMS\bin\ClosedXML.xml
+E:\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+E:\VMS-20Sept\VMS\VMS\bin\EntityFramework.xml
+E:\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.xml
+E:\VMS-20Sept\VMS\VMS\bin\itextsharp.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+E:\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+E:\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.xml
+E:\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.pdb
+E:\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.AssemblyReference.cache
+E:\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+E:\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+E:\VMS-20Sept\VMS\VMS\obj\Debug\VMS.dll
+E:\VMS-20Sept\VMS\VMS\obj\Debug\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.dll.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.AppContext.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Console.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\BouncyCastle.Crypto.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\EntityFramework.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\itextsharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.IO.Packaging.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Extensions.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Formatting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\WebGrease.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\EntityFramework.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\itextsharp.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\LinqToExcel.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.Data.Linq.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.Interfaces.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\LinqToExcel.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.dll.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\csi.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.AppContext.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Console.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\vbc.rsp
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\BouncyCastle.Crypto.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\EntityFramework.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\itextsharp.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\LinqToExcel.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.Data.Linq.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Remotion.Interfaces.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.IO.Packaging.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Extensions.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Formatting.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Net.Http.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\WebGrease.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ClosedXML.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\EntityFramework.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\ExcelNumberFormat.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\itextsharp.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\LinqToExcel.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Helpers.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Mvc.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Optimization.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Newtonsoft.Json.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Antlr3.Runtime.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.dll
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\VMS\VMS-25Sept\VMS-20Sept\VMS-20Sept\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\VMS.dll.config
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\VMS.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\VMS.pdb
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csc.exe
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csc.exe.config
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csc.rsp
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csi.exe
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csi.exe.config
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\csi.rsp
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.AppContext.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Console.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\vbc.exe
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\vbc.exe.config
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\vbc.rsp
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Antlr3.Runtime.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\BouncyCastle.Crypto.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\ClosedXML.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\EntityFramework.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\ExcelNumberFormat.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\itextsharp.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\LinqToExcel.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Newtonsoft.Json.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Remotion.Data.Linq.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Remotion.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Remotion.Interfaces.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.IO.Packaging.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Net.Http.Extensions.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Net.Http.Formatting.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Net.Http.Primitives.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Helpers.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Mvc.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Optimization.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Razor.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\WebGrease.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\ClosedXML.pdb
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\ClosedXML.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\EntityFramework.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\ExcelNumberFormat.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\itextsharp.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\LinqToExcel.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Helpers.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Mvc.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Optimization.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.Razor.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Newtonsoft.Json.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Antlr3.Runtime.pdb
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\obj\Debug\VMS.dll
+C:\Prasad Kotalwar Data\LMS\HRVMS\VMS\VMS\VMS\obj\Debug\VMS.pdb
+E:\Final Codes\VMS\VMS\bin\VMS.dll.config
+E:\Final Codes\VMS\VMS\bin\VMS.dll
+E:\Final Codes\VMS\VMS\bin\VMS.pdb
+E:\Final Codes\VMS\VMS\bin\roslyn\csc.exe
+E:\Final Codes\VMS\VMS\bin\roslyn\csc.exe.config
+E:\Final Codes\VMS\VMS\bin\roslyn\csc.rsp
+E:\Final Codes\VMS\VMS\bin\roslyn\csi.exe
+E:\Final Codes\VMS\VMS\bin\roslyn\csi.exe.config
+E:\Final Codes\VMS\VMS\bin\roslyn\csi.rsp
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Final Codes\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Final Codes\VMS\VMS\bin\roslyn\System.AppContext.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Console.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Final Codes\VMS\VMS\bin\roslyn\vbc.exe
+E:\Final Codes\VMS\VMS\bin\roslyn\vbc.exe.config
+E:\Final Codes\VMS\VMS\bin\roslyn\vbc.rsp
+E:\Final Codes\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+E:\Final Codes\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+E:\Final Codes\VMS\VMS\bin\Antlr3.Runtime.dll
+E:\Final Codes\VMS\VMS\bin\BouncyCastle.Crypto.dll
+E:\Final Codes\VMS\VMS\bin\ClosedXML.dll
+E:\Final Codes\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+E:\Final Codes\VMS\VMS\bin\EntityFramework.dll
+E:\Final Codes\VMS\VMS\bin\ExcelNumberFormat.dll
+E:\Final Codes\VMS\VMS\bin\itextsharp.dll
+E:\Final Codes\VMS\VMS\bin\LinqToExcel.dll
+E:\Final Codes\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Final Codes\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+E:\Final Codes\VMS\VMS\bin\Newtonsoft.Json.dll
+E:\Final Codes\VMS\VMS\bin\Remotion.Data.Linq.dll
+E:\Final Codes\VMS\VMS\bin\Remotion.dll
+E:\Final Codes\VMS\VMS\bin\Remotion.Interfaces.dll
+E:\Final Codes\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+E:\Final Codes\VMS\VMS\bin\System.IO.Packaging.dll
+E:\Final Codes\VMS\VMS\bin\System.Net.Http.Extensions.dll
+E:\Final Codes\VMS\VMS\bin\System.Net.Http.Formatting.dll
+E:\Final Codes\VMS\VMS\bin\System.Net.Http.Primitives.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.Helpers.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.Mvc.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.Optimization.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.Razor.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.dll
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+E:\Final Codes\VMS\VMS\bin\WebGrease.dll
+E:\Final Codes\VMS\VMS\bin\ClosedXML.pdb
+E:\Final Codes\VMS\VMS\bin\ClosedXML.xml
+E:\Final Codes\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+E:\Final Codes\VMS\VMS\bin\EntityFramework.xml
+E:\Final Codes\VMS\VMS\bin\ExcelNumberFormat.xml
+E:\Final Codes\VMS\VMS\bin\itextsharp.xml
+E:\Final Codes\VMS\VMS\bin\LinqToExcel.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.Helpers.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.Mvc.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.Optimization.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.Razor.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+E:\Final Codes\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+E:\Final Codes\VMS\VMS\bin\Newtonsoft.Json.xml
+E:\Final Codes\VMS\VMS\bin\Antlr3.Runtime.pdb
+E:\Final Codes\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Final Codes\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+E:\Final Codes\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+E:\Final Codes\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+E:\Final Codes\VMS\VMS\obj\Debug\VMS.dll
+E:\Final Codes\VMS\VMS\obj\Debug\VMS.pdb
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\VMS.dll.config
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\VMS.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\VMS.pdb
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csc.exe
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csc.exe.config
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csc.rsp
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csi.exe
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csi.exe.config
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\csi.rsp
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.AppContext.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Console.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\vbc.exe
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\vbc.exe.config
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\vbc.rsp
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Antlr3.Runtime.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\BouncyCastle.Crypto.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\ClosedXML.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\EntityFramework.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\ExcelNumberFormat.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\itextsharp.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\LinqToExcel.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Newtonsoft.Json.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Remotion.Data.Linq.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Remotion.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Remotion.Interfaces.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.IO.Packaging.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Net.Http.Extensions.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Net.Http.Formatting.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Net.Http.Primitives.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Helpers.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Mvc.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Optimization.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Razor.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\WebGrease.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\ClosedXML.pdb
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\ClosedXML.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\EntityFramework.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\ExcelNumberFormat.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\itextsharp.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\LinqToExcel.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Helpers.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Mvc.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Optimization.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.Razor.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Newtonsoft.Json.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Antlr3.Runtime.pdb
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\obj\Debug\VMS.csprojAssemblyReference.cache
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\obj\Debug\VMS.dll
+E:\vania\VMS_NEW_28-10-21\VMS\VMS\obj\Debug\VMS.pdb
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\VMS.dll.config
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\VMS.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\VMS.pdb
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csc.exe
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csc.exe.config
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csc.rsp
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csi.exe
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csi.exe.config
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\csi.rsp
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.AppContext.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Collections.Immutable.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Console.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.IO.Compression.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.IO.FileSystem.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.IO.Pipes.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Reflection.Metadata.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.AccessControl.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Claims.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Security.Principal.Windows.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.ValueTuple.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Xml.XPath.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\vbc.exe
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\vbc.exe.config
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\vbc.rsp
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\VBCSCompiler.exe
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\roslyn\VBCSCompiler.exe.config
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Antlr3.Runtime.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\BouncyCastle.Crypto.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\ClosedXML.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\DocumentFormat.OpenXml.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\EntityFramework.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\ExcelNumberFormat.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\itextsharp.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\LinqToExcel.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Microsoft.Web.Infrastructure.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Newtonsoft.Json.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Remotion.Data.Linq.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Remotion.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Remotion.Interfaces.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.IO.FileSystem.Primitives.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.IO.Packaging.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Net.Http.Extensions.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Net.Http.Formatting.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Net.Http.Primitives.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Helpers.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Mvc.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Optimization.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Razor.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.Deployment.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.Razor.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\WebGrease.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\ClosedXML.pdb
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\ClosedXML.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\DocumentFormat.OpenXml.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\EntityFramework.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\ExcelNumberFormat.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\itextsharp.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\LinqToExcel.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Helpers.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Mvc.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Optimization.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.Razor.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.Deployment.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\System.Web.WebPages.Razor.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Newtonsoft.Json.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Antlr3.Runtime.pdb
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\obj\Debug\VMS.csproj.AssemblyReference.cache
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\obj\Debug\VMS.csproj.CoreCompileInputs.cache
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\obj\Debug\VMS.csproj.CopyComplete
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\obj\Debug\VMS.dll
+E:\WorkArea\Dev-2022\Source Code\VMS\VMS\obj\Debug\VMS.pdb

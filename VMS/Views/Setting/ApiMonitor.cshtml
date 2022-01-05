@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "ApiMonitor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<VMS.Models.Admin.ApiMonitorModel> devices = ViewData["GetMonitorList"] as List<VMS.Models.Admin.ApiMonitorModel>;
+}
+
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Main content -->
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Api Monitoring List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Api Monitoring</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">        
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Device List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar" style="margin-bottom:15px;">
+                                    @*<div class="row">
+                                        <div class="col-md-2">
+                                            <label>Device</label>
+                                            @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-info open" type="button" style="margin-top:32px;float:left;">Open</button>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-info cls" type="button" style="margin-top:32px;">Close</button>
+                                        </div>
+                                    </div>*@
+                                </div>
+                                <table class="table table-bordered" id="datatables">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Code</th>
+                                            <th>Employee Name</th>
+                                            <th>Device SR. No.</th>
+                                            <th>Device Name</th>
+                                            <th>Date & Time</th>
+                                            <th>Status</th>
+                                            <th>Command</th>
+                                            <th>Page</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in devices)
+                                        {
+                                        <tr>
+                                            <td>@item.EmpCode</td>
+                                            <td>@item.EmpName</td>
+                                            <td>@item.DeviceSRNo</td>
+                                            <td>@item.DeviceName</td>
+                                            <td>@item.time</td>
+                                            <td>@item.Status</td>
+                                            <td>@item.Command</td>
+                                            <td>@item.Page</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Page specific script -->
+
+
+

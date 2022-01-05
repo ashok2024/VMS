@@ -1,0 +1,354 @@
+﻿@model VMS.Models.Employee.AddEmployeeModel
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+<!-- daterange picker -->
+<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+<!-- dropzonejs -->
+<link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee Entry Form</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Employee Entry Form</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm("AddEmployee", "Master", new { userId = ViewBag.UserId, userName = ViewBag.userName }))
+        {
+            @Html.HiddenFor(m => m.UserId);
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Employee Code</label>
+                                @Html.TextBoxFor(m => m.EmpCode, new { maxlength = 20, @class = "form-control", autocomplete = "off", placeholder = "Employee Code" })
+                                @Html.ValidationMessageFor(model => model.EmpCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Employee Name</label>
+                                @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Company</label>
+                                @Html.DropDownList("CompanyId", ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Branch</label>
+                                @Html.DropDownList("BranchId", ViewBag.BranchList as SelectList, "Select Branch", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                @Html.DropDownList("DepartmentId", ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Designation</label>
+                                @Html.DropDownList("DesignationId", ViewBag.DesignationList as SelectList, "Select Designation", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Birth Date</label>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datetimepicker-input", @data_target = "#reservationdate" })
+                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Email Id</label>
+                                @Html.TextBoxFor(m => m.EmailId, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Email Id" })
+                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Contact</label>
+                                @Html.TextBoxFor(m => m.Contact, new { maxlength = 20, @class = "form-control", autocomplete = "off", placeholder = "Mobile No." })
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                @Html.TextBoxFor(m => m.Address, new { maxlength = 150, @class = "form-control", autocomplete = "off", placeholder = "Address" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!--/.col (left) -->
+
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Photo</label>
+                                <div class="input-group">
+                                    <div class="col-2">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="Photo">
+                                            <label class="custom-file-label" for="Photo">Choose file</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <img id="imgPreview" height="125" width="230" src="~/Content/assets/img/image_placeholder.jpg" />
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.PhotoPath)
+                            </div>
+
+                            <div class="form-group">
+                                <label>Device</label>
+                                @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                @Html.TextBoxFor(m => m.CardNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Card Number" })
+                                @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Adhar Number</label>
+                                @Html.TextBoxFor(m => m.IdProofNo, new { maxlength = 15, @class = "form-control", autocomplete = "off", placeholder = "Adhar" })
+                                @Html.ValidationMessageFor(model => model.IdProofNo, "", new { @class = "text-danger" })
+                            </div>
+
+                            @if (Model.UserId > 0)
+                            {
+                                @*<div class="form-group">
+                <label>User Name</label>
+                <div class="input-group mb-3">
+
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Email", @class = "form-control", disabled = "disabled", autocomplete = "off" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", @class = "form-control", disabled = "disabled", @type = "password", @maxlength = "16" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span toggle="#Password" class="fas fa-lock toggle-password"></span>
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>*@
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label>User Name</label>
+                                    <div class="input-group mb-3">
+
+                                        @Html.TextBoxFor(m => m.UserName, new { placeholder = "Email", @class = "form-control", autocomplete = "off" })
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="input-group mb-3">
+                                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control", @type = "password", @maxlength = "16" })
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span toggle="#Password" class="fas fa-lock toggle-password"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                            }
+
+                            <div class="form-group">
+                                <label>User Type</label>
+                                @Html.DropDownList("UserType", ViewBag.UserTypeList as SelectList, "Select User Type", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div><!-- /.container-fluid -->
+</section>
+
+@section scripts
+{
+
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="../plugins/dropzone/min/dropzone.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+
+            debugger;
+            var Id = $("#UserId").val();
+            var ImagePath = $("#WebUIUrl").val() + $("#PhotoPath").val();
+
+            if (Id > 0) {
+                $("#imgPreview").attr('src', ImagePath);
+            }
+
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+
+            $(document).on('click', '.cancel', function () {
+
+                debugger;
+                var url = $("#WebUIUrl").val() + "/Master/Employee?userId=@ViewBag.UserId&userName=@ViewBag.UserName";
+                return window.location.href = url;
+            });
+
+            $(document).on('change', '#Photo', function () {
+
+                debugger;
+
+                var data = new FormData();
+                var files = $("#Photo").get(0).files;
+                if (files.length > 0) {
+                    data.append("MyImages", files[0]);
+                }
+
+                $.ajax({
+                    url: $("#WebUIUrl").val() + "/Master/UploadFile",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        //code after success
+                        debugger;
+                        // $("#ImageName").val(response);
+                        $("#PhotoPath").val('/Uploads/' + response);
+                        $("#imgPreview").attr('src', '/Uploads/' + response);
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+
+                });
+
+
+            });
+
+            $(".toggle-password").click(function () {
+                debugger;
+                $(this).toggleClass("fa-unlock");
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") == "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+
+            var res = "@ViewBag.Result";
+
+            if (res != "") {
+                    if (res == "Save") {
+                    alert("saved successfully");
+                    var url = $("#WebUIUrl").val() + "/Master/Employee?userId=@ViewBag.UserId&userName=@ViewBag.UserName";
+                    return window.location.href = url;
+                }
+                else {
+                    alert(res);
+                }
+            }
+
+            
+        })
+    </script>
+}
+
+
+

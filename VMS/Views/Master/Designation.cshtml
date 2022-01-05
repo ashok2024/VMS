@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Designation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<VMS.Models.Admin.DesignationModel> employees = ViewData["GetDesignationList"] as List<VMS.Models.Admin.DesignationModel>;
+}
+
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Designation List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Designation List</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Designation List</h4>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Designation</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar">
+                                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Designation</th>
+                                            <th>Department</th>
+                                            <th>Branch</th>
+                                            <th>Company</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in employees)
+                                        {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.DepartmentName</td>
+                                            <td>@item.BranchName</td>
+                                            <td>@item.CompanyName</td>
+                                            <td><a href="javascript:void(0);" class="btn btn-info edit" title="Edit" data-id="@item.Id"><i class="fas fa-edit"></i></a></td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+            </div>
+</section>
+<!-- /.content -->
+<!-- Page specific script -->
+
+@section scripts
+{
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+
+        var AddURL = $("#WebUIUrl").val() + '/Master/AddDesignation?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
+        var EditURL = $("#WebUIUrl").val() + '/Master/AddDesignation?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+        $(function () {
+
+            $(".anchorDetail").click(function () {
+                return window.location.href = AddURL;
+            });
+
+            $(".edit").click(function () {
+
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                if (id == undefined)
+                    id = 0;
+                var options = { "backdrop": "static", keyboard: true };
+
+                var newURL = EditURL + "&Id=" + id;
+
+                return window.location.href = newURL;
+            });
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+

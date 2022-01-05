@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApiMonitorTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Page" Type="nvarchar" MaxLength="50" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeviceSRNO" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Command" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BranchTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="CompanyTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="CourierTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourierNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CourierCompany" Type="nvarchar" MaxLength="50" />
+    <Property Name="CourierPersonName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Time" Type="nvarchar" MaxLength="20" />
+    <Property Name="Date" Type="date" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="EmployeeId" Type="int" />
+  </EntityType>
+  <EntityType Name="DBSettingTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="DBName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DepartmentTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="BranchId" Type="int" />
+  </EntityType>
+  <EntityType Name="DesignationTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="BranchId" Type="int" />
+  </EntityType>
+  <EntityType Name="DeviceLogsTB">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceAccountId" Type="int" />
+    <Property Name="DownloadDate" Type="datetime" />
+    <Property Name="AttendDate" Type="datetime" />
+    <Property Name="PunchStatus" Type="varchar" MaxLength="50" />
+    <Property Name="EmpID" Type="int" />
+    <Property Name="AccessCardNo" Type="varchar" MaxLength="50" />
+    <Property Name="ADate" Type="date" />
+    <Property Name="ATime" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="DevicesTB">
+    <Key>
+      <PropertyRef Name="DeviceId" />
+    </Key>
+    <Property Name="DeviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceName" Type="varchar" MaxLength="50" />
+    <Property Name="DeviceSerialNo" Type="varchar" MaxLength="50" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+    <Property Name="DeviceStatus" Type="varchar" MaxLength="50" />
+    <Property Name="DownloadDate" Type="datetime" />
+    <Property Name="DeviceLocation" Type="varchar" MaxLength="255" />
+    <Property Name="DeviceAccountId" Type="varchar" MaxLength="50" />
+    <Property Name="DeviceDirection" Type="varchar" MaxLength="50" />
+    <Property Name="DeviceIPAddress" Type="varchar" MaxLength="50" />
+    <Property Name="Port" Type="varchar" MaxLength="10" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmployeePunchTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="major" Type="nvarchar" MaxLength="50" />
+    <Property Name="minor" Type="nvarchar" MaxLength="50" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="employeeNoString" Type="nvarchar" MaxLength="50" />
+    <Property Name="cardNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="cardReaderNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="doorNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="currentVerifyMode" Type="nvarchar" MaxLength="50" />
+    <Property Name="serialNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="mask" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="userType" Type="nvarchar" MaxLength="50" />
+    <Property Name="deviceIndex" Type="nvarchar" MaxLength="100" />
+    <Property Name="DeviceAccountId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmployeeScheduledVisitTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+  </EntityType>
+  <EntityType Name="MailSettingTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Host" Type="nvarchar" MaxLength="50" />
+    <Property Name="smtpfrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="port" Type="int" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserTB">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="LastLoginDate" Type="date" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="20" />
+    <Property Name="Company" Type="nvarchar" MaxLength="100" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="DesignationId" Type="int" />
+    <Property Name="BranchId" Type="int" />
+    <Property Name="EmpCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="IdProof" Type="nvarchar" MaxLength="20" />
+    <Property Name="IdProofNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="DeviceId" Type="int" />
+    <Property Name="CardNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VisitorEntryTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitId" Type="int" />
+    <Property Name="VisitorId" Type="nvarchar" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="InTime" Type="nvarchar" MaxLength="20" />
+    <Property Name="OutTime" Type="nvarchar" MaxLength="20" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="ToDate" Type="date" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="20" />
+    <Property Name="Purpose" Type="nvarchar" MaxLength="200" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="Priority" Type="nvarchar" MaxLength="10" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="IdProof" Type="nvarchar" MaxLength="20" />
+    <Property Name="IdProofNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Material" Type="nvarchar" MaxLength="100" />
+    <Property Name="VehicleNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+    <Property Name="VehiclePUCNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PUCEndDate" Type="date" />
+    <Property Name="VisitorType" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeviceId" Type="int" />
+    <Property Name="CardNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VisitorStatusTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="VisitorTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitorId" Type="nvarchar" MaxLength="10" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="10" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Company" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="VMSDBModelStoreContainer">
+    <EntitySet Name="ApiMonitorTB" EntityType="Self.ApiMonitorTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BranchTB" EntityType="Self.BranchTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyTB" EntityType="Self.CompanyTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourierTB" EntityType="Self.CourierTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DBSettingTB" EntityType="Self.DBSettingTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentTB" EntityType="Self.DepartmentTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DesignationTB" EntityType="Self.DesignationTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceLogsTB" EntityType="Self.DeviceLogsTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DevicesTB" EntityType="Self.DevicesTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeePunchTB" EntityType="Self.EmployeePunchTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeScheduledVisitTB" EntityType="Self.EmployeeScheduledVisitTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MailSettingTB" EntityType="Self.MailSettingTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTB" EntityType="Self.UserTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitorEntryTB" EntityType="Self.VisitorEntryTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitorStatusTB" EntityType="Self.VisitorStatusTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitorTB" EntityType="Self.VisitorTB" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

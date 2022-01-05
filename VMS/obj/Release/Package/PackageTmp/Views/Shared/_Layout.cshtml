@@ -1,0 +1,560 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VMS | Dashboard</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
+
+    <style>
+        .text-white{
+            color:#f6f6f6;
+        }
+
+        .bg-yellow-active {
+            background: #db8b0b !important;
+        }
+        .bg-yellow-active a {
+            color: #f6f6f6 !important;
+        }
+
+        .bg-logo {
+            background-color: #273972 !important;
+        }
+        .navbar-custom {
+            background: #273972 !important;
+            
+        }
+            .navbar-custom a {
+                color: #f6f6f6 !important;
+            }
+
+        .custom-active {
+            background-color: #273972 !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="../dist/img/ajax-loader.gif" alt="AdminLTELogo" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand  navbar-custom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link"> <span class="hidden-xs">@Session["LoginUser"]</span></a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link"  href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" role="button">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 bg-yellow-active">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link bg-white">
+                <img src="../dist/img/logo.png" alt="AdminLTE Logo" class=" img-rounded" style="opacity: .8; width:100%;">
+                <span class="brand-text font-weight-light">&nbsp;</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+
+
+                        @if (Convert.ToString(Session["LoggedUserType"]) == "Reception")
+                        {
+
+                            <li class="nav-item">
+                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link active">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a id="2" href="@Url.Action("GetVisitorList", "Visitor", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Visitor List
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a id="3" href="@Url.Action("GetCourierList", "Courier", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Delivery
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li id="liuserReports" class="nav-item">
+                                <a id="userReports" href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview bg-logo">
+                                    <li class="nav-item">
+                                        <a id="4" href="@Url.Action("GetVisitedVisitorList", "Report", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Approved Visitors</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="5" href="@Url.Action("GetRejectedVisitorList", "Report", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Rejected Visitors</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        else if (Convert.ToString(Session["LoggedUserType"]) == "Employee")
+                        {
+                            <li class="nav-item">
+                                <a id="11" href="@Url.Action("EmployeeDashboard", "Employee", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link active">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="12" href="@Url.Action("GetEmployeeVisitorList", "Employee", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Visitor List
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a id="13" href="@Url.Action("ScheduledVisitorList", "Employee", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Scheduled Visitor
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li id="liEmpReports" class="nav-item">
+                                <a id="liEmpReports" href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview bg-logo">
+                                    <li class="nav-item">
+                                        <a id="14" href="@Url.Action("GetEmployeeVisitedVisitorList", "EmployeeReport", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Approved Visitors</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="15" href="@Url.Action("GetEmployeeRejectedVisitorList", "EmployeeReport", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Rejected Visitors</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        else if (Convert.ToString(Session["LoggedUserType"]) == "Admin")
+                        {
+                            <li class="nav-item">
+                                <a id="21" href="@Url.Action("AdminDashboard", "Admin", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link active">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li id="limaster" class="nav-item">
+                                <a id="masterforms" href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Master
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview bg-logo">
+                                    <li class="nav-item">
+                                        <a id="24" href="@Url.Action("Company", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Company</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="26" href="@Url.Action("Branch", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Branch</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="25" href="@Url.Action("Department", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Department</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="27" href="@Url.Action("Designation", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Designation</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="22" href="@Url.Action("Employee", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Employee</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a id="2" href="@Url.Action("GetVisitorList", "Visitor", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Visitor List
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="23" href="@Url.Action("GetCourierList", "Courier", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Delivery
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="44" href="@Url.Action("UploadEmployeeToDevice", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Upload Employee
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="33" href="@Url.Action("DeleteEmployeeFromDevice", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Delete Employee
+                                    </p>
+                                </a>
+                            </li>
+
+
+                            <li id="lisetting" class="nav-item">
+                                <a id="settingforms" href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-circle"></i>
+                                    <p>
+                                        Settings
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview bg-logo">
+                                    <li class="nav-item">
+                                        <a id="41" href="@Url.Action("GetMailSetting", "Setting", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Mail</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="42" href="@Url.Action("GetDeviceList", "Setting", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Device</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="43" href="@Url.Action("GetDevliceLog", "Setting", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Device Log</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="444" href="@Url.Action("ApiMonitor", "Setting", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Api Monitor Log</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="liuserReports" class="nav-item">
+                                <a id="userReports" href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview bg-logo">
+                                    <li class="nav-item">
+                                        <a id="4" href="@Url.Action("GetVisitedVisitorList", "Report", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Approved Visitors</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="5" href="@Url.Action("GetRejectedVisitorList", "Report", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Rejected Visitors</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a id="31" href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            @RenderBody()
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                @*<b>Version</b> 3.1.0*@
+            </div>
+        </footer>
+
+        @*@Scripts.Render("~/bundles/jquery")*@
+        <input value="@System.Configuration.ConfigurationManager.AppSettings["WebUIUrl"]" type="text" name="WebUIUrl" id="WebUIUrl" hidden="hidden" />
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../dist/js/pages/dashboard.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
+                debugger;
+
+                $('[data-toggle="tooltip"]').tooltip();
+                // for set menu class active and manage collapse part
+                var page = "@ViewBag.ActivePage";
+                var UserType = "@Convert.ToString(Session["LoggedUserType"])";
+                var identifier = ''; var collapseanchor = '';var collapseli = ''
+                   if (page.includes("VisitorDashboard")) {
+                        identifier = "1";
+                    }
+                      if (page.includes("VisitorList")) {
+                            identifier = "2";
+                        }
+                        if (page == "CourierList") {
+                            if (UserType == "Reception") {
+                                identifier = "3";
+                            }
+                            else {
+                                identifier = "23";
+                            }
+                        }
+                        if (page == "VisitedVisitorList") {
+                            identifier = "4";
+                            collapseli = 'liuserReports'
+                            collapseanchor = 'userReports'
+                        }
+                         if (page == "RejectedVisitorList") {
+                            identifier = "5";
+                            collapseli = 'liuserReports'
+                            collapseanchor = 'userReports'
+                        }
+                      if (page == "EmployeeDashboard") {
+                            identifier = "11";
+                        }
+                    if (page == "EmployeeVisitorList") {
+                        identifier = "12";
+                        }
+                     if (page.includes("ScheduledVisitorList")) {
+                            identifier = "13";
+                        }
+                        if (page.includes("EmployeeVisitedVisitorList")) {
+                            identifier = "14";
+                            collapseli = 'liEmpReports'
+                            collapseanchor = 'EmpReports'
+                            }
+                         if (page.includes("EmployeeRejectedVisitorList")) {
+                                identifier = "15";
+                                collapseli = 'liEmpReports'
+                                collapseanchor = 'EmpReports'
+                            }
+                        if (page.includes("AdminDashboard")) {
+                            identifier = "21";
+                        }
+                        if (page =="Employee") {
+                            identifier = "22";
+                            collapseli = 'limaster'
+                            collapseanchor = 'masterforms'
+                        }
+                        if (page == "AdminCourierList") {
+                                    identifier = "23";
+                            }
+                        if (page == "DeviceEmployee") {
+                                identifier = "33";
+                            }
+                         if (page == "UploadEmployee") {
+                                identifier = "44";
+                            }
+                        if (page == "CompanyList") {
+                            identifier = "24";
+                            collapseli = 'limaster'
+                            collapseanchor = 'masterforms'
+                        }
+                      if (page == "DepartmentList") {
+                            identifier = "25";
+                            collapseli = 'limaster'
+                            collapseanchor = 'masterforms'
+                        }
+                        if (page == "BranchList") {
+                            identifier = "26";
+                            collapseli = 'limaster'
+                            collapseanchor = 'masterforms'
+                            }
+                            if (page == "DesignationList") {
+                                identifier = "27";
+                                collapseli = 'limaster'
+                                collapseanchor = 'masterforms'
+                                }
+
+                                if (page == "MailList") {
+                                    identifier = "41";
+                                    collapseli = 'lisetting'
+                                    collapseanchor = 'settingforms'
+                                }
+                               if (page == "DeviceList") {
+                                    identifier = "42";
+                                    collapseli = 'lisetting'
+                                    collapseanchor = 'settingforms'
+                                }
+                                if (page == "DeviceLogList") {
+                                    identifier = "43";
+                                    collapseli = 'lisetting'
+                                    collapseanchor = 'settingforms'
+                                    }
+                                  if (page == "ApiMonitor") {
+                                        identifier = "444";
+                                        collapseli = 'lisetting'
+                                        collapseanchor = 'settingforms'
+                                    }
+
+
+                $(".nav li a").removeClass("custom-active");
+
+                $('#' + identifier).addClass('custom-active');
+                $('#' + collapseanchor).addClass('custom-active');
+                $('#' + collapseli).addClass('menu-open');
+
+                //end
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿@model VMS.Models.Admin.MailSettingModel
+@{
+    ViewBag.Title = "AddMailSetting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+<!-- daterange picker -->
+<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+<!-- dropzonejs -->
+<link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Mail Setting Form</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Mail Setting Form</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm("Save", "Setting", new { userId = ViewBag.UserId, userName = ViewBag.userName }))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Host</label>
+                                @*<input type="text" class="form-control" id="Department" >*@
+                                @Html.TextBoxFor(m => m.Host, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Enter Host Name" })
+                                @Html.ValidationMessageFor(model => model.Host, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Smtp From</label>
+                                @Html.TextBoxFor(m => m.smtpfrom, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Enter SMTP From" })
+                                @Html.ValidationMessageFor(model => model.smtpfrom, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Port</label>
+                                @Html.TextBoxFor(m => m.port, new { maxlength = 3, @class = "form-control", autocomplete = "off", placeholder = "Enter Port" })
+                                @Html.ValidationMessageFor(model => model.port, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Mail UserName</label>
+                                @*<input type="text" class="form-control" id="Department" >*@
+                                @Html.TextBoxFor(m => m.username, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Enter User Name" })
+                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Mail Password</label>
+                                @*<input type="text" class="form-control" id="Department" >*@
+                                @Html.TextBoxFor(m => m.password, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Enter Password" })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger cancel">Cancel</button>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!--/.col (left) -->
+            </div>
+        }
+
+    </div><!-- /.container-fluid -->
+</section>
+
+@section scripts
+{
+
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="../plugins/dropzone/min/dropzone.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+
+            $(document).on('click', '.cancel', function () {
+
+                debugger;
+
+                var url = $("#WebUIUrl").val() + "/Setting/GetMailSetting?userId=@ViewBag.UserId&userName=@ViewBag.UserName";
+                return window.location.href = url;
+            });
+        })
+
+    </script>
+}
+
+
+

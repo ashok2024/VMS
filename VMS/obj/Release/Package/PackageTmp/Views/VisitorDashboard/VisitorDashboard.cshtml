@@ -1,0 +1,173 @@
+﻿@model VMS.Models.Visitor.VisitorDashboardModel
+@{
+    ViewBag.Title = "VisitorDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- iCheck -->
+<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- JQVMap -->
+<link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/adminlte.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-4 col-6 totalvisits" style="cursor:pointer;">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@Model.TotalVisitorCount</h3>
+
+                        <p>Total Visitors</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-4 col-6 visited" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@Model.TotalVisitedCount</h3>
+                        <p>Total Visited</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-4 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@Model.TotalupcomingVisitorCount</h3>
+                        <p>Total Upcoming Visits</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6 rejected" style="cursor:pointer;">
+                <!-- small box -->
+                <div class="small-box bg-gradient-danger">
+                    <div class="inner">
+                        <h3>@Model.TotalRejectedVisitorCount</h3>
+                        <p>Total Rejected Visits</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6">
+                <!-- small box -->
+                <div class="small-box bg-gradient-indigo">
+                    <div class="inner">
+                        <h3>@Model.TotalDefaultVisitorCount</h3>
+                        <p>Total Defaulters</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6 totaldelivery" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box bg-fuchsia">
+                    <div class="inner">
+                        <h3>@Model.TotalDeliveries</h3>
+                        <p>Total Deliveries</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@section scripts
+{
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+        var URL = $("#WebUIUrl").val() + '/Visitor/GetVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+        var deliveryURL = $("#WebUIUrl").val() + '/Courier/GetCourierList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+        $(function () {
+
+            $(".totalvisits").click(function () {
+                debugger;
+                var newURL = URL;
+                return window.location.href = newURL;
+            });
+
+            $(".visited").click(function () {
+                var visitedURL = $("#WebUIUrl").val() + '/Report/GetVisitedVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+                return window.location.href = visitedURL;
+            });
+
+            $(".rejected").click(function () {
+                var visitedURL = $("#WebUIUrl").val() + '/Report/GetRejectedVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+                return window.location.href = visitedURL;
+            });
+
+            $(".totaldelivery").click(function () {
+                debugger;
+                return window.location.href = deliveryURL;
+            });
+        });
+
+    </script>
+
+}
+
+

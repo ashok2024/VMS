@@ -1,0 +1,230 @@
+﻿@model VMS.Models.Admin.DeviceLogSearchModel
+@{
+    ViewBag.Title = "GetDevliceLog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<VMS.Models.EventInfo> events = ViewData["GetDeviceLog"] as List<VMS.Models.EventInfo>;
+}
+
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Device Log</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Device Log</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Device Log</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar" style="margin-bottom:15px;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Device</label>
+                                            @Html.DropDownListFor(x => x.DeviceId, Model.DeviceList, new { @class = "form-control" })
+                                            @*@Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })*@
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>From Date</label>
+                                            <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                                @Html.TextBoxFor(m => m.fromdate, new { @class = "form-control datetimepicker-input", @data_target = "#datefrom" })
+                                                @*<input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />*@
+                                                <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>To Date</label>
+                                            <div class="input-group date" id="dateto" data-target-input="nearest">
+                                                @*<input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />*@
+                                                @Html.TextBoxFor(m => m.todate, new { @class = "form-control datetimepicker-input", @data_target = "#dateto" })
+                                                <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-info download" type="button" style="margin-top:32px;float:left;">Download</button>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
+                                        </div>
+
+                                        @*<div class="col-md-3">
+                                                @using (Html.BeginForm("LogExportToPdf", "Setting", FormMethod.Post, Model))
+                                                {
+                                                    <input type="hidden" name="GridHtml" />
+                                                    <button class="btn btn-info" id="btnpdf" type="submit" style="margin-top:32px;">Export to PDF</button>
+                                                }
+                                            </div>*@
+
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="datatables">
+                                    <thead>
+                                        <tr>
+                                            <th>Device Serial No</th>
+                                            <th>Employee Number</th>
+                                            <th>Employee Name</th>
+                                            <th>Card Number</th>
+                                            <th>User Type</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Verify Mode</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @*@foreach (var item in events)
+                                            {
+                                                <tr>
+                                                    <td>@item.serialNo</td>
+                                                    <td>@item.employeeNoString</td>
+                                                    <td>@item.name</td>
+                                                    <td>@item.cardNo</td>
+                                                    <td>@item.userType</td>
+                                                    <td>@item.time</td>
+                                                    <td>@item.currentVerifyMode</td>
+                                                </tr>
+                                            }*@
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Page specific script -->
+
+@section scripts
+{
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $('#datefrom').datetimepicker({
+                format: 'L'
+            });
+
+            $('#dateto').datetimepicker({
+                format: 'L'
+            });
+
+            // data filteration
+            $(".search").click(function () {
+
+                debugger;
+                var DeviceId = $('#DeviceId').val();
+                var datefrom = $('#fromdate').val();
+                var dateto = $('#todate').val();
+
+
+                var deviceLog = {
+                    DeviceId: DeviceId,
+                    FromDate: datefrom,
+                    ToDate: dateto
+                };
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("GetLogData", "Setting")',
+                    data: deviceLog,
+                    success: function (data) {
+                        debugger;
+                        $("#datatables").find("tr:not(:first)").remove();
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            $("#datatables").append("<tr><td>" + data[i].serialNo + "</td><td>" + data[i].employeeNoString + "</td><td>" + data[i].name + "</td> <td>" + data[i].cardNo + "</td><td>" + data[i].userType + "</td><td>" + data[i].ADate + "</td><td>" + data[i].Atime + "</td><td>" + data[i].currentVerifyMode + "</td></tr>");
+                        }
+                        //$("#datatables").DataTable();
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+            });
+
+            $(".download").click(function () {
+
+                debugger;
+                var DeviceId = $('#DeviceId').val();
+                var datefrom = $('#fromdate').val();
+                var dateto = $('#todate').val();
+
+
+                var deviceLog = {
+                    DeviceId: DeviceId,
+                    FromDate: datefrom,
+                    ToDate: dateto
+                };
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("DownloadLogData", "Setting")',
+                    data: deviceLog,
+                    success: function (data) {
+                        debugger;
+                        $("#datatables").find("tr:not(:first)").remove();
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            $("#datatables").append("<tr><td>" + data[i].serialNo + "</td><td>" + data[i].employeeNoString + "</td><td>" + data[i].name + "</td> <td>" + data[i].cardNo + "</td><td>" + data[i].userType + "</td><td>" + data[i].ADate + "</td><td>" + data[i].Atime + "</td><td>" + data[i].currentVerifyMode + "</td></tr>");
+                        }
+                        //$("#datatables").DataTable();
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+}
+

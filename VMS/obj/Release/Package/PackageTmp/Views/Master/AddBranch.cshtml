@@ -1,0 +1,132 @@
+﻿@model VMS.Models.Admin.BranchModel
+@{
+    ViewBag.Title = "AddBranch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+<!-- daterange picker -->
+<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+<!-- dropzonejs -->
+<link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Branch Entry Form</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Branch Entry Form</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm("AddBranch", "Master", new { userId = ViewBag.UserId, userName = ViewBag.userName }))
+        {
+            @Html.HiddenFor(m => m.Id);
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    @Html.DropDownList("CompanyId", ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Branch</label>
+                                    @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Branch Contact Person</label>
+                                    @Html.TextBoxFor(m => m.ContactPerson, new { maxlength = 100, @class = "form-control", autocomplete = "off", placeholder = "Contact Person" })
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    @Html.TextBoxFor(m => m.Phone, new { maxlength = 10, @class = "form-control", autocomplete = "off", placeholder = "Phone" })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    @Html.TextBoxFor(m => m.Address, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Address" })
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-danger cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+
+    </div><!-- /.container-fluid -->
+</section>
+
+@section scripts
+{
+
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+
+            $(document).on('click', '.cancel', function () {
+
+                debugger;
+                var url = $("#WebUIUrl").val() + "/Master/Company?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0";
+                return window.location.href = url;
+            });
+
+
+        })
+    </script>
+}
+
+
+
+
+
+
+

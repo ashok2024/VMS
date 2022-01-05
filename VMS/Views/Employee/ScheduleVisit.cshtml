@@ -1,0 +1,272 @@
+﻿@model VMS.Models.Visitor.VisitorEntryModel
+@{
+    ViewBag.Title = "ScheduleVisit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+<!-- daterange picker -->
+<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+<!-- dropzonejs -->
+<link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Scheduled Visit Entry Form</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Scheduled Visit Entry Form</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        @using (Html.BeginForm("ScheduleVisit", "Employee", new { userId = ViewBag.UserId, userName = ViewBag.userName }))
+        {            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Id);
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Visitor Contact</label>
+                                @Html.TextBoxFor(m => m.Contact, new { maxlength = 10, @class = "form-control", autocomplete = "off", placeholder = "Visitor Contact", onblur = "contactchange();" })
+                                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Visitor Name</label>
+                                @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Visitor Company</label>
+                                @Html.TextBoxFor(m => m.Company, new { maxlength = 100, @class = "form-control", autocomplete = "off", placeholder = "Company Name" })
+                                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Visitor Email Id</label>
+                                @Html.TextBoxFor(m => m.EmailId, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Email Id" })
+                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Visitor Address</label>
+                                @Html.TextBoxFor(m => m.Address, new { maxlength = 150, @class = "form-control", autocomplete = "off", placeholder = "Address" })
+                            </div>
+                            <div class="form-group">
+                                <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>In Time</label>
+                                        <div class="input-group date" id="Intimepicker" data-target-input="nearest">
+                                            @Html.TextBoxFor(m => m.InTime, new { @class = "form-control datetimepicker-input", @data_target = "#Intimepicker" })
+                                            <div class="input-group-append" data-target="#Intimepicker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>Out Time</label>
+                                        <div class="input-group date" id="Outtimepicker" data-target-input="nearest">
+                                            @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
+                                            @Html.TextBoxFor(m => m.OutTime, new { @class = "form-control datetimepicker-input", @data_target = "#Outtimepicker" })
+                                            <div class="input-group-append" data-target="#Outtimepicker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+                                </div>
+                            </div>                           
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!--/.col (left) -->
+
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Visit Date From</label>
+                                <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                    @Html.TextBoxFor(m => m.VisitDateFrom, new { @class = "form-control datetimepicker-input", @data_target = "#datefrom" })
+                                    <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.VisitDateFrom, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label>Visit Date To</label>
+                                <div class="input-group date" id="dateto" data-target-input="nearest">
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                    @Html.TextBoxFor(m => m.VisitDateTo, new { @class = "form-control datetimepicker-input", @data_target = "#dateto" })
+                                    <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.VisitDateTo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Add Purpose</label>
+                                @Html.TextBoxFor(m => m.Purpose, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Purpose" })
+                                @Html.ValidationMessageFor(model => model.Purpose, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Remarks</label>
+                                @Html.TextBoxFor(m => m.Remark, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Remark" })
+                            </div>
+                            <div class="form-group">
+                                <label>Priority</label>
+                                @Html.TextBoxFor(m => m.Priority, new { maxlength = 10, @class = "form-control", autocomplete = "off", placeholder = "Priority" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div><!-- /.container-fluid -->
+</section>
+
+@section scripts
+{
+
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="../plugins/dropzone/min/dropzone.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+
+            //Timepicker         
+
+            $('#Intimepicker').datetimepicker({
+                format: 'LT'
+            })
+            $('#Outtimepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            $('#datefrom').datetimepicker({
+                format: 'L'
+            });
+
+            $('#dateto').datetimepicker({
+                format: 'L'
+            });
+
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+
+            $(document).on('click', '.cancel', function () {
+
+                debugger;
+
+                var url = $("#WebUIUrl").val() + "/Employee/ScheduledVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName";
+                return window.location.href = url;
+            });
+            
+        })
+
+        function contactchange() {
+
+            debugger;   
+                var Contact = $("#Contact").val();
+
+                if (Contact != "") {
+
+                 $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: '@Url.Action("GetVisitorData", "Visitor")',
+                        data: { "Contact": Contact },
+                        success: function (json, textStatus) {
+                            debugger;
+                            json = json || {};
+
+                            $("#Name").val(json.Name);
+                            $("#Company").val(json.Company);
+                            $('#EmailId').val(json.EmailId);                           
+                        },
+                        error: function () {
+                            alert("Data Not Found");
+                        }
+                        });
+                    }
+            }
+    </script>
+}
+

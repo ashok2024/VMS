@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="VMSDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApiMonitorTBs" EntityType="VMSDBModel.ApiMonitorTB" />
+    <EntitySet Name="BranchTBs" EntityType="VMSDBModel.BranchTB" />
+    <EntitySet Name="CompanyTBs" EntityType="VMSDBModel.CompanyTB" />
+    <EntitySet Name="CourierTBs" EntityType="VMSDBModel.CourierTB" />
+    <EntitySet Name="DBSettingTBs" EntityType="VMSDBModel.DBSettingTB" />
+    <EntitySet Name="DepartmentTBs" EntityType="VMSDBModel.DepartmentTB" />
+    <EntitySet Name="DesignationTBs" EntityType="VMSDBModel.DesignationTB" />
+    <EntitySet Name="DeviceLogsTBs" EntityType="VMSDBModel.DeviceLogsTB" />
+    <EntitySet Name="DevicesTBs" EntityType="VMSDBModel.DevicesTB" />
+    <EntitySet Name="EmployeePunchTBs" EntityType="VMSDBModel.EmployeePunchTB" />
+    <EntitySet Name="EmployeeScheduledVisitTBs" EntityType="VMSDBModel.EmployeeScheduledVisitTB" />
+    <EntitySet Name="MailSettingTBs" EntityType="VMSDBModel.MailSettingTB" />
+    <EntitySet Name="UserTBs" EntityType="VMSDBModel.UserTB" />
+    <EntitySet Name="VisitorEntryTBs" EntityType="VMSDBModel.VisitorEntryTB" />
+    <EntitySet Name="VisitorStatusTBs" EntityType="VMSDBModel.VisitorStatusTB" />
+    <EntitySet Name="VisitorTBs" EntityType="VMSDBModel.VisitorTB" />
+  </EntityContainer>
+  <EntityType Name="ApiMonitorTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Page" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceSRNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Command" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BranchTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CompanyTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CourierTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourierNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CourierCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CourierPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DBSettingTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DBName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DepartmentTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DesignationTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DeviceLogsTB">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceAccountId" Type="Int32" />
+    <Property Name="DownloadDate" Type="DateTime" Precision="3" />
+    <Property Name="AttendDate" Type="DateTime" Precision="3" />
+    <Property Name="PunchStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmpID" Type="Int32" />
+    <Property Name="AccessCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADate" Type="DateTime" Precision="0" />
+    <Property Name="ATime" Type="Time" Precision="7" />
+  </EntityType>
+  <EntityType Name="DevicesTB">
+    <Key>
+      <PropertyRef Name="DeviceId" />
+    </Key>
+    <Property Name="DeviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceSerialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DownloadDate" Type="DateTime" Precision="3" />
+    <Property Name="DeviceLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceAccountId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceDirection" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceIPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Port" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmployeePunchTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="major" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="minor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="employeeNoString" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cardReaderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="doorNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="currentVerifyMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mask" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deviceIndex" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceAccountId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EmployeeScheduledVisitTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitId" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MailSettingTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="smtpfrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="port" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserTB">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="0" />
+    <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="DesignationId" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+    <Property Name="EmpCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IdProof" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IdProofNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceId" Type="Int32" />
+    <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VisitorEntryTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitId" Type="Int32" />
+    <Property Name="VisitorId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="InTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Priority" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="IdProof" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IdProofNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VehiclePUCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PUCEndDate" Type="DateTime" Precision="0" />
+    <Property Name="VisitorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceId" Type="Int32" />
+    <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VisitorStatusTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VisitorTB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitorId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

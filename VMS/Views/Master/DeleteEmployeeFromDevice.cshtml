@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "DeleteEmployeeFromDevice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<VMS.Models.Admin.DeviceModel> devices = ViewData["GetDeviceList"] as List<VMS.Models.Admin.DeviceModel>;
+    List<VMS.Models.Employee.EmployeeModel> employees = ViewData["GetEmployeeList"] as List<VMS.Models.Employee.EmployeeModel>;
+}
+
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Main content -->
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Delete Employee</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Delete Employee</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Device List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar" style="margin-bottom:15px;">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="datatables">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Device Name</th>
+                                            <th>Device Serial No</th>
+                                            <th>Device Account Id</th>
+                                            <th>Device Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in devices)
+                                        {
+                                            var checkBoxId = "chk" + @item.DeviceAccountId;
+                                            <tr>
+                                                <td><input type="checkbox" id="@item.DeviceAccountId" class="clsdev" value="@item.DeviceAccountId" />    </td>
+                                                <td>@item.DeviceName</td>
+                                                <td>@item.DeviceSerialNo</td>
+                                                <td>@item.DeviceAccountId</td>
+                                                <td>@item.DeviceStatus</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="hidden" id="chkdev" />
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Employee List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar" style="margin-bottom:15px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Company</label>
+                                            @Html.DropDownList("CompanyId", ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Dept</label>
+                                            @Html.DropDownList("DepartmentId", ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
+                                        </div>
+                                        <div class="col-md-1" style="margin-left:30px;">
+                                            <button class="btn btn-info delete" type="button" id="btn_del" style="margin-top:32px;">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="empdatatables">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Emp Code</th>
+                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Department</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in employees)
+                                        {
+                                            var checkBoxId = "chk" + @item.EmpCode;
+                                            <tr>
+                                                <td><input type="checkbox" id="@item.EmpCode" class="clsemp" value="@item.EmpCode" /></td>
+                                                <td>@item.EmpCode</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Company</td>
+                                                <td>@item.Department</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="hidden" id="checkemp" />
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Page specific script -->
+
+@section scripts
+{
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+        var dev = ''; var emp = '';
+        $(function () {
+
+            $('.clsdev').click(function () {
+                var getchkid = $(this).attr('id');
+                var isChecked = $('#' + getchkid).is(':checked');
+
+                if ($('#' + getchkid).is(':checked') == true) {
+                    dev += getchkid + ",";
+                }
+            });
+
+            $('.clsemp').click(function () {
+                var getchkid = $(this).attr('id');
+                var isChecked = $('#' + getchkid).is(':checked');
+
+                if ($('#' + getchkid).is(':checked') == true) {
+                    emp += getchkid + ",";
+                }
+            });
+
+            $('#btn_del').click(function () {
+                debugger;
+                $("#btn_del").attr("disabled", true);
+                var studentListVal = null;
+                studentListVal = [];
+
+                $('input:checkbox:checked').each(function () {
+                    studentListVal.push($(this).attr('value'));
+                });               
+
+                $.ajax({
+                    type: "post",
+                    url: '@Url.Action("DeleteEmployee", "Master")',
+                    data: { dev: dev, emp: emp },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+
+                        if (data == true) {
+                            alert("Delete Successfully");
+                            return window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            // data filteration
+            $(".search").click(function () {
+
+                debugger;
+                var companyId = $('#CompanyId').val();
+                if (companyId == "") {
+                    companyId = 0;
+                }
+                var departmentId = $('#DepartmentId').val();
+                if (departmentId == "") {
+                    departmentId = 0;
+                }
+
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("GetDeleteEmpListSearch", "Master")',
+                    data: { CompanyId: companyId, DeptId: departmentId },
+                    success: function (data) {
+                        debugger;
+                        $("#empdatatables").find("tr:not(:first)").remove();
+
+                        for (var i = 0; i < data.length; i++) {
+                                                       
+
+                            $("#empdatatables").append("<tr><td><input type='checkbox' id='" + data[i].EmpCode + "' class='clsemp' value=" + data[i].EmpCode + " /></td><td>" + data[i].EmpCode + "</td> <td>" + data[i].Name + "</td><td>" + data[i].Company + "</td><td>" + data[i].Department + "</td></tr>");
+                        }
+                        //$("#datatables").DataTable();
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+}
+
+

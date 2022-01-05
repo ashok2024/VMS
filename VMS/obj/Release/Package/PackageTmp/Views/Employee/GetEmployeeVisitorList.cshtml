@@ -1,0 +1,374 @@
+﻿
+@{
+    ViewBag.Title = "GetEmployeeVisitorList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
+}
+
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Visitor List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Visitor List</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <h4 class="card-title">Visitor List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="toolbar" style="margin-bottom:15px;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Visitor Contact</label>
+                                            <input type="text" class="form-control" id="contact" placeholder="Visitor Contact" maxlength="10">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Visitor Company</label>
+                                            <input type="text" class="form-control" id="Company" placeholder="Visitor Company" maxlength="50">
+                                        </div>                                       
+                                        <div class="col-md-2">
+                                            <label>From Date</label>
+                                            <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                                <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
+                                                <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>To Date</label>
+                                            <div class="input-group date" id="dateto" data-target-input="nearest">
+                                                <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
+                                                <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>In Time</label>
+                                            <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                                <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
+                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="datatables">
+                                    <thead>
+                                        <tr>
+                                            <th>Visitor Id</th>
+                                            <th>Visitor Name</th>
+                                            <th>Visitor Company</th>
+                                            <th>Visitor Contact</th>
+                                            <th>In Time</th>
+                                            <th>Out Time</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Purpose</th>
+                                            <th>Priority</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in visitors)
+                                        {
+                                        <tr>
+                                            <td>@item.VisitorId</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Company</td>
+                                            <td>@item.Contact</td>
+                                            <td>@item.InTime</td>
+                                            <td>@item.OutTime</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateFrom)</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateTo)</td>
+                                            <td>@item.Purpose</td>
+                                            <td>@item.Priority</td>
+                                            <td>
+                                                @if (item.Status != null)
+                                                {
+                                                <a href="javascript:void(0);" class="btn btn-secondary status" title="View" data-id="@item.VisitorId"><i class="fas fa-eye"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="javascript:void(0);" class="btn btn-primary approve" title="Approve" data-id="@item.Id"><i class="far fa-thumbs-up"></i></a>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary status" title="View" data-id="@item.VisitorId"><i class="fas fa-eye"></i></a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger reject" title="Reject" data-id="@item.Id"><i class="fas fa-thumbs-down"></i></a>
+                                                }
+
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Page specific script -->
+
+<input value="@ViewBag.UserId" type="text" name="UserId" id="UserId" hidden="hidden" />
+<input value="@ViewBag.UserName" type="text" name="UserName" id="UserName" hidden="hidden" />
+
+@section scripts
+{
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="../plugins/toastr/toastr.min.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+
+        var AddURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+        var StatusURL = $("#WebUIUrl").val() + '/Employee/VisitorStatus?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+        $(function () {
+
+            $('#datefrom').datetimepicker({
+                format: 'L'
+            });
+
+            $('#dateto').datetimepicker({
+                format: 'L'
+            });
+
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            $(".anchorDetail").click(function () {
+                return window.location.href = AddURL;
+            });
+
+            $(".approve").click(function () {
+
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                if (id == undefined)
+                    id = 0;
+
+                var Data = JSON.stringify({
+                    "VisitId": id,
+                    "UserId": $('#UserId').val(),
+                    "Status": "Approve",
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',
+                    contentType: "application/json; charset=utf-8",
+                    data: Data,
+                    datatype: "json",
+                    async: true,
+                    cache: false,
+                    success: function (data) {
+                        debugger;
+
+                        if (data == true) {
+
+                            toastr.options = {
+                                "newestOnTop": false,
+                                "showDuration": "300",
+                            }
+
+                            toastr.success('Approved Successfully.')
+
+                           location.reload();
+
+                        }
+                    },
+                    error: function () {
+                        alert("Content load failed.");
+                    }
+                });
+
+            });
+
+            $(".reject").click(function () {
+
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                if (id == undefined)
+                    id = 0;
+
+                var Data = JSON.stringify({
+                    "VisitId": id,
+                    "UserId": $('#UserId').val(),
+                    "Status": "Reject",
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',                    
+                    data: Data,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    cache: false,
+                    success: function (data) {
+                        debugger;
+
+                        if (data == true) {
+
+                            toastr.options = {
+                                "newestOnTop": false,
+                                "showDuration": "300",
+                            }
+
+                            toastr.success('Rejected Successfully.')
+
+                            location.reload();
+
+                        }
+                    },
+                    error: function () {
+                        alert("Content load failed.");
+                    }
+                });
+            });
+
+            $(".status").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                if (id == undefined)
+                    id = 0;
+                var options = { "backdrop": "static", keyboard: true };
+
+                var newURL = StatusURL + "&VisitorId=" + id;
+
+                return window.location.href = newURL;
+            })
+
+                         // data filteration
+            $(".search").click(function () {
+
+                debugger;
+                var contact = $('#contact').val();
+                var company = $('#Company').val();
+                var department = $('#Department').val();
+                var datefrom = $('#fromdate').val();
+                var dateto = $('#todate').val();
+                var time = $('#time').val();
+
+                var Data = {
+                    Contact: contact,
+                    Company: company,
+                    Department: department,
+                    FromDate: datefrom,
+                    ToDate: dateto,
+                    Time: time,
+                    UserId : @ViewBag.UserId
+                };
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("GetVisitorListSearch", "Employee")',
+                    data: Data,
+                    success: function (data) {
+                        debugger;
+                        $("#datatables").find("tr:not(:first)").remove();
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            // from date
+                            var fdateString = data[i].VisitDateFrom.substr(6);
+                            var currentTime = new Date(parseInt(fdateString));
+                            var month = currentTime.getMonth() + 1;
+                            var day = currentTime.getDate();
+                            var year = currentTime.getFullYear();
+                            if (month.toString().length == 1)
+                                month = "0" + month.toString();
+                            if (day.toString().length == 1) {
+                                day = "0" + currentTime.getDate();
+                            }
+                            var date = day + "/" + month + "/" + year;
+
+                            //todate
+                            var tdateString = data[i].VisitDateTo.substr(6);
+                            var tcurrentTime = new Date(parseInt(tdateString));
+                            var tmonth = tcurrentTime.getMonth() + 1;
+                            var tday = tcurrentTime.getDate();
+                            var tyear = tcurrentTime.getFullYear();
+                            if (tmonth.toString().length == 1)
+                                tmonth = "0" + tmonth.toString();
+                            if (tday.toString().length == 1) {
+                                tday = "0" + tcurrentTime.getDate();
+                            }
+                            var tdate = tday + "/" + tmonth + "/" + tyear;
+
+                            if (data[i].Status != null) {
+                                $("#datatables").append("<tr><td>" + data[i].VisitorId + "</td><td>" + data[i].Name + "</td><td>" + data[i].Company + "</td> <td>" + data[i].Contact + "</td><td>" + data[i].InTime + "</td><td>" + data[i].OutTime + "</td><td>" + date + "</td><td>" + tdate + "</td><td>" + data[i].Purpose + "</td><td>" + data[i].Priority + "</td><td><a href='javascript:void(0);' class='btn btn-secondary status' title='View' data-id=" + data[i].VisitorId + "><i class='fas fa-eye'></i></a></td></tr>");
+                            }
+                            else {
+                                 $("#datatables").append("<tr><td>" + data[i].VisitorId + "</td><td>" + data[i].Name + "</td><td>" + data[i].Company + "</td> <td>" + data[i].Contact + "</td><td>" + data[i].InTime + "</td><td>" + data[i].OutTime + "</td><td>" + date + "</td><td>" + tdate + "</td><td>" + data[i].Purpose + "</td><td>" + data[i].Priority + "</td><td><a href='javascript:void(0);' class='btn btn-primary approve' title='Approve' data-id=" + data[i].VisitorId + "><i class='far fa-thumbs-up'></i></a><a href='javascript:void(0);' class='btn btn-secondary status' title='View' data-id=" + data[i].VisitorId + "><i class='fas fa-eye'></i></a><a href='javascript:void(0);' class='btn btn-danger reject' title='Reject' data-id=" + data[i].VisitorId + "><i class='fas fa-thumbs-down'></i></a></td></tr>");
+                            }
+                        }
+                        //$("#datatables").DataTable();
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+
+
+            });
+
+        });
+
+    </script>
+
+}
