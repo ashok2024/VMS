@@ -63,7 +63,7 @@ namespace VMS.Controllers.Admin
                 return View();
             }
         }
-
+        
         private static List<CompanyModel> GetCompanyList()
         {
             List<CompanyModel> Model = new List<CompanyModel>();
@@ -91,8 +91,26 @@ namespace VMS.Controllers.Admin
                 throw ex;
             }
             return Model;
-        }
+        }        
+        [HttpPost]
+        public JsonResult AjaxMethod()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<CompanyModel> Model = new List<CompanyModel>();
+            var emp = entities.CompanyTBs.ToList().OrderBy(d => d.Name);
 
+            foreach (var item in emp)
+            {
+                CompanyModel company = new CompanyModel();
+                company.Id = item.Id;
+                company.Name = item.Name;
+                company.ContactPerson = item.ContactPerson;
+                company.Phone = item.Phone;
+                company.Address = item.Address;              
+                Model.Add(company);               
+            }
+            return Json(Model);
+        }      
         [HttpGet]
         public ActionResult AddCompany(int Id)
         {

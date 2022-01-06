@@ -11,11 +11,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    @*<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">*@
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    @*<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">*@
     <!-- iCheck -->
-    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    @*<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">*@
     <!-- JQVMap -->
     <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
     <!-- IonIcons -->
@@ -29,25 +29,29 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
 
+   
+
     <style>
-        .text-white{
-            color:#f6f6f6;
+        .text-white {
+            color: #f6f6f6;
         }
 
         .bg-yellow-active {
             background: #db8b0b !important;
         }
-        .bg-yellow-active a {
-            color: #f6f6f6 !important;
-        }
+
+            .bg-yellow-active a {
+                color: #f6f6f6 !important;
+            }
 
         .bg-logo {
             background-color: #273972 !important;
         }
+
         .navbar-custom {
             background: #273972 !important;
-            
         }
+
             .navbar-custom a {
                 color: #f6f6f6 !important;
             }
@@ -81,7 +85,7 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" role="button">
+                    <a class="nav-link" href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" role="button">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
@@ -102,7 +106,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
 
 
                         @if (Convert.ToString(Session["LoggedUserType"]) == "Reception")
@@ -431,6 +435,9 @@
     <script src="../dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    @*<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>*@
 
     <script>
         $(document).ready(function () {
