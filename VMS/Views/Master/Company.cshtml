@@ -37,14 +37,14 @@
 <section class="content">
     <div class="container-fluid">
 
-
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
                         <h4 class="card-title">Company List</h4>
-                        <div class="card-tools"> <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Company</button></div>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-primary anchorDetail">Add Company</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="toolbar">
@@ -52,14 +52,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="tblCustomers" class="display" style="width:100%" ">
+                                <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
                                     <thead>
                                         <tr>
                                             <th>Company Name</th>
                                             <th>Contact Person</th>
                                             <th>Phone</th>
                                             <th>Address</th>
-                                            <th>Edit</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -82,15 +82,13 @@
 
 @section scripts
 {
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>-->
-    @*<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />*@
-
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
          var AddURL = $("#WebUIUrl").val() + '/Master/AddCompany?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
-    var EditURL = $("#WebUIUrl").val() + '/Master/AddCompany?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+          var EditURL = $("#WebUIUrl").val() + '/Master/AddCompany?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+    $(".anchorDetail").click(function () {
+        return window.location.href = AddURL;
+    });
 
         $(function () {
             $.ajax({
@@ -101,7 +99,6 @@
                 dataType: "json",
                 success: OnSuccess,
                 failure: function (response) {
-                    alert(response.d);
                     alert(response.d);
                 },
                 error: function (response) {
@@ -126,24 +123,22 @@
                     columnDefs: [{
                         "targets": 4,
                         "data": null,
-                        "defaultContent": "<button class='btn btn-primary fa fa-edit' style='text-decoration-style:none' onclick='GetUsersDetails(this)'>Edit</button>"
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
                     }]
                 });
         };
         $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
 
         function GetUsersDetails(ele) {
-        
-            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();           
+
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
             var newURL = EditURL + "&Id=" + dataRow.Id;
 
-            return window.location.href = newURL;          
+            return window.location.href = newURL;
         }
     $(function () {
 
-        $(".anchorDetail").click(function () {
-            return window.location.href = AddURL;
-        });
+
 
         $(".edit").click(function () {
 
@@ -160,21 +155,13 @@
         });
     });
 
-</script>
+    </script>
     <!-- jQuery -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!--<script src="../dist/js/demo.js"></script>-->
-    @*<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>*@
-    @*<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>*@
-
- 
-
 }
 
 

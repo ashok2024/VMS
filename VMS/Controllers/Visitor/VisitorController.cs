@@ -930,6 +930,13 @@ namespace VMS.Controllers.Visitor
             }
             return Model;
         }
+        [HttpPost]
+        public JsonResult A_GetVisitorList()
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+            Model = GetVisitors();
+            return Json(Model);
+        }
 
         public ActionResult GetVisitorListSearch(VisitorSearchModel visitor)
         {

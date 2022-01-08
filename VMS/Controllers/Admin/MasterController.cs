@@ -229,6 +229,14 @@ namespace VMS.Controllers.Admin
         #endregion
 
         #region Branch Master
+
+        [HttpPost]
+        public JsonResult A_GetBranchList()
+        {            
+            List<BranchModel> Model = new List<BranchModel>();
+            Model = GetBranchList();
+            return Json(Model);
+        }
         [HttpGet]
         public ActionResult Branch()
         {
@@ -573,42 +581,44 @@ namespace VMS.Controllers.Admin
         private static AddEmployeeModel GetEmployeeDetails(int UserId)
         {
             AddEmployeeModel Model = new AddEmployeeModel();
-
-            VMSDBEntities entities = new VMSDBEntities();
-            string baseadder = ConfigurationManager.AppSettings["WebUIUrl"];
-
-            try
+            if (UserId > 0)
             {
-                var emp = entities.UserTBs.Where(d => d.UserId == UserId).FirstOrDefault();
+                VMSDBEntities entities = new VMSDBEntities();
+                string baseadder = ConfigurationManager.AppSettings["WebUIUrl"];
 
-                Model.EmpCode = emp.EmpCode;
-                Model.UserId = emp.UserId;
-                Model.Name = emp.Name;
-                Model.EmailId = emp.Email;
-                Model.Contact = emp.Phone;
-                Model.BirthDate = Convert.ToDateTime(emp.BirthDate);
-                Model.Address = emp.Address;
-                Model.CompanyId = emp.CompanyId;
-                Model.Company = entities.CompanyTBs.Where(d => d.Id == emp.CompanyId).Select(x => x.Name).FirstOrDefault();
-                Model.BranchId = emp.BranchId;
-                Model.Branch = entities.BranchTBs.Where(d => d.Id == emp.BranchId).Select(x => x.Name).FirstOrDefault();
-                Model.DepartmentId = emp.DepartmentId;
-                Model.Department = entities.DepartmentTBs.Where(d => d.Id == emp.DepartmentId).Select(x => x.Name).FirstOrDefault();
-                Model.DesignationId = emp.DesignationId;
-                Model.Designation = entities.DesignationTBs.Where(d => d.Id == emp.DesignationId).Select(x => x.Name).FirstOrDefault();
-                Model.UserName = emp.UserName;
-                Model.Password = emp.Password;
-                Model.UserType = emp.UserType;
-                Model.IdProofNo = emp.IdProofNumber;
-                Model.PhotoPath = emp.Photo;
-                Model.IdProofNo = emp.IdProofNumber;
-                Model.DeviceId = Convert.ToInt32(emp.DeviceId);
-                Model.CardNo = emp.CardNo;
-            }
-            catch (Exception ex)
-            {
-                return Model;
-                throw ex;
+                try
+                {
+                    var emp = entities.UserTBs.Where(d => d.UserId == UserId).FirstOrDefault();
+
+                    Model.EmpCode = emp.EmpCode;
+                    Model.UserId = emp.UserId;
+                    Model.Name = emp.Name;
+                    Model.EmailId = emp.Email;
+                    Model.Contact = emp.Phone;
+                    Model.BirthDate = Convert.ToDateTime(emp.BirthDate);
+                    Model.Address = emp.Address;
+                    Model.CompanyId = emp.CompanyId;
+                    Model.Company = entities.CompanyTBs.Where(d => d.Id == emp.CompanyId).Select(x => x.Name).FirstOrDefault();
+                    Model.BranchId = emp.BranchId;
+                    Model.Branch = entities.BranchTBs.Where(d => d.Id == emp.BranchId).Select(x => x.Name).FirstOrDefault();
+                    Model.DepartmentId = emp.DepartmentId;
+                    Model.Department = entities.DepartmentTBs.Where(d => d.Id == emp.DepartmentId).Select(x => x.Name).FirstOrDefault();
+                    Model.DesignationId = emp.DesignationId;
+                    Model.Designation = entities.DesignationTBs.Where(d => d.Id == emp.DesignationId).Select(x => x.Name).FirstOrDefault();
+                    Model.UserName = emp.UserName;
+                    Model.Password = emp.Password;
+                    Model.UserType = emp.UserType;
+                    Model.IdProofNo = emp.IdProofNumber;
+                    Model.PhotoPath = emp.Photo;
+                    Model.IdProofNo = emp.IdProofNumber;
+                    Model.DeviceId = Convert.ToInt32(emp.DeviceId);
+                    Model.CardNo = emp.CardNo;
+                }
+                catch (Exception ex)
+                {
+                    return Model;
+                    throw ex;
+                }
             }
             return Model;
         }
@@ -1039,6 +1049,13 @@ namespace VMS.Controllers.Admin
         #endregion
 
         #region Department Master
+        [HttpPost]
+        public JsonResult A_GetDepartmentList()
+        {
+            List<DepartmentModel> Model = new List<DepartmentModel>();
+            Model = GetDepartmentList();
+            return Json(Model);
+        }
         [HttpGet]
         public ActionResult Department()
         {
@@ -1217,6 +1234,13 @@ namespace VMS.Controllers.Admin
         #endregion
 
         #region Designation Master
+        [HttpPost]
+        public JsonResult A_GetDesignationList()
+        {
+            List<DesignationModel> Model = new List<DesignationModel>();
+            Model = GetDesignationList();
+            return Json(Model);
+        }
         [HttpGet]
         public ActionResult Designation()
         {
@@ -1564,7 +1588,13 @@ namespace VMS.Controllers.Admin
             string path = "/Doc/Emp.xlsx";
             return File(path, "application/vnd.ms-excel", "Employee.xlsx");
         }
-
+        [HttpPost]
+        public JsonResult A_GetEmployeeList()
+        {
+            List<EmployeeModel> Model = new List<EmployeeModel>();
+            Model = GetEmployeeList();
+            return Json(Model);
+        }
         [HttpPost]
         public ActionResult Employee(SessionModel user, HttpPostedFileBase FileUpload)
         {
