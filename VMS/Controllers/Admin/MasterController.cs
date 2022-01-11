@@ -60,10 +60,35 @@ namespace VMS.Controllers.Admin
             else
             {
                 ViewData["GetCompanyList"] = GetCompanyList();
+                ViewBag.CompanyName = GetCompanyName();
+                ViewBag.ContactPersoneName = GetContactPersoneName();
                 return View();
             }
         }
-        
+        private List<SelectListItem> GetCompanyName()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<SelectListItem> companyName = new List<SelectListItem>();
+            var res =  entities.CompanyTBs.Select(x => x.Name).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                companyName.Add(new SelectListItem { Text = res[i] });
+            }
+            return companyName;
+        }
+        private List<SelectListItem> GetContactPersoneName()
+        {
+          ;
+            VMSDBEntities entities = new VMSDBEntities();
+
+            List<SelectListItem> contactPersone = new List<SelectListItem>();
+            var res = entities.CompanyTBs.Select(x => x.ContactPerson).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                contactPersone.Add(new SelectListItem { Text = res[i] });
+            }
+            return contactPersone;
+        }
         private static List<CompanyModel> GetCompanyList()
         {
             List<CompanyModel> Model = new List<CompanyModel>();
@@ -110,7 +135,26 @@ namespace VMS.Controllers.Admin
                 Model.Add(company);               
             }
             return Json(Model);
-        }      
+        }
+        [HttpPost]
+        public JsonResult GetFilterList(string companyName , string name)
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<CompanyModel> Model = new List<CompanyModel>();
+            var emp = entities.CompanyTBs.Where(x => x.Name.ToLower() == companyName.ToLower() && x.ContactPerson.ToLower() == name.ToLower()).ToList().OrderBy(d => d.Name);
+
+            foreach (var item in emp)
+            {
+                CompanyModel company = new CompanyModel();
+                company.Id = item.Id;
+                company.Name = item.Name;
+                company.ContactPerson = item.ContactPerson;
+                company.Phone = item.Phone;
+                company.Address = item.Address;
+                Model.Add(company);
+            }
+            return Json(Model);
+        }
         [HttpGet]
         public ActionResult AddCompany(int Id)
         {
