@@ -141,7 +141,7 @@ namespace VMS.Controllers.Admin
         {
             VMSDBEntities entities = new VMSDBEntities();
             List<CompanyModel> Model = new List<CompanyModel>();
-            var emp = entities.CompanyTBs.Where(x => x.Name.ToLower() == companyName.ToLower() && x.ContactPerson.ToLower() == name.ToLower()).ToList().OrderBy(d => d.Name);
+            var emp = entities.CompanyTBs.Where(x => x.Name.ToLower() == companyName.ToLower() && (!string.IsNullOrEmpty(name) ? x.ContactPerson.ToLower() == name.ToLower() : true)).ToList().OrderBy(d => d.Name);
 
             foreach (var item in emp)
             {
