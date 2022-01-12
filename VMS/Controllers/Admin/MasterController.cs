@@ -69,7 +69,7 @@ namespace VMS.Controllers.Admin
         {
             VMSDBEntities entities = new VMSDBEntities();
             List<SelectListItem> companyName = new List<SelectListItem>();
-            var res =  entities.CompanyTBs.Select(x => x.Name).Distinct().ToList();
+            var res = entities.CompanyTBs.Select(x => x.Name).Distinct().ToList();
             for (int i = 0; i < res.Count; i++)
             {
                 companyName.Add(new SelectListItem { Text = res[i] });
@@ -78,7 +78,7 @@ namespace VMS.Controllers.Admin
         }
         private List<SelectListItem> GetContactPersoneName()
         {
-          ;
+            ;
             VMSDBEntities entities = new VMSDBEntities();
 
             List<SelectListItem> contactPersone = new List<SelectListItem>();
@@ -116,7 +116,7 @@ namespace VMS.Controllers.Admin
                 throw ex;
             }
             return Model;
-        }        
+        }
         [HttpPost]
         public JsonResult AjaxMethod()
         {
@@ -131,17 +131,17 @@ namespace VMS.Controllers.Admin
                 company.Name = item.Name;
                 company.ContactPerson = item.ContactPerson;
                 company.Phone = item.Phone;
-                company.Address = item.Address;              
-                Model.Add(company);               
+                company.Address = item.Address;
+                Model.Add(company);
             }
             return Json(Model);
         }
         [HttpPost]
-        public JsonResult GetFilterList(string companyName , string name)
+        public JsonResult GetFilterList(string companyName, string name)
         {
             VMSDBEntities entities = new VMSDBEntities();
             List<CompanyModel> Model = new List<CompanyModel>();
-            var emp = entities.CompanyTBs.Where(x => x.Name.ToLower() == companyName.ToLower() && (!string.IsNullOrEmpty(name) ? x.ContactPerson.ToLower() == name.ToLower() : true)).ToList().OrderBy(d => d.Name);
+            var emp = entities.CompanyTBs.Where(x => (!string.IsNullOrEmpty(companyName) ? x.Name.ToLower() == companyName.ToLower() : true) && (!string.IsNullOrEmpty(name) ? x.ContactPerson.ToLower() == name.ToLower() : true)).ToList().OrderBy(d => d.Name);
 
             foreach (var item in emp)
             {
@@ -276,7 +276,7 @@ namespace VMS.Controllers.Admin
 
         [HttpPost]
         public JsonResult A_GetBranchList()
-        {            
+        {
             List<BranchModel> Model = new List<BranchModel>();
             Model = GetBranchList();
             return Json(Model);
@@ -298,10 +298,73 @@ namespace VMS.Controllers.Admin
             else
             {
                 ViewData["GetBranchList"] = GetBranchList();
+                ViewBag.Branch = GetBranch();
+                ViewBag.CompanyName = GetCompanyName();
+                ViewBag.BranchContactPerson = BranchContactPerson();
                 return View();
             }
         }
+        private List<SelectListItem> GetBranch()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
 
+            List<SelectListItem> obj = new List<SelectListItem>();
+            var res = entities.BranchTBs.Select(x => x.Name).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                obj.Add(new SelectListItem { Text = res[i] });
+            }
+            return obj;
+        }
+        private List<SelectListItem> BranchContactPerson()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+
+            List<SelectListItem> obj = new List<SelectListItem>();
+            var res = entities.BranchTBs.Select(x => x.ContactPerson).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                obj.Add(new SelectListItem { Text = res[i] });
+            }
+            return obj;
+        }
+
+        [HttpPost]
+        public JsonResult GetBranchFilterList(string Branch, string companyName, string BranchContactPerson)
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<BranchModel> Model = new List<BranchModel>();
+
+            var objData = (from d in entities.BranchTBs
+                           join c in entities.CompanyTBs on d.CompanyId equals c.Id
+                           where ((!string.IsNullOrEmpty(Branch) ? d.Name.ToLower() == Branch.ToLower() : true)
+                           && (!string.IsNullOrEmpty(companyName) ? c.Name.ToLower() == companyName.ToLower() : true)
+                           && (!string.IsNullOrEmpty(BranchContactPerson) ? d.ContactPerson.ToLower() == BranchContactPerson.ToLower() : true))
+                           select new
+                           {
+                               d.Id,
+                               d.Name,
+                               companyId = c.Id,
+                               company = c.Name,
+                               contactperson = d.ContactPerson,
+                               phone = d.Phone,
+                               address = d.Address
+                           }).ToList();
+
+            foreach (var item in objData)
+            {
+                BranchModel employee = new BranchModel();
+                employee.Id = item.Id;
+                employee.Name = item.Name;
+                employee.CompanyId = item.companyId;
+                employee.CompanyName = item.company;
+                employee.ContactPerson = item.contactperson;
+                employee.Phone = item.phone;
+                employee.Address = item.address;
+                Model.Add(employee);
+            }
+            return Json(Model);
+        }
         private static List<BranchModel> GetBranchList()
         {
             List<BranchModel> Model = new List<BranchModel>();
@@ -456,7 +519,7 @@ namespace VMS.Controllers.Admin
                         tB.CompanyId = emp.CompanyId;
                         tB.ContactPerson = emp.ContactPerson;
                         tB.Phone = emp.Phone;
-                        tB.Address = emp.Address;                        
+                        tB.Address = emp.Address;
                         db.BranchTBs.Add(tB);
                         db.SaveChanges();
                     }
@@ -501,7 +564,7 @@ namespace VMS.Controllers.Admin
                 SessionModel emp = new SessionModel();
                 emp.UserId = userId;
                 emp.UserName = userName;
-                return View("Employee",emp);
+                return View("Employee", emp);
             }
         }
 
@@ -748,7 +811,7 @@ namespace VMS.Controllers.Admin
                     VMSDBEntities db = new VMSDBEntities();
 
                     UserTB tB = new UserTB();
-                    
+
                     if (emp.UserId > 0)
                     {
                         var userdt = db.UserTBs.Where(d => d.UserId == emp.UserId).FirstOrDefault();
@@ -837,11 +900,11 @@ namespace VMS.Controllers.Admin
                                         var devicedt = item.Device;
 
                                         DateTime fdate = Convert.ToDateTime(DateTime.Now);
-                                       // DateTime ftime = Convert.ToDateTime(DateTime.Now);
+                                        // DateTime ftime = Convert.ToDateTime(DateTime.Now);
                                         string BeginTime = fdate.Year + "-" + fdate.Month.ToString("d2") + "-" + fdate.Day.ToString("d2") + "T" + fdate.Hour.ToString("d2") + ":" + fdate.Minute.ToString("d2") + ":" + fdate.Second.ToString("d2");
 
                                         DateTime tdate = Convert.ToDateTime(DateTime.Now);
-                                       // DateTime ttime = Convert.ToDateTime(visitor.OutTime);
+                                        // DateTime ttime = Convert.ToDateTime(visitor.OutTime);
                                         string endTime = tdate.Year + "-" + tdate.Month.ToString("d2") + "-" + tdate.Day.ToString("d2") + "T" + tdate.Hour.ToString("d2") + ":" + tdate.Minute.ToString("d2") + ":" + tdate.Second.ToString("d2");
 
 
@@ -991,7 +1054,7 @@ namespace VMS.Controllers.Admin
                            .Where(y => y.Count > 0)
                            .ToList();
 
-                
+
                 userType.Id = 1;
                 userType.Name = "Employee";
                 usertypeList.Add(userType);
@@ -1031,7 +1094,7 @@ namespace VMS.Controllers.Admin
 
             ViewBag.Result = "Save";
             return View("AddEmployee", emp);
-           // return RedirectToAction("Employee", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName });
+            // return RedirectToAction("Employee", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName });
         }
 
         #endregion
@@ -1117,8 +1180,59 @@ namespace VMS.Controllers.Admin
             else
             {
                 ViewData["GetDepartmentList"] = GetDepartmentList();
+                ViewBag.Department = GetDepartment();
+                ViewBag.CompanyName = GetCompanyName();
+                ViewBag.Branch = GetBranch();
                 return View();
             }
+        }
+        private List<SelectListItem> GetDepartment()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+
+            List<SelectListItem> obj = new List<SelectListItem>();
+            var res = entities.DepartmentTBs.Select(x => x.Name).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                obj.Add(new SelectListItem { Text = res[i] });
+            }
+            return obj;
+        }
+
+        [HttpPost]
+        public JsonResult GetDepartmentFilterList(string Branch, string companyName, string Department)
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<DepartmentModel> Model = new List<DepartmentModel>();
+
+            var objData = (from d in entities.DepartmentTBs
+                           join c in entities.CompanyTBs on d.CompanyId equals c.Id
+                           join b in entities.BranchTBs on d.BranchId equals b.Id
+                           where ((!string.IsNullOrEmpty(Branch) ? b.Name.ToLower() == Branch.ToLower() : true)
+                           && (!string.IsNullOrEmpty(companyName) ? c.Name.ToLower() == companyName.ToLower() : true)
+                           && (!string.IsNullOrEmpty(Department) ? d.Name.ToLower() == Department.ToLower() : true))
+                           select new
+                           {
+                               d.Id,
+                               d.Name,
+                               companyId = c.Id,
+                               company = c.Name,
+                               branch = b.Name,
+                               branchId = b.Id
+                           }).ToList();
+
+            foreach (var item in objData)
+            {
+                DepartmentModel employee = new DepartmentModel();
+                employee.Id = item.Id;
+                employee.Name = item.Name;
+                employee.CompanyId = item.companyId;
+                employee.CompanyName = item.company;
+                employee.BranchId = item.branchId;
+                employee.BranchName = item.branch;
+                Model.Add(employee);
+            }
+            return Json(Model);
         }
 
         private static List<DepartmentModel> GetDepartmentList()
@@ -1302,8 +1416,66 @@ namespace VMS.Controllers.Admin
             else
             {
                 ViewData["GetDesignationList"] = GetDesignationList();
+                ViewBag.Department = GetDepartment();
+                ViewBag.CompanyName = GetCompanyName();
+                ViewBag.Branch = GetBranch();
+                ViewBag.Designation = GetDesignation();
                 return View();
             }
+        }
+        private List<SelectListItem> GetDesignation()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+
+            List<SelectListItem> obj = new List<SelectListItem>();
+            var res = entities.DesignationTBs.Select(x => x.Name).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                obj.Add(new SelectListItem { Text = res[i] });
+            }
+            return obj;
+        }
+
+        [HttpPost]
+        public JsonResult GetDesignationFilterList(string Branch, string companyName, string Department, string Designation)
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<DesignationModel> Model = new List<DesignationModel>();
+
+            var objData = (from d in entities.DesignationTBs
+                           join c in entities.CompanyTBs on d.CompanyId equals c.Id
+                           join b in entities.BranchTBs on d.BranchId equals b.Id
+                           join dp in entities.DepartmentTBs on d.DepartmentId equals dp.Id
+                           where ((!string.IsNullOrEmpty(Branch) ? b.Name.ToLower() == Branch.ToLower() : true)
+                          && (!string.IsNullOrEmpty(companyName) ? c.Name.ToLower() == companyName.ToLower() : true)
+                          && (!string.IsNullOrEmpty(Department) ? dp.Name.ToLower() == Department.ToLower() : true)
+                          && (!string.IsNullOrEmpty(Designation) ? d.Name.ToLower() == Designation.ToLower() : true))
+                           select new
+                           {
+                               d.Id,
+                               d.Name,
+                               companyId = c.Id,
+                               company = c.Name,
+                               branch = b.Name,
+                               branchId = b.Id,
+                               departmentId = dp.Id,
+                               department = dp.Name
+                           }).ToList();
+
+            foreach (var item in objData)
+            {
+                DesignationModel employee = new DesignationModel();
+                employee.Id = item.Id;
+                employee.Name = item.Name;
+                employee.CompanyId = item.companyId;
+                employee.CompanyName = item.company;
+                employee.BranchId = item.branchId;
+                employee.BranchName = item.branch;
+                employee.DepartmentId = item.departmentId;
+                employee.DepartmentName = item.department;
+                Model.Add(employee);
+            }
+            return Json(Model);
         }
 
         private static List<DesignationModel> GetDesignationList()
@@ -1713,7 +1885,7 @@ namespace VMS.Controllers.Admin
                                 db.SaveChanges();
                             }
                             else
-                            {   
+                            {
                                 ViewBag.Result = "name,address,phone is required";
                             }
                         }
@@ -1851,7 +2023,7 @@ namespace VMS.Controllers.Admin
         }
 
         [HttpPost]
-        public JsonResult DeleteEmployee(string dev,string Emp)
+        public JsonResult DeleteEmployee(string dev, string Emp)
         {
             VMSDBEntities db = new VMSDBEntities();
             bool res = true;
@@ -1863,7 +2035,7 @@ namespace VMS.Controllers.Admin
             List<string> listEmployeeNo = new List<string>();
             foreach (var item in empdt)
             {
-                if(item != "")
+                if (item != "")
                 {
                     listEmployeeNo.Add(item.ToString());
                 }
@@ -1880,7 +2052,7 @@ namespace VMS.Controllers.Admin
 
             foreach (string d in devices)
             {
-                if(d != "")
+                if (d != "")
                 {
                     var dv = db.DevicesTBs.Where(x => x.DeviceAccountId == d).FirstOrDefault();
 
@@ -1947,14 +2119,14 @@ namespace VMS.Controllers.Admin
                             }
                         }
                     }
-                }                
+                }
             }
 
 
             return Json(res);
         }
 
-        public ActionResult GetDeleteEmpListSearch(int CompanyId,int DeptId)
+        public ActionResult GetDeleteEmpListSearch(int CompanyId, int DeptId)
         {
             List<EmployeeModel> emp = GetEmployeeList();
 
@@ -2073,7 +2245,7 @@ namespace VMS.Controllers.Admin
                                     db.SaveChanges();
 
                                     for (int i = 0; i < listEmployeeNo.Count; i++)
-                                    {  
+                                    {
                                         strEmployrrList += ",";
 
                                         string filePath = System.IO.Path.Combine(Server.MapPath("/Uploads/"), "M+ANIL_1002788.jpg");
@@ -2118,7 +2290,7 @@ namespace VMS.Controllers.Admin
                                             db.ApiMonitorTBs.Add(at);
                                             db.SaveChanges();
                                         }
-                                    }                                    
+                                    }
 
                                     //string strReq = "{\"UserInfoDetail\": {\"mode\": \"byEmployeeNo\",\"EmployeeNoList\": [" + strEmployrrList + "]}}";
                                     //string strUrl = "http://" + dv.DeviceIPAddress + ":" + dv.Port + "/ISAPI/AccessControl/UserInfoDetail/Delete?format=json&devIndex=" + devicedt.devIndex;

@@ -39,8 +39,36 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Branch List</h4>
-                                <div class="card-tools"> <button type="button" class="btn btn-primary anchorDetail">Add Branch</button></div>
+                                <div class="toolbar">
+                                    <div id="divFilter">
+                                        <button type="button" class="btn btn-primary" id="btnFilter">Advance Filter</button>
+                                        <button type="button" class="btn btn-primary" id="btnRefresh">Refresh</button>
+                                        <button type="button" class="btn btn-primary anchorDetail float-right">Add Branch</button>
+                                    </div>
+                                    <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>Branch</label>
+                                                @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Branch, "-Select-", new { id = "ddlBranch", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>Company</label>
+                                                @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-", new { id = "ddlCompanyName", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-xs-12  col-lg-3 col-md-3">
+                                            <div class="form-group">
+                                                <label>Branch Contact Person</label>
+                                                @Html.DropDownList("ContactPerson", (IEnumerable<SelectListItem>)ViewBag.BranchContactPerson, "-Select-", new { id = "ddlBranchContactPerson", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2" style="margin-top:30px">
+                                            <button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="toolbar">
@@ -87,15 +115,31 @@
         var AddURL = $("#WebUIUrl").val() + '/Master/AddBranch?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
         var EditURL = $("#WebUIUrl").val() + '/Master/AddBranch?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
-        $(".anchorDetail").click(function () {
-            return window.location.href = AddURL;
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
         });
 
-        $(function () {
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+
+        $(".filter").click(function () {
+            debugger;
+            var Branch = $("#ddlBranch option:selected").val();
+            var companyName = $("#ddlCompanyName option:selected").val();
+            var BranchContactPerson = $("#ddlBranchContactPerson option:selected").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
             $.ajax({
                 type: "POST",
-                url: "/Master/A_GetBranchList",
-                data: '{}',
+                url: "/Master/GetBranchFilterList",
+                data: '{Branch:"' + Branch + '", companyName: "' + companyName + '", BranchContactPerson: "' + BranchContactPerson + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: OnSuccess,
@@ -107,6 +151,30 @@
                 }
             });
         });
+        //End Advance Filter
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURL;
+        });
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Master/A_GetBranchList",
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
         function OnSuccess(response) {
             debugger;
             $("#tblCustomers").DataTable(
