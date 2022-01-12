@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="overflow:auto">
                                 <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
                                     <thead>
                                         <tr style="vertical-align:bottom;">
@@ -213,8 +213,20 @@
                         { 'data': 'EmployeeDepartment' },
                         { 'data': 'InTime' },
                         { 'data': 'OutTime' },
-                        { 'data': 'VisitDateFrom' },
-                        { 'data': 'VisitDateTo' },
+                        {
+                            'data': 'VisitDateFrom', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
+                        {
+                            'data': 'VisitDateTo', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
                         { 'data': 'Purpose' },
                         ],
                     columnDefs: [{
@@ -224,6 +236,8 @@
                     }]
                 });
         };
+
+        
         $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
 
         function GetUsersDetails(ele) {

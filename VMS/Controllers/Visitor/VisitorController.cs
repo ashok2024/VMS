@@ -389,9 +389,10 @@ namespace VMS.Controllers.Visitor
                             //string pass = smtpSection.Network.Password;
 
                             SmtpClient SmtpServer = new SmtpClient(Host);
-
+                            SmtpServer.UseDefaultCredentials = true;
                             MailMessage mails = new MailMessage();
                             mails.From = new MailAddress(from);
+                            //mails.From = new MailAddress("ashokmehta2024@gmail.com");
                             mails.To.Add(visitor.EmailId);
                             // mails.To.Add("Vishakhasupnekar1307@gmail.com");
                             mails.IsBodyHtml = true;
@@ -400,7 +401,7 @@ namespace VMS.Controllers.Visitor
                             SmtpServer.Port = Port;
                             SmtpServer.UseDefaultCredentials = true;
                             SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
-                            SmtpServer.EnableSsl = true;
+                            //SmtpServer.EnableSsl = true;
                             SmtpServer.Send(mails);
                         }
                         #endregion
