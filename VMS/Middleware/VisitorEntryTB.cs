@@ -43,5 +43,6 @@ namespace VMS.Middleware
         public string DeviceName { get; set; }
         public Nullable<int> DeviceId { get; set; }
         public string CardNo { get; set; }
+        public string CertificateImagePath { get; set; }
     }
 }

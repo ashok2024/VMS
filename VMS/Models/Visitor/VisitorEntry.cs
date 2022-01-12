@@ -17,7 +17,7 @@ namespace VMS.Models.Visitor
         [MaxLength(100)]
         [Required(ErrorMessage = "Please enter the company")]
         public string Company { get; set; }
-       
+
         public string Address { get; set; }
 
         public string VisitorType { get; set; }
@@ -41,7 +41,9 @@ namespace VMS.Models.Visitor
         [Required(ErrorMessage = "Please enter valid Proof Number")]
         public string IdProofNo { get; set; }
 
-        public string PhotoPath { get; set; }        
+        public string PhotoPath { get; set; }
+        public string PhotoPathCapture { get; set; }
+        public string captureCertificate { get; set; }
 
         [Required(ErrorMessage = "Please enter the visit date from")]
         public DateTime? VisitDateFrom { get; set; }
@@ -61,7 +63,7 @@ namespace VMS.Models.Visitor
         [Required(ErrorMessage = "Please enter the purpose")]
         public string Purpose { get; set; }
         public string Remark { get; set; }
-        public string Priority { get; set; }        
+        public string Priority { get; set; }
 
         [Required(ErrorMessage = "Please select the employee")]
         public int EmployeeId { get; set; }

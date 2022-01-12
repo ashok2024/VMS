@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Configuration;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -144,6 +145,47 @@ namespace VMS.Controllers.Visitor
             }
             return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult UploadCaptureFile(string data)
+        {
+            string _imgname = Guid.NewGuid().ToString();
+         
+            string imageName = _imgname + ".png";
+            string path = Server.MapPath("/Uploads/Photos");
+            if ((!System.IO.Directory.Exists(path)))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            var _comPath = path + "/VS_"+imageName;
+
+            Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+            data = regex.Replace(data, string.Empty);
+            byte[] imageBytes = Convert.FromBase64String(data);
+            System.IO.File.WriteAllBytes(_comPath, imageBytes);
+
+            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UploadCaptureCertificate(string data)
+        {
+            string _imgname = Guid.NewGuid().ToString();
+
+            string imageName = _imgname + ".png";
+            string path = Server.MapPath("/Uploads/Certificate");
+            if ((!System.IO.Directory.Exists(path)))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            var _comPath = path + "/VS_" + imageName;
+
+            Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+            data = regex.Replace(data, string.Empty);
+            byte[] imageBytes = Convert.FromBase64String(data);
+            System.IO.File.WriteAllBytes(_comPath, imageBytes);
+
+            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Save(VisitorEntryModel visitor)
@@ -198,7 +240,8 @@ namespace VMS.Controllers.Visitor
                         checkVisitor.ToDate = visitor.VisitDateTo;
                         checkVisitor.IdProof = visitor.IdProof;
                         checkVisitor.IdProofNumber = visitor.IdProofNo;
-                        checkVisitor.Photo = visitor.PhotoPath;
+                        checkVisitor.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture ;
+                        checkVisitor.CertificateImagePath = visitor.captureCertificate;
                         checkVisitor.EmailId = visitor.EmailId;
                         checkVisitor.Contact = visitor.Contact;
                         checkVisitor.Purpose = visitor.Purpose;
@@ -235,7 +278,8 @@ namespace VMS.Controllers.Visitor
                             tB.ToDate = visitor.VisitDateTo;
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
-                            tB.Photo = visitor.PhotoPath;
+                            tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
+                            tB.CertificateImagePath = visitor.captureCertificate;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
@@ -280,6 +324,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = visitor.PhotoPath;
+                            tB.CertificateImagePath = visitor.captureCertificate;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
