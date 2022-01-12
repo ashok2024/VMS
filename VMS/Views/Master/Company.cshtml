@@ -33,22 +33,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
-                        <h4 class="card-title">Company List</h4>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-primary anchorDetail">Add Company</button>
-                        </div>
-                    </div>
-                    <div class="card-body">
+                        @*<h4 class="card-title">Company List</h4>*@
                         <div class="toolbar">
                             <div id="divFilter">
-                                <button type="button" class="btn btn-primary" id="btnFilter">Filter</button>
+                                <button type="button" class="btn btn-primary" id="btnFilter">Advance Filter</button>
                                 <button type="button" class="btn btn-primary" id="btnRefresh">Refresh</button>
+                                <button type="button" class="btn btn-primary anchorDetail float-right">Add Company</button>
                             </div>
-                            <div class="row" id="collapseExample" style="border:1px solid lightgray;margin-top:5px">                                
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
                                 <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
                                     <div class="form-group">
                                         <label>Company</label>
-                                        @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-",new { id = "ddlCompanyName", @class = "form-control" })
+                                        @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-", new { id = "ddlCompanyName", @class = "form-control" })
                                     </div>
                                 </div>
                                 <div class="col-sm-3 col-xs-12  col-lg-3 col-md-3">
@@ -58,11 +54,16 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2" style="margin-top:30px">
-                                    <button type="button" class="btn btn-primary filter" id="btnSearch" >Search</button>
+                                    <button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-top:10px">
+                        @*<div class="card-tools">
+                            <button type="button" class="btn btn-primary anchorDetail">Add Company</button>
+                        </div>*@
+                    </div>
+                    <div class="card-body">                        
+                        <div class="row">
                             <div class="col-sm-12">
                                 <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
                                     <thead>
