@@ -194,7 +194,18 @@
                                         <div class="panel-body">
                                             <div id="LiveCamera" style="margin-bottom:15px;"></div>
                                             <form>
-                                                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                                    </div>
+                                                    <div class="col-4">
+
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
+                                                    </div>                                                
+                                                   
+                                                </div>                                               
                                             </form>
                                         </div>
                                     </div>
@@ -212,17 +223,6 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-6" style="padding-top:50px;">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Live Web Camera</div>
-                                        <div class="panel-body">
-                                            <div id="LiveCamera" style="margin-bottom:15px;"></div>
-                                            <form>
-                                                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshotCovidCertificate()">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-6" style="padding-top:15px;">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Captured Snapshot/ Certificate</div>
@@ -348,7 +348,7 @@
         Webcam.set({
             width: 474,
             height: 375,
-            image_format: 'png',
+            image_format: 'png' ,
             jpeg_quality: 100
         });
         Webcam.attach('#LiveCamera');
@@ -424,6 +424,8 @@
     </script>
 
     <script>
+
+        
         $(function () {
 
             debugger;
@@ -540,12 +542,10 @@
                         success: function (json, textStatus) {
                             debugger;
                             json = json || {};
-
-                            if (json.length > 0) {
-                                $("#Name").val(json.Name);
-                                $("#Company").val(json.Company);
-                                $('#EmailId').val(json.EmailId);
-                            }
+                            $("#Name").val(json.Name);
+                            $("#Company").val(json.Company);
+                            $('#EmailId').val(json.EmailId);
+                            
                         },
                         error: function () {
                             alert("Data Not Found");
