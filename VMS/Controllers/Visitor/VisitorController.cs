@@ -860,35 +860,29 @@ namespace VMS.Controllers.Visitor
 
         public ActionResult GetVisitorData(string Contact)
         {
-            VisitorModel visitor = new VisitorModel();
+            VisitorEntryTB visitor = new VisitorEntryTB();
 
             visitor = GetVisitorDetails(Contact);
 
             return Json(visitor, JsonRequestBehavior.AllowGet);
         }
 
-        private static VisitorModel GetVisitorDetails(string Contact)
+        private static VisitorEntryTB GetVisitorDetails(string Contact)
         {
-            VisitorModel Model = new VisitorModel();
-
+            VisitorEntryTB visitor = new VisitorEntryTB();          
             VMSDBEntities db = new VMSDBEntities();
 
             try
             {
-                var visitor = db.VisitorTBs.Where(d => d.Contact == Contact).FirstOrDefault();
-
-                Model.VisitorId = visitor.VisitorId;
-                Model.Name = visitor.Name;
-                Model.Company = visitor.Company;
-                Model.EmailId = visitor.EmailId;
-                Model.Contact = visitor.Contact;
+                visitor = db.VisitorEntryTBs.Where(d => d.Contact == Contact).FirstOrDefault();     
+                
             }
             catch (Exception ex)
             {
-                return Model;
+                //return Model;
                 throw ex;
             }
-            return Model;
+            return visitor;
         }
 
         public ActionResult GetEmployeeData(int EmployeeId)
