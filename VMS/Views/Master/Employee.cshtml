@@ -106,10 +106,11 @@
 {
     <script type="text/javascript">
         var AddURL = $("#WebUIUrl").val() + '/Master/AddEmployee?userId=@ViewBag.UserId&userName=@ViewBag.UserName&EmpId=0';
+        var EditURL = $("#WebUIUrl").val() + '/Master/AddEmployee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
         var refreshURL = $("#WebUIUrl").val() + '/Master/Employee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
     $(".anchorDetail").click(function () {
-        return window.location.href = AddURL;
+        return window.location.href = AddURdebuL;
     });
 
         $(function () {
@@ -129,7 +130,6 @@
             });
         });
         function OnSuccess(response) {
-            debugger;
             $("#tblCustomers").DataTable(
                 {
                     bLengthChange: true,
@@ -158,13 +158,11 @@
 
         function GetUsersDetails(ele) {
             var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
-            var newURL = EditURL + "&Id=" + dataRow.Id;
+            var newURL = EditURL + "&EmpId=" + dataRow.UserId;
             return window.location.href = newURL;
         }
     $(function () {
         $(".edit").click(function () {
-
-            debugger;
             var $buttonClicked = $(this);
             var id = $buttonClicked.attr('data-id');
             if (id == undefined)
