@@ -27,6 +27,14 @@ namespace VMS.Controllers.Visitor
             return View();
         }
 
+        [HttpPost]
+        public JsonResult A_GetCouriersList()
+        {
+            List<CourierModel> Model = new List<CourierModel>();
+            Model = GetCouriers();
+            return Json(Model);
+        }
+
         public ActionResult GetCourierList()
         {
             string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
@@ -43,6 +51,7 @@ namespace VMS.Controllers.Visitor
             else
             {
                 ViewData["GetCourierList"] = couriers = GetCouriers();
+                //ViewBag.Designation = GetEmployee();
                 return View();
             }
         }

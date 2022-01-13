@@ -560,12 +560,88 @@ namespace VMS.Controllers.Admin
             else
             {
                 ViewData["GetEmployeeList"] = GetEmployeeList();
+                ViewBag.Department = GetDepartment();
+                ViewBag.CompanyName = GetCompanyName();
+                ViewBag.Designation = GetDesignation();
 
                 SessionModel emp = new SessionModel();
                 emp.UserId = userId;
                 emp.UserName = userName;
                 return View("Employee", emp);
             }
+        }
+
+        [HttpPost]
+        public JsonResult GetEmployeeFilterList(string EmpCode, string EmpName, string companyName, string Department, string Designation)
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<EmployeeModel> Model = new List<EmployeeModel>();
+
+            var objData = (from e in entities.UserTBs
+                           join c in entities.CompanyTBs on e.CompanyId equals c.Id
+                           join d in entities.DesignationTBs on e.DesignationId equals d.Id
+                           join dp in entities.DepartmentTBs on e.DepartmentId equals dp.Id
+                           where ((!string.IsNullOrEmpty(EmpName) ? e.FirstName.ToLower().Contains(EmpName.ToLower()) : true)
+                           && (!string.IsNullOrEmpty(EmpCode) ? e.EmpCode.ToLower() == EmpCode.ToLower() : true)
+                           && (!string.IsNullOrEmpty(companyName) ? c.Name.ToLower() == companyName.ToLower() : true)
+                           && (!string.IsNullOrEmpty(Department) ? dp.Name.ToLower() == Department.ToLower() : true)
+                           && (!string.IsNullOrEmpty(Designation) ? d.Name.ToLower() == Designation.ToLower() : true))
+                           select new
+                           {
+                               UserId = e.UserId,
+                               EmpCode = e.EmpCode,
+                               Name = e.FirstName + " " + e.LastName,
+                               FirstName = e.FirstName,
+                               LastName = e.LastName,
+                               CompanyId = c.Id,
+                               company = c.Name,
+                               DepartmentId = dp.Id,
+                               department = dp.Name,
+                               DesignationId = d.Id,
+                               Designation = d.Name,
+                               Phone = e.Phone,
+                               Email = e.Email,
+                               BirthDate = e.BirthDate,
+                               Password = e.Password,
+                               Address = e.Address,
+                               UserType = e.UserType,
+                               IdProofNo = e.IdProofNumber,
+                               PhotoPath = e.Photo,
+                               DeviceId = e.DeviceId,
+                               CardNo = e.CardNo,
+                               BranchId = e.BranchId,
+                               Branch = entities.BranchTBs.Where(d => d.Id == e.BranchId).Select(x => x.Name).FirstOrDefault(),
+                           }).ToList();
+
+            foreach (var item in objData)
+            {
+                EmployeeModel employee = new EmployeeModel();
+                employee.UserId = item.UserId;
+                employee.EmpCode = item.EmpCode;
+                employee.Name = item.FirstName + " " + item.LastName;
+                employee.FirstName = item.FirstName;
+                employee.LastName = item.LastName;
+                employee.CompanyId = item.CompanyId;
+                employee.Company = item.company;
+                employee.BranchId = item.BranchId;
+                employee.Branch = entities.BranchTBs.Where(d => d.Id == item.BranchId).Select(x => x.Name).FirstOrDefault();
+                employee.DepartmentId = item.DepartmentId;
+                employee.Department = item.department;
+                employee.DesignationId = item.DesignationId;
+                employee.Designation = item.Designation;
+                employee.Phone = item.Phone;
+                employee.Email = item.Email;
+                employee.BirthDate = Convert.ToDateTime(item.BirthDate);
+                employee.Password = item.Password;
+                employee.Address = item.Address;
+                employee.UserType = item.UserType;
+                employee.IdProofNo = item.IdProofNo;
+                employee.PhotoPath = item.PhotoPath;
+                employee.DeviceId = Convert.ToInt32(item.DeviceId);
+                employee.CardNo = item.CardNo;
+                Model.Add(employee);
+            }
+            return Json(Model);
         }
 
         private static List<EmployeeModel> GetEmployeeList()

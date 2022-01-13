@@ -35,41 +35,76 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
-                        <h4 class="card-title">Employee List</h4>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-primary anchorDetail">Add Employee</button>
-                        </div>
-                    </div>
-                    <div class="card-body">
                         <div class="toolbar">
-                            <div class="row" style="margin-bottom:10px;">
-                                <div class="col-md-2">
-                                    @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
-                                    {
-                                        <button class="btn btn-info" type="submit" style="float:left;">Export to Excel</button>
-                                    }
-                                </div>
-                                <div class="col-md-2">
+                            <div id="divFilter">
+                                <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                <button type="button" class="btn btn-primary anchorDetail float-right">Add Employee</button>
+                                <div style="float:right; padding-right:5px;">
                                     @using (Html.BeginForm("EmpExportToPdf", "Master", FormMethod.Post))
                                     {
                                         <input type="hidden" name="GridHtml" />
                                         <button class="btn btn-info" id="btnpdf" type="submit" style="float:left;">Export to PDF</button>
                                     }
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="/Master/DownloadExcel/" class="btn btn-info"><img width="25" height="25" title="Download Excel format" alt="Download Excel" /></a>
+                                <div style="float:right; padding-right:5px;">
+                                    @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
+                                    {
+                                        <button class="btn btn-info" type="submit" style="float:left;">Export to Excel</button>
+                                    }
                                 </div>
-                                @using (Html.BeginForm("Employee", "Master", FormMethod.Post, new { user = Model, enctype = "multipart/form-data" }))
-                                {
-                                    <div class="col-md-4">
-                                        @Html.HiddenFor(m => m.UserId)
-                                        @Html.HiddenFor(m => m.UserName)
-                                        <input type="file" id="FileUpload" name="FileUpload" class="" />
-                                        <input type="submit" value="Upload" id="btnSubmit" class="btn btn-primary" />
+                                <div style="float:right; padding-right:5px;">
+                                    @using (Html.BeginForm("Employee", "Master", FormMethod.Post, new { user = Model, enctype = "multipart/form-data" }))
+                                    {
+                                        <div>
+                                            @Html.HiddenFor(m => m.UserId)
+                                            @Html.HiddenFor(m => m.UserName)
+                                            <input type="file" id="FileUpload" name="FileUpload" class="" />
+                                            <input type="submit" value="Upload" id="btnSubmit" class="btn btn-info" />
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Employee Code</label>
+                                        <input type="text" class="form-control" id="empCode" placeholder="Employee Code">
                                     </div>
-                                }
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="empName" placeholder="Employee Name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-", new { id = "ddlCompanyName", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Department, "-Select-", new { id = "ddlDepartment", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Designation</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Designation, "-Select-", new { id = "ddlDesignation", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
+                                    @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
+                                    <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
@@ -109,15 +144,34 @@
         var EditURL = $("#WebUIUrl").val() + '/Master/AddEmployee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
         var refreshURL = $("#WebUIUrl").val() + '/Master/Employee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
-    $(".anchorDetail").click(function () {
-        return window.location.href = AddURdebuL;
-    });
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
+        });
 
-        $(function () {
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+
+        $(".filter").click(function () {
+            debugger;
+            var empCode = $('#empCode').val();
+            var empName = $('#empName').val();
+            var Department = $("#ddlDepartment option:selected").val();
+            var companyName = $("#ddlCompanyName option:selected").val();
+            var Branch = $("#ddlBranch option:selected").val();
+            var Designation = $("#ddlDesignation option:selected").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
             $.ajax({
                 type: "POST",
-                url: "/Master/A_GetEmployeeList",
-                data: '{}',
+                url: "/Master/GetEmployeeFilterList",
+                data: '{EmpCode:"' + empCode + '",EmpName:"' + empName + '", companyName: "' + companyName + '", Department: "' + Department + '", Designation: "' + Designation + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: OnSuccess,
@@ -129,6 +183,31 @@
                 }
             });
         });
+        //End Advance Filter
+
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURdebuL;
+        });
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Master/A_GetEmployeeList",
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
         function OnSuccess(response) {
             $("#tblCustomers").DataTable(
                 {

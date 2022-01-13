@@ -540,7 +540,7 @@
                         url: '@Url.Action("GetVisitorData", "Visitor")',
                         data: { "Contact": Contact },
                      success: function (json, textStatus) {
-                         convertDatetime(json.FromDate, json.ToDate, json.PUCEndDate);
+                         //convertDatetime(json.FromDate, json.ToDate, json.PUCEndDate);
                             json = json || {};
                             $("#Name").val(json.Name);
                             $("#Company").val(json.Company);

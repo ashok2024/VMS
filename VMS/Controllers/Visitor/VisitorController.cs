@@ -638,7 +638,7 @@ namespace VMS.Controllers.Visitor
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    //throw ex;
                 }
             }
             else
