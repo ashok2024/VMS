@@ -222,6 +222,7 @@
           <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
           <Property Name="DeviceId" Type="int" />
           <Property Name="CardNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CertificateImagePath" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="VisitorStatusTB">
           <Key>
@@ -502,6 +503,7 @@
           <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeviceId" Type="Int32" />
           <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VisitorStatusTB">
           <Key>
@@ -731,6 +733,7 @@
           <EntitySetMapping Name="VisitorEntryTBs">
             <EntityTypeMapping TypeName="VMSDBModel.VisitorEntryTB">
               <MappingFragment StoreEntitySet="VisitorEntryTB">
+                <ScalarProperty Name="CertificateImagePath" ColumnName="CertificateImagePath" />
                 <ScalarProperty Name="CardNo" ColumnName="CardNo" />
                 <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
                 <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />

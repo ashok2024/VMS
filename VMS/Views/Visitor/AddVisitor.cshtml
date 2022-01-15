@@ -202,8 +202,7 @@
 
                                                     </div>
                                                     <div class="col-4">
-                                                        <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
-                                                    </div>                                                
+                                                        <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">                                                    </div>                                                
                                                    
                                                 </div>                                               
                                             </form>
@@ -368,7 +367,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {                                                                        
-                        $("#PhotoPathCapture").val('/Uploads/Photos' + response);
+                        $("#PhotoPathCapture").val('/Uploads/Photos/' + response);
                     },
                     error: function (er) {
                         alert(er);
@@ -378,7 +377,7 @@
                 Webcam.upload(data,
                     '/WebCam/CaptureImage',
                     function (code, text) {
-                        alert('Snapshot/Image captured successfully...');
+                       // alert('Snapshot/Image captured successfully...');
 
                         
                     });
@@ -401,17 +400,17 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        $("#captureCertificate").val('/Uploads/Certificate' + response);
+                        $("#captureCertificate").val('/Uploads/Certificate/' + response);
                     },
                     error: function (er) {
-                        alert(er);
+                       // alert(er);
                     }
                 });
 
                 Webcam.upload(data,
                     '/WebCam/CaptureImage',
                     function (code, text) {
-                        alert('Snapshot/Image captured successfully...');
+                        //alert('Snapshot/Image captured successfully...');
 
 
                     });
@@ -531,7 +530,7 @@
         function contactchange() {
 
                 var Contact = $("#Contact").val();
-
+              
                 if (Contact != "") {
 
                  $.ajax({
@@ -540,12 +539,12 @@
                         url: '@Url.Action("GetVisitorData", "Visitor")',
                         data: { "Contact": Contact },
                      success: function (json, textStatus) {
-                         //convertDatetime(json.FromDate, json.ToDate, json.PUCEndDate);
+                            convertDatetime(json.FromDate, json.ToDate, json.PUCEndDate);
                             json = json || {};
                             $("#Name").val(json.Name);
                             $("#Company").val(json.Company);
                             $('#EmailId').val(json.EmailId);
-                            $('#VisitorType').val(json.EmailId);
+                            $('#VisitorType').val(json.VisitorType);
                             $('#Address').val(json.Address);
                             $('#InTime').val(json.InTime);
                             $('#OutTime').val(json.OutTime);
@@ -556,12 +555,21 @@
                             $('#IdProof').val(json.IdProof);
                             $('#IdProofNo').val(json.IdProofNumber);
                             $('#VehicleNo').val(json.VehicleNo);
+                            $('#VehicleType').val(json.VehicleType);
                             $('#VehiclePUCNo').val(json.VehiclePUCNo);
                            /* $('#PUCEndDate').val(json.PUCEndDate);*/
                             $('#Purpose').val(json.Purpose);
                             $('#Material').val(json.Material);
                             $('#Remark').val(json.Remark);
-                            $('#Priority').val(json.Priority);
+                         $('#Priority').val(json.Priority);
+                         var img = $("#WebUIUrl").val() + json.Photo;
+                         document.getElementById('results').innerHTML = '<img id="img" />';
+                         $("#img").attr('src', img);
+
+                         var img = $("#WebUIUrl").val() + json.CertificateImagePath;
+                         document.getElementById('resultsCertificate').innerHTML = '<img id="img1" />';
+                         $("#img1").attr('src', img);
+                         
                         },
                         error: function () {
                             alert("Data Not Found");

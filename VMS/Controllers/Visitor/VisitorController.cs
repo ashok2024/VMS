@@ -151,19 +151,19 @@ namespace VMS.Controllers.Visitor
             string _imgname = Guid.NewGuid().ToString();
          
             string imageName = _imgname + ".png";
-            string path = Server.MapPath("/Uploads/Photos");
+            string path = Server.MapPath("/Uploads/Photos/");
             if ((!System.IO.Directory.Exists(path)))
             {
                 System.IO.Directory.CreateDirectory(path);
             }
-            var _comPath = path + "/VS_"+imageName;
+            var _comPath = path + imageName;
 
             Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
             data = regex.Replace(data, string.Empty);
             byte[] imageBytes = Convert.FromBase64String(data);
             System.IO.File.WriteAllBytes(_comPath, imageBytes);
 
-            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+            return Json(Convert.ToString(imageName), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -172,19 +172,19 @@ namespace VMS.Controllers.Visitor
             string _imgname = Guid.NewGuid().ToString();
 
             string imageName = _imgname + ".png";
-            string path = Server.MapPath("/Uploads/Certificate");
+            string path = Server.MapPath("/Uploads/Certificate/");
             if ((!System.IO.Directory.Exists(path)))
             {
                 System.IO.Directory.CreateDirectory(path);
             }
-            var _comPath = path + "/VS_" + imageName;
+            var _comPath = path +  imageName;
 
             Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
             data = regex.Replace(data, string.Empty);
             byte[] imageBytes = Convert.FromBase64String(data);
             System.IO.File.WriteAllBytes(_comPath, imageBytes);
 
-            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+            return Json(Convert.ToString(imageName), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -306,7 +306,7 @@ namespace VMS.Controllers.Visitor
                             dt.Contact = visitor.Contact;
                             dt.EmailId = visitor.EmailId;
                             dt.Company = visitor.Company;
-                            dt.Photo = visitor.PhotoPath;
+                            dt.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
                             db.VisitorTBs.Add(dt);
                             db.SaveChanges();
 
@@ -323,7 +323,7 @@ namespace VMS.Controllers.Visitor
                             tB.ToDate = visitor.VisitDateTo;
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
-                            tB.Photo = visitor.PhotoPath;
+                            tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
                             tB.CertificateImagePath = visitor.captureCertificate;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
@@ -352,116 +352,116 @@ namespace VMS.Controllers.Visitor
 
                     string bodystring = string.Empty;
 
-                    if (maildata != null)
-                    {
-                        #region send mail to visitor
-                        if (visitor.EmailId != null)
-                        {
-                            //// Hader start
-                            bodystring = "<!DOCTYPE html><html><head><title> VMS : Visit Email</title> </head> <body>";
-                            bodystring += "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tbody> ";
-                            /// hader end
+                    //if (maildata != null)
+                    //{
+                    //    #region send mail to visitor
+                    //    if (visitor.EmailId != null)
+                    //    {
+                    //        //// Hader start
+                    //        bodystring = "<!DOCTYPE html><html><head><title> VMS : Visit Email</title> </head> <body>";
+                    //        bodystring += "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tbody> ";
+                    //        /// hader end
 
-                            bodystring += "<tr><td align='center'>";
-                            bodystring += "<table width='92% ' border='0' cellspacing='0' cellpadding='0' bgcolor='#ffffff' style='border-radius:10px; padding: 15px'>";
-                            bodystring += "<tbody>  <tr> <td align='center' valign='top'>";
-                            bodystring += "<table width='100% ' border='0' cellspacing='0' cellpadding='0' style='border - radius:10px; border: 2px solid #eac356; padding: 0 25px;'>";
-                            bodystring += "<tbody>  <tr> <td>&nbsp;</td>";
-                            bodystring += "<td style='font - family:Arial; font - size:15px; line - height:21px; color:#000000'><strong style='font-weight:200;display: block; font-size: 30px; line-height: 3;text-align: center;'> Visit </strong>You recently requested to visit through VMS. <br/>";
-                            bodystring += "</td>";
-                            bodystring += "<td>&nbsp;</td></tr>";
+                    //        bodystring += "<tr><td align='center'>";
+                    //        bodystring += "<table width='92% ' border='0' cellspacing='0' cellpadding='0' bgcolor='#ffffff' style='border-radius:10px; padding: 15px'>";
+                    //        bodystring += "<tbody>  <tr> <td align='center' valign='top'>";
+                    //        bodystring += "<table width='100% ' border='0' cellspacing='0' cellpadding='0' style='border - radius:10px; border: 2px solid #eac356; padding: 0 25px;'>";
+                    //        bodystring += "<tbody>  <tr> <td>&nbsp;</td>";
+                    //        bodystring += "<td style='font - family:Arial; font - size:15px; line - height:21px; color:#000000'><strong style='font-weight:200;display: block; font-size: 30px; line-height: 3;text-align: center;'> Visit </strong>You recently requested to visit through VMS. <br/>";
+                    //        bodystring += "</td>";
+                    //        bodystring += "<td>&nbsp;</td></tr>";
 
-                            bodystring += "<tr> <td>&nbsp;</td> <td>&nbsp;</td>  <td>&nbsp;</td> </tr>";
-                            bodystring += "<tr> <td>&nbsp;</td><td height='30'  valign='bottom' style='font - family:Arial; font - size:13px; line - height:20px; color:#393a3c'>Thank you & Regards, <br/> <strong>Team VMS</strong>.</td><td>&nbsp;</td></tr>";
-                            bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
-                            bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
-                            bodystring += " </tbody>  </table> </td> </tr>";
-                            bodystring += "</tbody> </table>  </td> </tr>";
-                            bodystring += " </td></tr>";
-                            bodystring += "<tr> <td height='25'>&nbsp;</td>  </tr>";
-                            bodystring += "</tbody>  </table> </td> </tr> </tbody>  </table> </body> </html>";
+                    //        bodystring += "<tr> <td>&nbsp;</td> <td>&nbsp;</td>  <td>&nbsp;</td> </tr>";
+                    //        bodystring += "<tr> <td>&nbsp;</td><td height='30'  valign='bottom' style='font - family:Arial; font - size:13px; line - height:20px; color:#393a3c'>Thank you & Regards, <br/> <strong>Team VMS</strong>.</td><td>&nbsp;</td></tr>";
+                    //        bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
+                    //        bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
+                    //        bodystring += " </tbody>  </table> </td> </tr>";
+                    //        bodystring += "</tbody> </table>  </td> </tr>";
+                    //        bodystring += " </td></tr>";
+                    //        bodystring += "<tr> <td height='25'>&nbsp;</td>  </tr>";
+                    //        bodystring += "</tbody>  </table> </td> </tr> </tbody>  </table> </body> </html>";
 
-                            //var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-                            //string Host = smtpSection.Network.Host;
-                            //string from = smtpSection.From;
-                            //int Port = smtpSection.Network.Port;
-                            //string Username = smtpSection.Network.UserName;
-                            //string pass = smtpSection.Network.Password;
+                    //        //var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                    //        //string Host = smtpSection.Network.Host;
+                    //        //string from = smtpSection.From;
+                    //        //int Port = smtpSection.Network.Port;
+                    //        //string Username = smtpSection.Network.UserName;
+                    //        //string pass = smtpSection.Network.Password;
 
-                            SmtpClient SmtpServer = new SmtpClient(Host);
-                            SmtpServer.UseDefaultCredentials = true;
-                            MailMessage mails = new MailMessage();
-                            mails.From = new MailAddress(from);
-                            //mails.From = new MailAddress("ashokmehta2024@gmail.com");
-                            mails.To.Add(visitor.EmailId);
-                            // mails.To.Add("Vishakhasupnekar1307@gmail.com");
-                            mails.IsBodyHtml = true;
-                            mails.Subject = "Visit Managment system";
-                            mails.Body = bodystring;
-                            SmtpServer.Port = Port;
-                            SmtpServer.UseDefaultCredentials = true;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
-                            //SmtpServer.EnableSsl = true;
-                            SmtpServer.Send(mails);
-                        }
-                        #endregion
+                    //        SmtpClient SmtpServer = new SmtpClient(Host);
+                    //        SmtpServer.UseDefaultCredentials = true;
+                    //        MailMessage mails = new MailMessage();
+                    //        mails.From = new MailAddress(from);
+                    //        //mails.From = new MailAddress("ashokmehta2024@gmail.com");
+                    //        mails.To.Add(visitor.EmailId);
+                    //        // mails.To.Add("Vishakhasupnekar1307@gmail.com");
+                    //        mails.IsBodyHtml = true;
+                    //        mails.Subject = "Visit Managment system";
+                    //        mails.Body = bodystring;
+                    //        SmtpServer.Port = Port;
+                    //        SmtpServer.UseDefaultCredentials = false;
+                    //        SmtpServer.Credentials = new System.Net.NetworkCredential("ashokmehta2024@gmail.com", "jaybanjaradev@2024");
+                    //        SmtpServer.EnableSsl = true;
+                    //        SmtpServer.Send(mails);
+                    //    }
+                    //    #endregion
 
-                        #region send mail to Employee
+                    //    #region send mail to Employee
 
-                        var user = db.UserTBs.Where(d => d.UserId == visitor.EmployeeId).FirstOrDefault();
+                    //    var user = db.UserTBs.Where(d => d.UserId == visitor.EmployeeId).FirstOrDefault();
 
-                        if (user.Email != null)
-                        {
-                            bodystring = string.Empty;
+                    //    if (user.Email != null)
+                    //    {
+                    //        bodystring = string.Empty;
 
-                            //// Hader start
-                            bodystring = "<!DOCTYPE html><html><head><title> VMS : Visitor Request</title> </head> <body>";
-                            bodystring += "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tbody> ";
-                            /// hader end
+                    //        //// Hader start
+                    //        bodystring = "<!DOCTYPE html><html><head><title> VMS : Visitor Request</title> </head> <body>";
+                    //        bodystring += "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tbody> ";
+                    //        /// hader end
 
-                            bodystring += "<tr><td align='center'>";
-                            bodystring += "<table width='92% ' border='0' cellspacing='0' cellpadding='0' bgcolor='#ffffff' style='border-radius:10px; padding: 15px'>";
-                            bodystring += "<tbody>  <tr> <td align='center' valign='top'>";
-                            bodystring += "<table width='100% ' border='0' cellspacing='0' cellpadding='0' style='border - radius:10px; border: 2px solid #eac356; padding: 0 25px;'>";
-                            bodystring += "<tbody>  <tr> <td>&nbsp;</td>";
-                            bodystring += "<td style='font - family:Arial; font - size:15px; line - height:21px; color:#000000'><strong style='font-weight:200;display: block; font-size: 30px; line-height: 3;text-align: center;'> VMS </strong>Vistor makes request to meet you through VMS. <br/>";
-                            bodystring += "</td>";
-                            bodystring += "<td>&nbsp;</td></tr>";
+                    //        bodystring += "<tr><td align='center'>";
+                    //        bodystring += "<table width='92% ' border='0' cellspacing='0' cellpadding='0' bgcolor='#ffffff' style='border-radius:10px; padding: 15px'>";
+                    //        bodystring += "<tbody>  <tr> <td align='center' valign='top'>";
+                    //        bodystring += "<table width='100% ' border='0' cellspacing='0' cellpadding='0' style='border - radius:10px; border: 2px solid #eac356; padding: 0 25px;'>";
+                    //        bodystring += "<tbody>  <tr> <td>&nbsp;</td>";
+                    //        bodystring += "<td style='font - family:Arial; font - size:15px; line - height:21px; color:#000000'><strong style='font-weight:200;display: block; font-size: 30px; line-height: 3;text-align: center;'> VMS </strong>Vistor makes request to meet you through VMS. <br/>";
+                    //        bodystring += "</td>";
+                    //        bodystring += "<td>&nbsp;</td></tr>";
 
-                            bodystring += "<tr> <td>&nbsp;</td> <td>&nbsp;</td>  <td>&nbsp;</td> </tr>";
-                            bodystring += "<tr> <td>&nbsp;</td><td height='30'  valign='bottom' style='font - family:Arial; font - size:13px; line - height:20px; color:#393a3c'>Thank you & Regards, <br/> <strong>Team VMS</strong>.</td><td>&nbsp;</td></tr>";
-                            bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
-                            bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
-                            bodystring += " </tbody>  </table> </td> </tr>";
-                            bodystring += "</tbody> </table>  </td> </tr>";
-                            bodystring += " </td></tr>";
-                            bodystring += "<tr> <td height='25'>&nbsp;</td>  </tr>";
-                            bodystring += "</tbody>  </table> </td> </tr> </tbody>  </table> </body> </html>";
+                    //        bodystring += "<tr> <td>&nbsp;</td> <td>&nbsp;</td>  <td>&nbsp;</td> </tr>";
+                    //        bodystring += "<tr> <td>&nbsp;</td><td height='30'  valign='bottom' style='font - family:Arial; font - size:13px; line - height:20px; color:#393a3c'>Thank you & Regards, <br/> <strong>Team VMS</strong>.</td><td>&nbsp;</td></tr>";
+                    //        bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
+                    //        bodystring += "<tr><td>&nbsp;</td>  <td>&nbsp;</td>  <td>&nbsp;</td>  </tr>";
+                    //        bodystring += " </tbody>  </table> </td> </tr>";
+                    //        bodystring += "</tbody> </table>  </td> </tr>";
+                    //        bodystring += " </td></tr>";
+                    //        bodystring += "<tr> <td height='25'>&nbsp;</td>  </tr>";
+                    //        bodystring += "</tbody>  </table> </td> </tr> </tbody>  </table> </body> </html>";
 
-                            //smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-                            //Host = smtpSection.Network.Host;
-                            //from = smtpSection.From;
-                            //Port = smtpSection.Network.Port;
-                            //Username = smtpSection.Network.UserName;
-                            //pass = smtpSection.Network.Password;
+                    //        //smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                    //        //Host = smtpSection.Network.Host;
+                    //        //from = smtpSection.From;
+                    //        //Port = smtpSection.Network.Port;
+                    //        //Username = smtpSection.Network.UserName;
+                    //        //pass = smtpSection.Network.Password;
 
-                            SmtpClient SmtpServer = new SmtpClient(Host);
+                    //        SmtpClient SmtpServer = new SmtpClient(Host);
 
-                            MailMessage mails = new MailMessage();
-                            mails.From = new MailAddress(from);
-                            mails.To.Add(user.Email);
-                            //mails.To.Add("amy21690@gmail.com");
-                            mails.IsBodyHtml = true;
-                            mails.Subject = "Visit Managment system";
-                            mails.Body = bodystring;
-                            SmtpServer.Port = Port;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
-                            SmtpServer.EnableSsl = true;
-                            SmtpServer.Send(mails);
-                        }
+                    //        MailMessage mails = new MailMessage();
+                    //        mails.From = new MailAddress(from);
+                    //        mails.To.Add(user.Email);
+                    //        //mails.To.Add("amy21690@gmail.com");
+                    //        mails.IsBodyHtml = true;
+                    //        mails.Subject = "Visit Managment system";
+                    //        mails.Body = bodystring;
+                    //        SmtpServer.Port = Port;
+                    //        SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
+                    //        SmtpServer.EnableSsl = true;
+                    //        SmtpServer.Send(mails);
+                    //    }
 
-                        #endregion
-                    }
+                    //    #endregion
+                    //}
 
                     #region call punch apis
 
@@ -1334,7 +1334,7 @@ namespace VMS.Controllers.Visitor
                             //string Username = smtpSection.Network.UserName;
                             //string pass = smtpSection.Network.Password;
 
-                            SmtpClient SmtpServer = new SmtpClient(Host);
+                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
 
                             MailMessage mails = new MailMessage();
                             mails.From = new MailAddress(from);
@@ -1344,8 +1344,9 @@ namespace VMS.Controllers.Visitor
                             mails.Subject = "Visit Managment system";
                             mails.Body = bodystring;
                             SmtpServer.Port = Port;
-                            SmtpServer.UseDefaultCredentials = true;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
+                            SmtpServer.UseDefaultCredentials = false;
+                            //SmtpServer.Credentials = new System.Net.NetworkCredential(Username, pass);
+                            SmtpServer.Credentials = new System.Net.NetworkCredential("ashokmehta2024@gmail.com", "jaybanjaradev@2024");
                             SmtpServer.EnableSsl = true;
                             SmtpServer.Send(mails);
                         }
