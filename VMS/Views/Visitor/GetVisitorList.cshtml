@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
                                     @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
-                                    <button class="btn btn-info search" type="button">Search</button>
+                                    <button class="btn btn-info search" id="filter" type="button">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -191,6 +191,33 @@
     <script type="text/javascript">
         var AddURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
         var EditURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+        $("#filter").click(function () {
+            debugger;
+            var contact = $("#contact").val();
+            var company = $("#Company").val();
+            var dept = $("#Department").val();
+            var fdate = $("#fromdate").val();
+            var tdate = $("#todate").val();
+            var time = $("#time").val();
+            
+                var table = $("#tblCustomers").DataTable();
+                table.destroy();
+                $.ajax({
+                    type: "POST",
+                    url: "/Visitor/FilterGetVisitorList",
+                    data: '{contactname:"' + contact + '", company: "' + company + '", dept:"' + dept + '", fromdate: "' + fdate + '", todate:"' + tdate + '", inTime: "' + time + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+        });
 
         //Start Advance Filter
         $(document).ready(function () {

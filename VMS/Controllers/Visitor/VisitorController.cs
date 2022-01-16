@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.UI;
 using VMS.Controllers.Account;
 using VMS.Middleware;
 using VMS.Models;
@@ -653,7 +654,7 @@ namespace VMS.Controllers.Visitor
                 ViewBag.PriorityList = new SelectList(GetPrioritylList(), "Name", "Name");
                 ViewBag.VisitorTypeList = new SelectList(GetVisitorTypeList(), "Name", "Name");
                 ViewBag.VehicleTypeList = new SelectList(GetVehicleTypeList(), "Name", "Name");
-                ViewBag.DeviceList = new SelectList(GetDeviceList(), "DeviceId", "DeviceName");
+                ViewBag.DeviceList = new SelectList(GetDeviceList(), "DeviceId", "DeviceName");               
                 return View("AddVisitor", visitor);
             }
             //return RedirectToAction("GetSupplier", new { userId = userid, userName = username });
@@ -959,6 +960,8 @@ namespace VMS.Controllers.Visitor
                 Model.VehiclePUCNo = visitor.VehiclePUCNo;
                 Model.PUCEndDate = visitor.PUCEndDate;
                 Model.PhotoPath = visitor.Photo;
+                Model.PhotoPathCapture = visitor.Photo;
+                Model.captureCertificate  = visitor.CertificateImagePath;
                 Model.DeviceId = Convert.ToInt32(visitor.DeviceId);
                 Model.CardNo = visitor.CardNo;
 
@@ -977,7 +980,63 @@ namespace VMS.Controllers.Visitor
             Model = GetVisitors();
             return Json(Model);
         }
+        [HttpPost]
+        public JsonResult FilterGetVisitorList(string contactname ,string company ,string dept,string fromdate , string todate , string inTime)
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
+            VMSDBEntities entities = new VMSDBEntities();
+            List<VisitorEntryTB> visitors = new List<VisitorEntryTB>();
+            try
+            {
+                DateTime fDate = new DateTime();
+                DateTime tDate = new DateTime();
+                if (!string.IsNullOrEmpty(fromdate))
+                {
+                    fDate = Convert.ToDateTime(fromdate);
+                }
+
+                if (!string.IsNullOrEmpty(todate))
+                {
+                    tDate = Convert.ToDateTime(todate);
+                }
+
+                var objData = (from d in entities.VisitorEntryTBs
+                               where ((!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
+                              && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
+                              && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
+                              && (!string.IsNullOrEmpty(fromdate) ? d.FromDate == fDate : true)
+                               && (!string.IsNullOrEmpty(todate) ? d.ToDate == tDate : true)
+                               && (!string.IsNullOrEmpty(inTime) ? d.InTime == inTime : true))
+                               select d).ToList();
+                //visitors = (List<VisitorEntryTB>)entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
+
+                foreach (var item in objData)
+                {
+                    VisitorEntryModel visitor = new VisitorEntryModel();
+                    visitor.Id = item.Id;
+                    visitor.VisitorId = item.VisitorId;
+                    visitor.Name = item.Name;
+                    visitor.Company = item.Company;
+                    visitor.Contact = item.Contact;
+                    var user = entities.UserTBs.Where(d => d.UserId == item.EmployeeId).FirstOrDefault();
+                    visitor.EmployeeId = Convert.ToInt32(item.EmployeeId);
+                    visitor.EmployeeName = user.FirstName + " " + user.LastName;
+                    visitor.EmployeeDepartment = user.Department;
+                    visitor.InTime = item.InTime;
+                    visitor.OutTime = item.OutTime;
+                    visitor.VisitDateFrom = Convert.ToDateTime(item.FromDate);
+                    visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
+                    visitor.Purpose = item.Purpose;
+                    Model.Add(visitor);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Json(Model);
+        }
         public ActionResult GetVisitorListSearch(VisitorSearchModel visitor)
         {
             visitorEntries = GetVisitors();

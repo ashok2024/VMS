@@ -187,52 +187,90 @@
                                 @Html.HiddenFor(m => m.captureCertificate)
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6" style="padding-top:50px;">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Live Web Camera</div>
-                                        <div class="panel-body">
-                                            <div id="LiveCamera" style="margin-bottom:15px;"></div>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
-                                                    </div>
-                                                    <div class="col-4">
-
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">                                                    </div>                                                
-                                                   
-                                                </div>                                               
-                                            </form>
+                            <div class="form-group">                               
+                                <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12" style="padding-top:50px">
+                                    <div class="row">
+                                        <div id="LiveCamera" style="margin-bottom:15px;"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4" style="margin-top:5px">
+                                            <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                        </div>
+                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4">
+                                        </div>
+                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4" style="margin-top:5px">
+                                            <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6" style="padding-top:15px;">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Captured Snapshot/Image</div>
-                                        <div class="panel-body">
-                                            <div id="results">Your snapshot will appear here...</div>
+                                    <div class="row" style="margin-top:5px">
+                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-6">
+                                            <div id="results">
+                                                <img id="img" src="" style="width:200px" />
+                                            </div>
                                         </div>
-                                        <br />
-                                        <br />
+                                        <div class="col-3 col-sm-12 col-lg-3 col-xs-12 col-md-3">
+                                        </div>
+                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4">
+                                            <div id="resultsCertificate">
+                                                <img id="img1" src="" style="width:200px" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6" style="padding-top:15px;">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Captured Snapshot/ Certificate</div>
-                                        <div class="panel-body">
-                                            <div id="resultsCertificate">Your Certificate will appear here...</div>
+                            @*<div class="form-group">
+                                    <div class="col-md-6" style="padding-top:50px;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Live Web Camera</div>
+                                            <div class="panel-body">
+                                                <div id="LiveCamera" style="margin-bottom:15px;"></div>
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                                        </div>
+                                                        <div class="col-4">
+
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <br />
-                                        <br />
+                                    </div>
+                                    <div class="col-md-3" style="padding-top:15px;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Captured Image</div>
+                                            <div class="panel-body">
+                                                <div id="results" style="width:100px;height:100px">
+                                                    Your snapshot will appear here...
+                                                    <img id="img" src="" style="width:200px"/>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6" style="padding-top:15px;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Captured Snapshot/ Certificate</div>
+                                            <div class="panel-body">
+                                                <div id="resultsCertificate">Your Certificate will appear here...
+                                                   <img id="img1" src="" style="width:200px"/>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>*@
 
                             <div class="form-group">
                                 <label>Device</label>
@@ -302,7 +340,7 @@
                         </div>
                         <!-- /.card-body -->
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -347,18 +385,23 @@
         Webcam.set({
             width: 474,
             height: 375,
-            image_format: 'png' ,
+            image_format: 'png',
             jpeg_quality: 100
         });
         Webcam.attach('#LiveCamera');
     </script>
 
     <script language="JavaScript">
+        function test() {
+            alert("call");
+        }
         function CaptureSnapshot() {
-            Webcam.snap(function (data) {                
+            Webcam.snap(function (data) {
                 // display results in page
-                document.getElementById('results').innerHTML = '<img src="' + data + '"/>';
+                //    document.getElementById('results').innerHTML = '<img style="width:200px" src="' + data + '"/>';
                 // Send image data to the controller to store locally or in database
+
+                $("#img").attr('src', data);
                 debugger;
                 $.ajax({
                     type: "POST",
@@ -366,32 +409,33 @@
                     data: '{data:"' + data + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (response) {                                                                        
+                    success: function (response) {
                         $("#PhotoPathCapture").val('/Uploads/Photos/' + response);
                     },
                     error: function (er) {
                         alert(er);
-                    }                    
+                    }
                 });
 
                 Webcam.upload(data,
                     '/WebCam/CaptureImage',
                     function (code, text) {
-                       // alert('Snapshot/Image captured successfully...');
+                        // alert('Snapshot/Image captured successfully...');
 
-                        
+
                     });
-                
-                   
+
+
             });
 
 
         }
         function CaptureSnapshotCovidCertificate() {
-            Webcam.snap(function (data) {              
+            Webcam.snap(function (data) {
                 // display results in page
-                document.getElementById('resultsCertificate').innerHTML = '<img src="' + data + '"/>';
+                //document.getElementById('resultsCertificate').innerHTML = '<img style="width:200px" src="' + data + '"/>';
                 // Send image data to the controller to store locally or in database
+                $("#img1").attr('src', data);
                 debugger;
                 $.ajax({
                     type: "POST",
@@ -403,7 +447,7 @@
                         $("#captureCertificate").val('/Uploads/Certificate/' + response);
                     },
                     error: function (er) {
-                       // alert(er);
+                        // alert(er);
                     }
                 });
 
@@ -424,7 +468,7 @@
 
     <script>
 
-        
+
         $(function () {
 
             debugger;
@@ -435,6 +479,10 @@
 
             if (Id > 0) {
                 $("#imgPreview").attr('src', ImagePath);
+                var img = $("#WebUIUrl").val() + $("#PhotoPathCapture").val();
+                var img1 = $("#WebUIUrl").val() + $("#captureCertificate").val();
+                $("#img").attr('src', img);
+                $("#img1").attr('src', img1);
             }
 
             //Timepicker
@@ -528,9 +576,9 @@
         })
 
         function contactchange() {
-
+            alert();
                 var Contact = $("#Contact").val();
-              
+
                 if (Contact != "") {
 
                  $.ajax({
@@ -563,13 +611,13 @@
                             $('#Remark').val(json.Remark);
                          $('#Priority').val(json.Priority);
                          var img = $("#WebUIUrl").val() + json.Photo;
-                         document.getElementById('results').innerHTML = '<img id="img" />';
+                        // document.getElementById('results').innerHTML = '<img style="width:200px" id="img" />';
                          $("#img").attr('src', img);
 
                          var img = $("#WebUIUrl").val() + json.CertificateImagePath;
-                         document.getElementById('resultsCertificate').innerHTML = '<img id="img1" />';
+                         //document.getElementById('resultsCertificate').innerHTML = '<img style="width:200px" id="img1" />';
                          $("#img1").attr('src', img);
-                         
+
                         },
                         error: function () {
                             alert("Data Not Found");
@@ -577,22 +625,26 @@
                         });
                     }
         }
+
         function convertDatetime(date1 , d2 ,d3) {
             var date = new Date(parseInt(date1.substr(6)));
-            var month = ("0" + (date.getMonth() + 1)).slice(-2);            
-            var formdate = ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            //var formdate = ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+            var formdate = month + '/' + ("0" + date.getDate()).slice(-2) + '/' + date.getFullYear();
             $('#VisitDateFrom').val(formdate);
 
             var date1 = new Date(parseInt(d2.substr(6)));
             var month1 = ("0" + (date1.getMonth() + 1)).slice(-2);
-            var toDate = ("0" + date1.getDate()).slice(-2) + '-' + month1 + '-' + date1.getFullYear();
+            /*var toDate = ("0" + date1.getDate()).slice(-2) + '-' + month1 + '-' + date1.getFullYear();*/
+            var toDate = month1 + '/' + ("0" + date1.getDate()).slice(-2) + '/' + date1.getFullYear();
             $('#VisitDateTo').val(toDate)
 
             var date2 = new Date(parseInt(d3.substr(6)));
             var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
-            var pucdate = ("0" + date2.getDate()).slice(-2) + '-' + month2 + '-' + date2.getFullYear();
+            /*var pucdate = ("0" + date2.getDate()).slice(-2) + '-' + month2 + '-' + date2.getFullYear();*/
+            var pucdate = + month2 + '/' +  ("0" + date2.getDate()).slice(-2) + '/' + date2.getFullYear();
             $('#PUCEndDate').val(pucdate);
-        }       
+        }
     </script>
 }
 
