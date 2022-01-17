@@ -33,6 +33,14 @@ namespace VMS.Controllers.Visitor
         // GET: VisitorList
         #region Approved visitor report
 
+        [HttpPost]
+        public JsonResult A_GetAprovedVisitorList()
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+            Model = GetVisitedVisitors();
+            return Json(Model);
+        }
+
         public ActionResult GetVisitedVisitorList()
         {
             string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
@@ -98,6 +106,67 @@ namespace VMS.Controllers.Visitor
             }
             return Model;
         }
+        [HttpPost]
+        public JsonResult FilterGetAprovedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+
+            VMSDBEntities entities = new VMSDBEntities();
+            List<VisitorEntryTB> visitors = new List<VisitorEntryTB>();
+            try
+            {
+                DateTime fDate = new DateTime();
+                DateTime tDate = new DateTime();
+                if (!string.IsNullOrEmpty(fromdate))
+                {
+                    string strDate = fromdate;/* fromdate.Split('/')[1] + "/" + fromdate.Split('/')[0] + "/" + fromdate.Split('/')[2];*/
+                    fDate = Convert.ToDateTime(strDate);
+                }
+
+                if (!string.IsNullOrEmpty(todate))
+                {
+                    string strDate = todate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
+                    tDate = Convert.ToDateTime(todate);
+                }
+
+                var objData = (from d in entities.VisitorEntryTBs
+                               join c in entities.VisitorStatusTBs on d.Id equals c.VisitId
+                               where (c.Status == "Approve"
+                                             && (!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(fromdate) ? d.FromDate >= fDate : true)
+                                             && (!string.IsNullOrEmpty(todate) ? d.ToDate <= tDate : true)
+                                             && (!string.IsNullOrEmpty(inTime) ? d.InTime == inTime : true))
+                               select d).ToList();
+                //visitors = (List<VisitorEntryTB>)entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
+
+                foreach (var item in objData)
+                {
+                    VisitorEntryModel visitor = new VisitorEntryModel();
+                    visitor.Id = item.Id;
+                    visitor.VisitorId = item.VisitorId;
+                    visitor.Name = item.Name;
+                    visitor.Company = item.Company;
+                    visitor.Contact = item.Contact;
+                    var user = entities.UserTBs.Where(d => d.UserId == item.EmployeeId).FirstOrDefault();
+                    visitor.EmployeeId = Convert.ToInt32(item.EmployeeId);
+                    visitor.EmployeeName = user.FirstName + " " + user.LastName;
+                    visitor.EmployeeDepartment = user.Department;
+                    visitor.InTime = item.InTime;
+                    visitor.OutTime = item.OutTime;
+                    visitor.VisitDateFrom = Convert.ToDateTime(item.FromDate);
+                    visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
+                    visitor.Purpose = item.Purpose;
+                    Model.Add(visitor);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Json(Model);
+        }
 
         public ActionResult GetVisitorListSearch(VisitorSearchModel visitor)
         {
@@ -139,6 +208,14 @@ namespace VMS.Controllers.Visitor
         #endregion
 
         #region rejected visitor report
+
+        [HttpPost]
+        public JsonResult A_GetRejectedVisitorList()
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+            Model = GetRejectedVisitors();
+            return Json(Model);
+        }
 
         public ActionResult GetRejectedVisitorList()
         {
@@ -204,6 +281,67 @@ namespace VMS.Controllers.Visitor
                 throw ex;
             }
             return Model;
+        }
+        [HttpPost]
+        public JsonResult FilterGetRejectedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+
+            VMSDBEntities entities = new VMSDBEntities();
+            List<VisitorEntryTB> visitors = new List<VisitorEntryTB>();
+            try
+            {
+                DateTime fDate = new DateTime();
+                DateTime tDate = new DateTime();
+                if (!string.IsNullOrEmpty(fromdate))
+                {
+                    string strDate = fromdate;/* fromdate.Split('/')[1] + "/" + fromdate.Split('/')[0] + "/" + fromdate.Split('/')[2];*/
+                    fDate = Convert.ToDateTime(strDate);
+                }
+
+                if (!string.IsNullOrEmpty(todate))
+                {
+                    string strDate = todate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
+                    tDate = Convert.ToDateTime(todate);
+                }
+
+                var objData = (from d in entities.VisitorEntryTBs
+                               join c in entities.VisitorStatusTBs on d.Id equals c.VisitId
+                               where (c.Status == "Reject"
+                                             && (!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
+                                             && (!string.IsNullOrEmpty(fromdate) ? d.FromDate >= fDate : true)
+                                             && (!string.IsNullOrEmpty(todate) ? d.ToDate <= tDate : true)
+                                             && (!string.IsNullOrEmpty(inTime) ? d.InTime == inTime : true))
+                               select d).ToList();
+                //visitors = (List<VisitorEntryTB>)entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
+
+                foreach (var item in objData)
+                {
+                    VisitorEntryModel visitor = new VisitorEntryModel();
+                    visitor.Id = item.Id;
+                    visitor.VisitorId = item.VisitorId;
+                    visitor.Name = item.Name;
+                    visitor.Company = item.Company;
+                    visitor.Contact = item.Contact;
+                    var user = entities.UserTBs.Where(d => d.UserId == item.EmployeeId).FirstOrDefault();
+                    visitor.EmployeeId = Convert.ToInt32(item.EmployeeId);
+                    visitor.EmployeeName = user.FirstName + " " + user.LastName;
+                    visitor.EmployeeDepartment = user.Department;
+                    visitor.InTime = item.InTime;
+                    visitor.OutTime = item.OutTime;
+                    visitor.VisitDateFrom = Convert.ToDateTime(item.FromDate);
+                    visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
+                    visitor.Purpose = item.Purpose;
+                    Model.Add(visitor);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Json(Model);
         }
 
         public ActionResult GetRejectVisitorListSearch(VisitorSearchModel visitor)
