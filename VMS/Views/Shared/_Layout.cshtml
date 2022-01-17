@@ -58,6 +58,9 @@
         .custom-active {
             background-color: #273972 !important;
         }
+        .custom-active-master {
+            background-color: #db8b0b !important;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -112,7 +115,7 @@
                         {
 
                             <li class="nav-item">
-                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link active">
+                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" >
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
                                         Dashboard
@@ -554,9 +557,15 @@
                 $(".nav li a").removeClass("custom-active");
 
                 $('#' + identifier).addClass('custom-active');
+                $('#21').addClass('custom-active');
                 $('#' + collapseanchor).addClass('custom-active');
                 $('#' + collapseli).addClass('menu-open');
 
+                if (collapseanchor == "masterforms" || collapseanchor == "settingforms" || collapseanchor ==  "userReports")
+                {
+                    $('#' + identifier).addClass('custom-active-master');
+                }
+                /*#db8b0b*/
                 //end
             });
         });
