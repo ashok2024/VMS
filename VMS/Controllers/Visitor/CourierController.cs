@@ -51,9 +51,67 @@ namespace VMS.Controllers.Visitor
             else
             {
                 ViewData["GetCourierList"] = couriers = GetCouriers();
-                //ViewBag.Designation = GetEmployee();
+                ViewBag.Employee = GetEmployee();
                 return View();
             }
+        }
+
+        private List<SelectListItem> GetEmployee()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+
+            List<SelectListItem> obj = new List<SelectListItem>();
+            var res = entities.UserTBs.Select(x => x.FirstName).Distinct().ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                obj.Add(new SelectListItem { Text = res[i] });
+            }
+            return obj;
+        }
+        [HttpPost]
+        public JsonResult FilterGetCourierList(string Employee, string Number, string Company, string FromDate, string Time)
+        {
+            List<CourierModel> Model = new List<CourierModel>();
+
+            VMSDBEntities entities = new VMSDBEntities();
+            DateTime dtFromDate = new DateTime();
+            if (!string.IsNullOrEmpty(FromDate))
+            {
+                string strDate = FromDate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
+                dtFromDate = Convert.ToDateTime(strDate);
+            }
+
+            try
+            {
+                //var data = entities.CourierTBs.ToList().OrderByDescending(d => d.Id);
+                var objData = (from d in entities.CourierTBs
+                               join e in entities.UserTBs on d.EmployeeId equals e.UserId
+                               where ((!string.IsNullOrEmpty(Employee) ? e.FirstName.ToLower() == Employee.ToLower() : true)
+                              && (!string.IsNullOrEmpty(Number) ? d.CourierNo.ToLower() == Number.ToLower() : true)
+                              && (!string.IsNullOrEmpty(Company) ? d.CourierCompany.ToLower() == Company.ToLower() : true)
+                              && (!string.IsNullOrEmpty(FromDate) ? d.Date >= dtFromDate : true)
+                              && (!string.IsNullOrEmpty(Time) ? d.Time == Time : true))
+                               select d).ToList();
+
+
+                foreach (var item in objData)
+                {
+                    CourierModel courier = new CourierModel();
+                    courier.Id = item.Id;
+                    courier.CourierNo = item.CourierNo;
+                    courier.CourierCompany = item.CourierCompany;
+                    courier.CourierPersonName = item.CourierPersonName;
+                    courier.EmployeeName = item.EmployeeName;
+                    courier.EmployeeId = item.EmployeeId;
+                    courier.Time = item.Time;
+                    courier.Date = Convert.ToDateTime(item.Date);
+                    Model.Add(courier);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return Json(Model);
         }
 
         private static List<CourierModel> GetCouriers()

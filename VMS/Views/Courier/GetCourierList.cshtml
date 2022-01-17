@@ -71,7 +71,7 @@
                                 <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
                                     <div class="form-group">
                                         <label>Employee</label>
-                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Employee, "-Select-", new { id = "ddlEmployee", @class = "form-control" })
+                                        @Html.DropDownList("FirstName", (IEnumerable<SelectListItem>)ViewBag.Employee, "-Select-", new { id = "ddlEmployee", @class = "form-control" })
                                     </div>
                                 </div>
                                 <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
                                     @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
-                                    <button class="btn btn-info search" type="button" id="btnSearch">Search</button>
+                                    <button class="btn btn-info search filter" type="button" id="btnSearch">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -155,26 +155,27 @@
         });
 
         $(".filter").click(function () {
-            //var Department = $("#ddlDepartment option:selected").val();
-            //var companyName = $("#ddlCompanyName option:selected").val();
-            //var Branch = $("#ddlBranch option:selected").val();
-            //var Designation = $("#ddlDesignation option:selected").val();
-            //var table = $("#tblCustomers").DataTable();
-            //table.destroy();
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Master/GetDesignationFilterList",
-            //    data: '{Branch:"' + Branch + '", companyName: "' + companyName + '", Department: "' + Department + '", Designation: "' + Designation + '"}',
-            //    contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    success: OnSuccess,
-            //    failure: function (response) {
-            //        alert(response.d);
-            //    },
-            //    error: function (response) {
-            //        alert(response.d);
-            //    }
-            //});
+            var Employee = $("#ddlEmployee option:selected").val();
+            var Number = $("#Number").val();
+            var Company = $("#Company").val();
+            var FromDate = $("#fromdate").val();
+            var Time = $("#time").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $.ajax({
+                type: "POST",
+                url: "/Courier/FilterGetCourierList",
+                data: '{Employee:"' + Employee + '", Number: "' + Number + '", Company: "' + Company + '", FromDate: "' + FromDate + '", Time: "' + Time + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
         });
         //End Advance Filter GetCourierListSearch
         $(".anchorDetail").click(function () {

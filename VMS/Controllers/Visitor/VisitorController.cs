@@ -150,7 +150,7 @@ namespace VMS.Controllers.Visitor
         public JsonResult UploadCaptureFile(string data)
         {
             string _imgname = Guid.NewGuid().ToString();
-         
+
             string imageName = _imgname + ".png";
             string path = Server.MapPath("/Uploads/Photos/");
             if ((!System.IO.Directory.Exists(path)))
@@ -178,7 +178,7 @@ namespace VMS.Controllers.Visitor
             {
                 System.IO.Directory.CreateDirectory(path);
             }
-            var _comPath = path +  imageName;
+            var _comPath = path + imageName;
 
             Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
             data = regex.Replace(data, string.Empty);
@@ -241,7 +241,7 @@ namespace VMS.Controllers.Visitor
                         checkVisitor.ToDate = visitor.VisitDateTo;
                         checkVisitor.IdProof = visitor.IdProof;
                         checkVisitor.IdProofNumber = visitor.IdProofNo;
-                        checkVisitor.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture ;
+                        checkVisitor.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
                         checkVisitor.CertificateImagePath = visitor.captureCertificate;
                         checkVisitor.EmailId = visitor.EmailId;
                         checkVisitor.Contact = visitor.Contact;
@@ -482,7 +482,7 @@ namespace VMS.Controllers.Visitor
                         if (iet == (int)HttpStatus.Http200)
                         {
                             DeviceSearchRoot dr = JsonConvert.DeserializeObject<DeviceSearchRoot>(reps);
-                            strMatchNum = Convert.ToString(dr.SearchResult.numOfMatches);                           
+                            strMatchNum = Convert.ToString(dr.SearchResult.numOfMatches);
 
                             if ("0" != strMatchNum)
                             {
@@ -654,7 +654,7 @@ namespace VMS.Controllers.Visitor
                 ViewBag.PriorityList = new SelectList(GetPrioritylList(), "Name", "Name");
                 ViewBag.VisitorTypeList = new SelectList(GetVisitorTypeList(), "Name", "Name");
                 ViewBag.VehicleTypeList = new SelectList(GetVehicleTypeList(), "Name", "Name");
-                ViewBag.DeviceList = new SelectList(GetDeviceList(), "DeviceId", "DeviceName");               
+                ViewBag.DeviceList = new SelectList(GetDeviceList(), "DeviceId", "DeviceName");
                 return View("AddVisitor", visitor);
             }
             //return RedirectToAction("GetSupplier", new { userId = userid, userName = username });
@@ -870,13 +870,13 @@ namespace VMS.Controllers.Visitor
 
         private static VisitorEntryTB GetVisitorDetails(string Contact)
         {
-            VisitorEntryTB visitor = new VisitorEntryTB();          
+            VisitorEntryTB visitor = new VisitorEntryTB();
             VMSDBEntities db = new VMSDBEntities();
 
             try
             {
-                visitor = db.VisitorEntryTBs.Where(d => d.Contact == Contact).FirstOrDefault();     
-                
+                visitor = db.VisitorEntryTBs.Where(d => d.Contact == Contact).FirstOrDefault();
+
             }
             catch (Exception ex)
             {
@@ -961,7 +961,7 @@ namespace VMS.Controllers.Visitor
                 Model.PUCEndDate = visitor.PUCEndDate;
                 Model.PhotoPath = visitor.Photo;
                 Model.PhotoPathCapture = visitor.Photo;
-                Model.captureCertificate  = visitor.CertificateImagePath;
+                Model.captureCertificate = visitor.CertificateImagePath;
                 Model.DeviceId = Convert.ToInt32(visitor.DeviceId);
                 Model.CardNo = visitor.CardNo;
 
@@ -981,7 +981,7 @@ namespace VMS.Controllers.Visitor
             return Json(Model);
         }
         [HttpPost]
-        public JsonResult FilterGetVisitorList(string contactname ,string company ,string dept,string fromdate , string todate , string inTime)
+        public JsonResult FilterGetVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
@@ -993,11 +993,13 @@ namespace VMS.Controllers.Visitor
                 DateTime tDate = new DateTime();
                 if (!string.IsNullOrEmpty(fromdate))
                 {
-                    fDate = Convert.ToDateTime(fromdate);
+                    string strDate = fromdate;/* fromdate.Split('/')[1] + "/" + fromdate.Split('/')[0] + "/" + fromdate.Split('/')[2];*/
+                    fDate = Convert.ToDateTime(strDate);
                 }
 
                 if (!string.IsNullOrEmpty(todate))
                 {
+                    string strDate = todate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
                     tDate = Convert.ToDateTime(todate);
                 }
 
@@ -1005,8 +1007,8 @@ namespace VMS.Controllers.Visitor
                                where ((!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
                               && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
                               && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
-                              && (!string.IsNullOrEmpty(fromdate) ? d.FromDate == fDate : true)
-                               && (!string.IsNullOrEmpty(todate) ? d.ToDate == tDate : true)
+                              && (!string.IsNullOrEmpty(fromdate) ? d.FromDate >= fDate : true)
+                               && (!string.IsNullOrEmpty(todate) ? d.ToDate <= tDate : true)
                                && (!string.IsNullOrEmpty(inTime) ? d.InTime == inTime : true))
                                select d).ToList();
                 //visitors = (List<VisitorEntryTB>)entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
@@ -1033,7 +1035,7 @@ namespace VMS.Controllers.Visitor
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
             return Json(Model);
         }

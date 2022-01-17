@@ -62,19 +62,19 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Delivery Number</label>
-                                @Html.TextBoxFor(m => m.CourierNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Delivery Number" })
+                                @Html.TextBoxFor(m => m.CourierNo, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Number" })
                             </div>
                             <div class="form-group">
                                 <label>Delivery Company</label>
-                                @Html.TextBoxFor(m => m.CourierCompany, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Delivery Company" })
+                                @Html.TextBoxFor(m => m.CourierCompany, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Company" })
                             </div>
                             <div class="form-group">
                                 <label>Delivery Person Name</label>
-                                @Html.TextBoxFor(m => m.CourierPersonName, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Delivery Person Name" })
+                                @Html.TextBoxFor(m => m.CourierPersonName, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Person Name" })
                             </div>
                             <div class="form-group">
                                 <label>Employee</label>
-                                @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control" })
+                                @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control controlSize" })
                                 @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })                                
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                 <div class="bootstrap-timepicker">
                                     <div class="form-group">
                                         <label>Delivery Time</label>
-                                        <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                        <div class="input-group date controlSize" id="timepicker" data-target-input="nearest">
                                             @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
                                             @Html.TextBoxFor(m => m.Time, new { @class = "form-control datetimepicker-input", @data_target = "#timepicker" })
                                             <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Delivery Date</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <div class="input-group date controlSize" id="reservationdate" data-target-input="nearest">
                                     @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
                                     @Html.TextBoxFor(m => m.Date, new { @class = "form-control datetimepicker-input", @data_target = "#reservationdate" })
                                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -119,14 +119,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                @Html.TextBoxFor(m => m.Description, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Description" })
+                                @Html.TextBoxFor(m => m.Description, new { maxlength = 200, @class = "form-control controlSize", autocomplete = "off", placeholder = "Description" })
                             </div>
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-danger cancel">Cancel</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-danger cancel" style="margin-left:40%;">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
