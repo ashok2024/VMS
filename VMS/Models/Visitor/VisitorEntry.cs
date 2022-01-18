@@ -83,6 +83,7 @@ namespace VMS.Models.Visitor
         public string VehicleType { get; set; }
         public string VehiclePUCNo { get; set; }
         public DateTime? PUCEndDate { get; set; }
+        public string certificatePath { get; set; }
     }
 
     public class StatusModel
