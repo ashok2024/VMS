@@ -72,7 +72,7 @@
                                             <tbody></tbody>
                                         </table>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                             <!-- end content-->
                         </div>
@@ -120,17 +120,24 @@
                     bPaginate: true,
                     data: response,
                     columns: [{ 'data': 'EmpCode' },
-                        { 'data': 'EmpName' },
-                        { 'data': 'DeviceSRNo' },
-                        { 'data': 'DeviceName' },
-                        { 'data': 'time' },
-                        { 'data': 'Status' },
-                        { 'data': 'Command' },
-                        { 'data': 'Page' }
+                    { 'data': 'EmpName' },
+                    { 'data': 'DeviceSRNo' },
+                    { 'data': 'DeviceName' },
+                    {
+                        'data': 'time', 'render': function (jsonDate) {
+                            var date = new Date(parseInt(jsonDate.substr(6)));
+                            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                            return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                        }
+                    },
+                    { 'data': 'Status' },
+                    { 'data': 'Command' },
+                    { 'data': 'Page' }
                     ],
                     columnDefs: [{
                         "targets": 8,
-                        "data": null
+                        "data": null,
+                        "defaultContent": ""
                     }]
                 });
         };
