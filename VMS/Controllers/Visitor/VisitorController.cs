@@ -146,6 +146,41 @@ namespace VMS.Controllers.Visitor
             }
             return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult UploadCertificate()
+        {
+            string _imgname = string.Empty;
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                var pic = System.Web.HttpContext.Current.Request.Files["MyImages"];
+                if (pic.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(pic.FileName);
+                    var _ext = Path.GetExtension(pic.FileName);
+
+                    _imgname = Guid.NewGuid().ToString();
+                    var _comPath = Server.MapPath("/Uploads/VS_") + _imgname + _ext;
+                    _imgname = "VS_" + _imgname + _ext;
+
+                    ViewBag.Msg = _comPath;
+                    var path = _comPath;
+
+                    // Saving Image in Original Mode
+                    pic.SaveAs(path);
+
+                    // resizing image
+                    MemoryStream ms = new MemoryStream();
+                    WebImage img = new WebImage(_comPath);
+
+                    if (img.Width > 200)
+                        img.Resize(200, 200);
+                    img.Save(_comPath);
+                    // end resize
+                }
+            }
+            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public JsonResult UploadCaptureFile(string data)
         {
@@ -242,7 +277,7 @@ namespace VMS.Controllers.Visitor
                         checkVisitor.IdProof = visitor.IdProof;
                         checkVisitor.IdProofNumber = visitor.IdProofNo;
                         checkVisitor.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                        checkVisitor.CertificateImagePath = visitor.captureCertificate;
+                        checkVisitor.CertificateImagePath =visitor.certificatePath == "" ?  visitor.captureCertificate : visitor.certificatePath;
                         checkVisitor.EmailId = visitor.EmailId;
                         checkVisitor.Contact = visitor.Contact;
                         checkVisitor.Purpose = visitor.Purpose;
@@ -280,7 +315,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            tB.CertificateImagePath = visitor.captureCertificate;
+                            checkVisitor.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
@@ -325,7 +360,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            tB.CertificateImagePath = visitor.captureCertificate;
+                            checkVisitor.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
