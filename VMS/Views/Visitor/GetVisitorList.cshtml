@@ -292,7 +292,7 @@
                     columnDefs: [{
                         "targets": 11,
                         "data": null,
-                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button> <button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='checkout(this)'></button>"
                     }]
                 });
         };
@@ -331,6 +331,27 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     //success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function checkout(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Visitor/checkout",
+                    data: '{Id:"' + dataRow.Id + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        dataLoad();
+                    },
                     failure: function (response) {
                         alert(response.d);
                     },

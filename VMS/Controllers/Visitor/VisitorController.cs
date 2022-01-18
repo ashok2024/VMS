@@ -257,6 +257,7 @@ namespace VMS.Controllers.Visitor
             {
                 try
                 {
+                    //DateTime.Now.GetDateTimeFormats()[107];
                     string addId = "";
                     VisitorTB dt = new VisitorTB();
 
@@ -1534,6 +1535,25 @@ namespace VMS.Controllers.Visitor
             ViewBag.VehicleTypeList = new SelectList(GetVehicleTypeList(), "Name", "Name");
 
             return View("VisitorRegister");
+        }
+        [HttpPost]
+        public JsonResult checkout(string Id)
+        {
+            string strCheckout = "Checkout successfully";
+            try
+            {
+                int intId = Convert.ToInt32(Id);
+                VisitorEntryTB visitor = new VisitorEntryTB();
+                visitor = db.VisitorEntryTBs.Where(d => d.Id == intId).FirstOrDefault();
+                visitor.OutTime = DateTime.Now.GetDateTimeFormats()[107];
+                visitor.ToDate = DateTime.Now;
+                db.Entry(visitor).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+            }
+            return Json(strCheckout);
         }
     }
 }
