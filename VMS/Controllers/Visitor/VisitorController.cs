@@ -315,7 +315,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            checkVisitor.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
+                            tB.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
@@ -360,7 +360,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            checkVisitor.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
+                            tB.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
