@@ -276,8 +276,8 @@ namespace VMS.Controllers.Visitor
                         checkVisitor.ToDate = visitor.VisitDateTo;
                         checkVisitor.IdProof = visitor.IdProof;
                         checkVisitor.IdProofNumber = visitor.IdProofNo;
-                        checkVisitor.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                        checkVisitor.CertificateImagePath =visitor.certificatePath == "" ?  visitor.captureCertificate : visitor.certificatePath;
+                        checkVisitor.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
+                        checkVisitor.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ?  visitor.captureCertificate : visitor.certificatePath;
                         checkVisitor.EmailId = visitor.EmailId;
                         checkVisitor.Contact = visitor.Contact;
                         checkVisitor.Purpose = visitor.Purpose;
@@ -314,8 +314,8 @@ namespace VMS.Controllers.Visitor
                             tB.ToDate = visitor.VisitDateTo;
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
-                            tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            tB.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
+                            tB.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
+                            tB.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
@@ -342,7 +342,7 @@ namespace VMS.Controllers.Visitor
                             dt.Contact = visitor.Contact;
                             dt.EmailId = visitor.EmailId;
                             dt.Company = visitor.Company;
-                            dt.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
+                            dt.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
                             db.VisitorTBs.Add(dt);
                             db.SaveChanges();
 
@@ -359,8 +359,8 @@ namespace VMS.Controllers.Visitor
                             tB.ToDate = visitor.VisitDateTo;
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
-                            tB.Photo = visitor.PhotoPathCapture == "" ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            tB.CertificateImagePath = visitor.certificatePath == "" ? visitor.captureCertificate : visitor.certificatePath;
+                            tB.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
+                            tB.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ? visitor.captureCertificate : visitor.certificatePath;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
@@ -911,7 +911,6 @@ namespace VMS.Controllers.Visitor
             try
             {
                 visitor = db.VisitorEntryTBs.Where(d => d.Contact == Contact).FirstOrDefault();
-
             }
             catch (Exception ex)
             {
