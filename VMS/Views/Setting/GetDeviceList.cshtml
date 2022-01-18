@@ -5,11 +5,12 @@
     List<VMS.Models.Admin.DeviceModel> devices = ViewData["GetDeviceList"] as List<VMS.Models.Admin.DeviceModel>;
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 <!-- Main content -->
 
 <section class="content-header">
@@ -30,31 +31,33 @@
 
 <section class="content">
     <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Device List</h4>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Device</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <h4 class="card-title">Device List</h4>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-primary anchorDetail">Add Device</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar" style="margin-bottom:15px;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Device</label>
+                                    @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-info open" type="button" style="margin-top:32px;float:right;">Door Open</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-info cls" type="button" style="margin-top:32px;">Door Close</button>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="toolbar" style="margin-bottom:15px;">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <label>Device</label>                                            
-                                            @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })                                            
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-info open" type="button" style="margin-top:32px;float:right;">Door Open</button>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-info cls" type="button" style="margin-top:32px;">Door Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <table class="table table-bordered" id="datatables">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
                                     <thead>
                                         <tr>
                                             <th>Device Name</th>
@@ -66,10 +69,26 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @*<table class="table table-bordered" id="datatables">
+                                <thead>
+                                    <tr>
+                                        <th>Device Name</th>
+                                        <th>Device Serial No</th>
+                                        <th>Device Account Id</th>
+                                        <th>Device Location</th>
+                                        <th>Device IP</th>
+                                        <th>Device Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                        @foreach (var item in devices)
-                                        {
+                                    @foreach (var item in devices)
+                                    {
                                         <tr>
                                             <td>@item.DeviceName</td>
                                             <td>@item.DeviceSerialNo</td>
@@ -81,17 +100,17 @@
                                                 <a href="javascript:void(0);" class="btn btn-primary edit" title="Edit" data-id="@item.DeviceId"><i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- end content-->
-                        </div>
-                        <!--  end card  -->
+                                    }
+                                </tbody>
+                            </table>*@
                     </div>
-                    <!-- end col-md-12 -->
+                    <!-- end content-->
                 </div>
+                <!--  end card  -->
             </div>
+            <!-- end col-md-12 -->
+        </div>
+    </div>
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
@@ -120,19 +139,19 @@
                 return window.location.href = AddURL;
             });
 
-            $(".edit").click(function () {
+            //$(".edit").click(function () {
 
-                debugger;
-                var $buttonClicked = $(this);
-                var id = $buttonClicked.attr('data-id');
-                if (id == undefined)
-                    id = 0;
-                var options = { "backdrop": "static", keyboard: true };
+            //    debugger;
+            //    var $buttonClicked = $(this);
+            //    var id = $buttonClicked.attr('data-id');
+            //    if (id == undefined)
+            //        id = 0;
+            //    var options = { "backdrop": "static", keyboard: true };
 
-                var newURL = EditURL + "&DeviceId=" + id;
+            //    var newURL = EditURL + "&DeviceId=" + id;
 
-                return window.location.href = newURL;
-            });
+            //    return window.location.href = newURL;
+            //});
 
             $(".open").click(function () {
 
@@ -190,6 +209,54 @@
             });
 
         });
+
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Setting/A_GetDeviceList",
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        function OnSuccess(response) {
+            debugger;
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [{ 'data': 'DeviceName' },
+                        { 'data': 'DeviceSerialNo' },
+                        { 'data': 'DeviceAccountId' },
+                        { 'data': 'DeviceLocation' },
+                        { 'data': 'DeviceIPAddress' },
+                        { 'data': 'DeviceStatus' }
+                    ],
+                    columnDefs: [{
+                        "targets": 6,
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
+                    }]
+                });
+        };
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+        function GetUsersDetails(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var newURL = EditURL + "&DeviceId=" + dataRow.DeviceId;
+            return window.location.href = newURL;
+        }
 
     </script>
 

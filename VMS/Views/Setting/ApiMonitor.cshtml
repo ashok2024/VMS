@@ -5,11 +5,12 @@
     List<VMS.Models.Admin.ApiMonitorModel> devices = ViewData["GetMonitorList"] as List<VMS.Models.Admin.ApiMonitorModel>;
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 <!-- Main content -->
 
 <section class="content-header">
@@ -29,7 +30,7 @@
 </section>
 
 <section class="content">
-    <div class="container-fluid">        
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="row">
@@ -39,8 +40,8 @@
                                 <h4 class="card-title">Device List</h4>
                             </div>
                             <div class="card-body">
-                                <div class="toolbar" style="margin-bottom:15px;">
-                                    @*<div class="row">
+                                @*<div class="toolbar" style="margin-bottom:15px;">
+                                                            <div class="row">
                                         <div class="col-md-2">
                                             <label>Device</label>
                                             @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
@@ -51,38 +52,27 @@
                                         <div class="col-md-1">
                                             <button class="btn btn-info cls" type="button" style="margin-top:32px;">Close</button>
                                         </div>
-                                    </div>*@
-                                </div>
-                                <table class="table table-bordered" id="datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee Code</th>
-                                            <th>Employee Name</th>
-                                            <th>Device SR. No.</th>
-                                            <th>Device Name</th>
-                                            <th>Date & Time</th>
-                                            <th>Status</th>
-                                            <th>Command</th>
-                                            <th>Page</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in devices)
-                                        {
-                                        <tr>
-                                            <td>@item.EmpCode</td>
-                                            <td>@item.EmpName</td>
-                                            <td>@item.DeviceSRNo</td>
-                                            <td>@item.DeviceName</td>
-                                            <td>@item.time</td>
-                                            <td>@item.Status</td>
-                                            <td>@item.Command</td>
-                                            <td>@item.Page</td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                    </div>
+                                                        </div>*@
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Employee Code</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Device SR. No.</th>
+                                                    <th>Device Name</th>
+                                                    <th>Date & Time</th>
+                                                    <th>Status</th>
+                                                    <th>Command</th>
+                                                    <th>Page</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>                                
                             </div>
                             <!-- end content-->
                         </div>
@@ -99,6 +89,54 @@
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
+@section scripts
+{
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Setting/A_GetApiMoniorList",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [{ 'data': 'EmpCode' },
+                        { 'data': 'EmpName' },
+                        { 'data': 'DeviceSRNo' },
+                        { 'data': 'DeviceName' },
+                        { 'data': 'time' },
+                        { 'data': 'Status' },
+                        { 'data': 'Command' },
+                        { 'data': 'Page' }
+                    ],
+                    columnDefs: [{
+                        "targets": 8,
+                        "data": null
+                    }]
+                });
+        };
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+    </script>
+}
 
 
 

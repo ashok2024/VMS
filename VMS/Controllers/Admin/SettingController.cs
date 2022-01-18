@@ -230,6 +230,13 @@ namespace VMS.Controllers.Admin
                 return View();
             }
         }
+        [HttpPost]
+        public JsonResult A_GetDeviceList()
+        {
+            List<DeviceModel> Model = new List<DeviceModel>();
+            Model = GetDevices();
+            return Json(Model);
+        }
 
         private static List<DeviceModel> GetDevices()
         {
@@ -1172,6 +1179,14 @@ namespace VMS.Controllers.Admin
         #endregion
 
         #region api monitor 
+
+        [HttpPost]
+        public JsonResult A_GetApiMoniorList()
+        {
+            List<ApiMonitorModel> Model = new List<ApiMonitorModel>();
+            Model = GetMonitorList();
+            return Json(Model);
+        }
 
         public ActionResult ApiMonitor()
         {
