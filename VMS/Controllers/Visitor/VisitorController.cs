@@ -283,7 +283,7 @@ namespace VMS.Controllers.Visitor
                         checkVisitor.IdProof = visitor.IdProof;
                         checkVisitor.IdProofNumber = visitor.IdProofNo;
                         checkVisitor.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                        checkVisitor.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ?  visitor.captureCertificate : visitor.certificatePath;
+                        checkVisitor.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ? visitor.captureCertificate : visitor.certificatePath;
                         checkVisitor.EmailId = visitor.EmailId;
                         checkVisitor.Contact = visitor.Contact;
                         checkVisitor.Purpose = visitor.Purpose;
@@ -1075,7 +1075,7 @@ namespace VMS.Controllers.Visitor
             }
             catch (Exception ex)
             {
-               
+
             }
             return Json(Model);
         }
@@ -1253,7 +1253,7 @@ namespace VMS.Controllers.Visitor
                 Response.AddHeader("Content-Disposition", "attachment; filename=" + filename + ".pdf;");
                 Response.BinaryWrite(getContent);
                 Response.Flush();
-                Response.End();                
+                Response.End();
             }
             return View("GetVisitorList");
         }
@@ -1629,7 +1629,7 @@ namespace VMS.Controllers.Visitor
             HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(Server.MapPath("~") + "mypdf.pdf",FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(Server.MapPath("~") + "mypdf.pdf", FileMode.Create));
                 pdfDoc.Open();
 
                 htmlparser.Parse(sr);
@@ -1660,7 +1660,7 @@ namespace VMS.Controllers.Visitor
                 Response.Close();
             }
             return Json("true");
-        }       
+        }
         private PdfPCell GetCell(string text, int i)
         {
             return GetCell(text, 1, i);
@@ -1721,114 +1721,193 @@ namespace VMS.Controllers.Visitor
             }
         }
         [HttpGet]
-        public FileResult GetReport()
+        public FileResult GatePass()
         {
             var VisitorId = Convert.ToInt32(vId);
             var vistor = db.VisitorEntryTBs.Where(x => x.Id == VisitorId).FirstOrDefault();
-            
-                StringBuilder sb = new StringBuilder();
-                string style = "style='border: 1px solid black;'";
-                string HtmlTable = "<table>" +
-                                       "<tr " + style + ">" +
-                                       @"<td style=""background-color: green;"">" +
-                                            "<td style='background-color: #B8DBFD;border: 1px solid #ccc' rowspan='2' >HR INDUSTRY</td>" +
-                                            "<td style='border: 1px solid black;' colspan='2'>Gat No. 8 A/P: Sasewadi,Tal-Bhor,Dist-Pune 412205 Contact - 91 9689782312, Email - hrindustry21@outlook.com </td>" +
-                                       "</tr>" +
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                              " <td style='border: 1px solid black;' colspan='2'>Gat No. 8 A/P: Sasewadi,Tal-Bhor,Dist-Pune 412205 Contact - 91 9689782312, Email - hrindustry21@outlook.com </td>" +
-                                       "</tr>" +
+            StringBuilder sb = new StringBuilder();
+            string logo = Server.MapPath("~") + "\\dist\\img\\logo.png";
+            string photo = "";
+            if (!string.IsNullOrEmpty(vistor.Photo))
+            {
+                photo = Server.MapPath("~") + vistor.Photo;
+            }
+            StringBuilder htmlStr = new StringBuilder("");
+            htmlStr.Append("<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'>");
+            htmlStr.Append("<head>");
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td style='border: 1px solid black;'>Visitor Id : " + vistor.VisitorId + "</td>" +
-                                            " <td style='border: 1px solid black;'>Visior Passs : </td>" +
-                                            " <td style='border: 1px solid black;'>Date : "+DateTime.Now.ToString("dd-MM-yyyy")+"</td>" +
-                                       "</tr>" +
+            //htmlStr.Append("<style type=\'text/css\'>");
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                             " <td style='border: 1px solid black;'  rowspan='3'>Image</td>" +
-                                            " <td  style='border: 1px solid black;'  >Name : "+ vistor.Name+ "</td>" +
-                                            " <td  style='border: 1px solid black;' rowspan='3'>Vehicle No : "+vistor.VehicleNo+"</td>" +
-                                       "</tr>" +
+            //htmlStr.AppendFormat("table, th, td { border: 1px solid black; border-collapse: collapse; }");
+            //htmlStr.AppendFormat("th, td { padding: 15px; vertical-align: middle; }");
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td style='border: 1px solid black;'>Address  :"+vistor.Address+"</td>" +
-                                       "</tr>" +
+            //htmlStr.Append("</style>");
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td style='border: 1px solid black;'>Mobile No :"+vistor.Contact+"</td>" +
-                                       "</tr>" +
+            htmlStr.Append("</head>");
+            htmlStr.Append("<body><div style='padding: 20px;'>");
 
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td colspan='2' style='border: 1px solid black;'>Repersentaing M/S</td>" +
-                                            " <td rowspan='2' style='border: 1px solid black;'>Time In : "+vistor.InTime+"</td>" +
-                                       "</tr>" +
-
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td colspan='2' style='border: 1px solid black;'>Purpose to be visited </td>" +
-                                       "</tr>" +
-
-                                       "<tr style='border: 1px solid black;'>" +
-                                             " <td colspan='2' style='border: 1px solid black;'>Goods Allowed in</td>" +
-                                            " <td rowspan='2'  style='border: 1px solid black;'>Time Out : "+vistor.OutTime+"</td>" +
-                                       "</tr>" +
-
-                                       "<tr style='border: 1px solid black;'>" +
-                                            " <td colspan='2'>Teeeeeeeeeeeeeeeeest</td>" +
-                                       "</tr>" +
-
-                                       "<tr style='border: 1px solid black;'>" +
-                                             " <td style='border: 1px solid black;'>Signature of Visitor</td>" +
-                                            " <td  style='border: 1px solid black;'>Signature of Visited persone</td>" +
-                                            " <td  style='border: 1px solid black;'>Signature of Security</td>" +
-                                       "</tr>" +
-                                   "</table>";
-                sb.Append(@"<p style=""background-color: green;"">ashok</p>");
-                sb.Append(HtmlTable);
-                StringReader sr = new StringReader(sb.ToString());
-                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-                string filePath = "";
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    filePath = Server.MapPath("~") + Guid.NewGuid().ToString() + ".pdf";
-                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
-                    pdfDoc.Open();
-
-                    htmlparser.Parse(sr);
-                    pdfDoc.Close();
-
-                    byte[] bytes = memoryStream.ToArray();
-                    memoryStream.Close();
-
-                    // Clears all content output from the buffer stream
-                    Response.Clear();
-                    // Gets or sets the HTTP MIME type of the output stream.
-                    //Response.ContentType = "application/pdf";
-                    //// Adds an HTTP header to the output stream
-                    //Response.AddHeader("Content-Disposition", "attachment; filename=mypdf.pdf");
-
-                    ////Gets or sets a value indicating whether to buffer output and send it after
-                    //// the complete response is finished processing.
-                    //Response.Buffer = true;
-                    //// Sets the Cache-Control header to one of the values of System.Web.HttpCacheability.
-                    //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    //// Writes a string of binary characters to the HTTP output stream. it write the generated bytes .
-                    //Response.BinaryWrite(bytes);
-
-                    //// Sends all currently buffered output to the client, stops execution of the
-                    //// page, and raises the System.Web.HttpApplication.EndRequest event.
-                    //Response.End();
-                    //// Closes the socket connection to a client. it is a necessary step as you must close the response after doing work.its best approach.
-                    //Response.Close();
-                }
+            //htmlStr.Append("<table cellpadding='5' border='1' style='border: 1px solid #ccc; padding: 20px;'>");
+            htmlStr.Append("<table border='1' bordercolor='grey' cellpadding='5' style='padding: 20px;'>");
 
 
-                string ReportURL = filePath;
-                byte[] FileBytes = System.IO.File.ReadAllBytes(ReportURL);
-                
-            
-            return File(FileBytes, "application/pdf");
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td rowspan='2' style='text-align: center;'> <img src= " + logo + " width='180' height='55'></td>");
+            htmlStr.Append("<td colspan='2' style='font-weight: bold;text-align: center;'>HR INDUSTRY</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            //htmlStr.Append("<td>Logo</td>");
+            htmlStr.Append("<td colspan='2'>Gat No. 8 A/P: Sasewadi,Tal-Bhor,Dist-Pune 412205 Contact - 91 9689782312, Email - hrindustry21@outlook.com</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td>Visitor Id: " + vistor.VisitorId + "</td>");
+            htmlStr.Append("<td>Visitor Pass: </td>");
+            htmlStr.Append("<td>Date : " + DateTime.Now.ToString("dd-MM-yyyy") + "</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td rowspan='3' style='text-align: center;'><img src= " + photo + " width='80' height='80'></td>");
+            htmlStr.Append("<td>Name: " + vistor.Name + "</td>");
+            htmlStr.Append("<td>Vehicle No: " + vistor.VehicleNo + "</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            //htmlStr.Append("<td></td>");
+            htmlStr.Append("<td>Address: " + vistor.Address + "</td>");
+            htmlStr.Append("<td>" + vistor.VehicleNo + "</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            //htmlStr.Append("<td></td>");
+            htmlStr.Append("<td>Mobile No: " + vistor.Contact + "</td>");
+            htmlStr.Append("<td></td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td colspan='2'>Repersentaing M/S: </td>");
+            htmlStr.Append("<td>Time In</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td colspan='2'>Person to be visited: " + vistor.Name + "</td>");
+            htmlStr.Append("<td>" + vistor.InTime + "</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td colspan='2'>Purpose to be visited: " + vistor.Purpose + "</td>");
+            htmlStr.Append("<td>Time Out</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td colspan='2'>Goods allowed in: </td>");
+            htmlStr.Append("<td>" + vistor.OutTime + "</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("<tr>");
+            htmlStr.Append("<td>Signature of Visitor</td>");
+            htmlStr.Append("<td>Signature of Visited Persone</td>");
+            htmlStr.Append("<td>Signature of Security</td>");
+            htmlStr.Append("</tr>");
+
+            htmlStr.Append("</table>");
+            htmlStr.Append("</div></body></html>");
+
+            //string HtmlTable = "<html><head></head><body><div><table>" +
+            //                       "<tr " + style + ">" +
+            //                       @"<td style=""background-color: green;"">" +
+            //                            "<td style='background-color: #B8DBFD;border: 1px solid #ccc' rowspan='2' >HR INDUSTRY</td>" +
+            //                            "<td style='border: 1px solid black;' colspan='2'>Gat No. 8 A/P: Sasewadi,Tal-Bhor,Dist-Pune 412205 Contact - 91 9689782312, Email - hrindustry21@outlook.com </td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                              " <td style='border: 1px solid black;' colspan='2'>Gat No. 8 A/P: Sasewadi,Tal-Bhor,Dist-Pune 412205 Contact - 91 9689782312, Email - hrindustry21@outlook.com </td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td style='border: 1px solid black;'>Visitor Id : " + vistor.VisitorId + "</td>" +
+            //                            " <td style='border: 1px solid black;'>Visior Passs : </td>" +
+            //                            " <td style='border: 1px solid black;'>Date : "+DateTime.Now.ToString("dd-MM-yyyy")+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                             " <td style='border: 1px solid black;'  rowspan='3'>Image</td>" +
+            //                            " <td  style='border: 1px solid black;'  >Name : "+ vistor.Name+ "</td>" +
+            //                            " <td  style='border: 1px solid black;' rowspan='3'>Vehicle No : "+vistor.VehicleNo+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td style='border: 1px solid black;'>Address  :"+vistor.Address+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td style='border: 1px solid black;'>Mobile No :"+vistor.Contact+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td colspan='2' style='border: 1px solid black;'>Repersentaing M/S</td>" +
+            //                            " <td rowspan='2' style='border: 1px solid black;'>Time In : "+vistor.InTime+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td colspan='2' style='border: 1px solid black;'>Purpose to be visited </td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                             " <td colspan='2' style='border: 1px solid black;'>Goods Allowed in</td>" +
+            //                            " <td rowspan='2'  style='border: 1px solid black;'>Time Out : "+vistor.OutTime+"</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                            " <td colspan='2'>Teeeeeeeeeeeeeeeeest</td>" +
+            //                       "</tr>" +
+
+            //                       "<tr style='border: 1px solid black;'>" +
+            //                             " <td style='border: 1px solid black;'>Signature of Visitor</td>" +
+            //                            " <td  style='border: 1px solid black;'>Signature of Visited persone</td>" +
+            //                            " <td  style='border: 1px solid black;'>Signature of Security</td>" +
+            //                       "</tr>" +
+            //                   "</table></div></body></html>";
+            //sb.Append(@"<p style=""background-color: green;"">kiran</p>");
+            //sb.Append(HtmlTable);
+            //StringReader sr = new StringReader(sb.ToString());
+            StringReader sr = new StringReader(htmlStr.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            string filePath = "";
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                //filePath = Server.MapPath("~") + Guid.NewGuid().ToString() + ".pdf";
+                //PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
+                //pdfDoc.Open();
+
+                //htmlparser.Parse(sr);
+                //pdfDoc.Close();
+
+                //byte[] bytes = memoryStream.ToArray();
+                //memoryStream.Close();
+                //Response.Clear();
+
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+                pdfDoc.Open();
+                htmlparser.Parse(sr);
+
+                pdfDoc.Close();
+
+                byte[] FileBytes = memoryStream.ToArray();
+                memoryStream.Close();
+
+                return File(FileBytes, "application/pdf");
+
+            }
+
+
+            //string ReportURL = filePath;
+            //byte[] FileBytes = System.IO.File.ReadAllBytes(ReportURL);
+
+
+            //return File(FileBytes, "application/pdf");
         }
         [HttpPost]
         public JsonResult GetPassId(string id)

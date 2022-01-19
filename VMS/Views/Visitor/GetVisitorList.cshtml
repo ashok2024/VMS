@@ -14,6 +14,9 @@
         left: 0;
         top: 0;
     }
+    .tblClass{
+        padding:25px;
+    }
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -359,9 +362,9 @@
                     columnDefs: [{
                         "targets": 11,
                         "data": null,
-                        "defaultContent":   "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>" +
-                                            "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='checkout(this)'></button>" +
-                                            "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GatePass(this)'></button>"
+                        "defaultContent":   "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none;margin-right:1px;' onclick='GetUsersDetails(this)'></button>" +
+                                            "<button class='btn btn-info nav-icon fas fa-circle padding0' style='text-decoration-style:none;margin-right:1px;' onclick='checkout(this)'></button>" +
+                                            "<button class='btn btn-info fa fa-image padding0' style='text-decoration-style:none;margin-right:1px;' onclick='GatePass(this)'></button>"
                     }]
                 });
         };
@@ -431,7 +434,6 @@
             });
         }
         function GatePass(ele) {
-            alert();
             var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
             $(function () {
 
@@ -451,7 +453,7 @@
         }
         function GatePass1() {
 
-            window.open('/Visitor/GetReport');
+            window.open('/Visitor/GatePass');
 
            // var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
            // //printDiv("test")
@@ -465,7 +467,7 @@
             //$(function () {
             //    $.ajax({
             //        type: "GET",
-            //        url: "/Visitor/GetReport",
+            //        url: "/Visitor/GatePass",
             //        data: '{id:"' + dataRow.Id + '" }',
             //        contentType: "application/json; charset=utf-8",
             //        dataType: "json",
