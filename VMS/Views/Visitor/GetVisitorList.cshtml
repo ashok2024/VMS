@@ -3,7 +3,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
 }
+<style>
 
+    #section-to-print, #section-to-print * {
+        visibility: visible;
+    }
+
+    #section-to-print {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+</style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
@@ -182,6 +193,62 @@
             <!-- end col-md-12 -->
         </div>
     </div>
+    <div id="non-printable" style="display:none">
+        Your normal page contents
+    </div>
+
+    <div id="test" style="display:none">
+       
+        <table width="80%" height="150%" style="font-size:80px ; border:1px solid gray">
+            <tr style="border: 1px solid black;">
+                <td style="border: 1px solid gray;" rowspan="2">1</td>
+                <td style="border: 1px solid gray;" colspan="2">2</td>
+
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td colspan="2" style="border: 1px solid gray;">3</td>
+
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td style="border: 1px solid gray;">Teeeeeeeeeeeeeeeeest</td>
+                <td style="border: 1px solid gray;">Teeeeeeeeeeeeeeeeest</td>
+                <td style="border: 1px solid gray;">Teeeeeeeeeeeeeeeeest</td>
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td rowspan="3" style="border: 1px solid gray;">4</td>
+                <td style="border: 1px solid gray;">5</td>
+                <td rowspan="3" style="border: 1px solid gray;">6</td>
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td style="border: 1px solid gray;">7</td>
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td style="border: 1px solid gray;">8</td>
+            </tr>
+
+            <tr style="border: 1px solid gray;">
+                <td colspan="2" style="border: 1px solid gray;">10</td>
+                <td rowspan="2" style="border: 1px solid gray;">Teeeeeeeeeeeeeeeeest</td>
+
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td colspan="2" style="border: 1px solid gray;">11</td>
+
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td colspan="2" style="border: 1px solid gray;">12</td>
+                <td rowspan="2" style="border: 1px solid gray;">Teeeeeeeeeeeeeeeeest</td>
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td colspan="2" style="border: 1px solid gray;">12</td>
+            </tr>
+            <tr style="border: 1px solid gray;">
+                <td style="border: 1px solid gray;">1</td>
+                <td style="border: 1px solid gray;">1</td>
+                <td style="border: 1px solid gray;">1</td>
+            </tr>
+        </table>
+    </div>
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
@@ -200,7 +267,7 @@
             var fdate = $("#fromdate").val();
             var tdate = $("#todate").val();
             var time = $("#time").val();
-            
+
                 var table = $("#tblCustomers").DataTable();
                 table.destroy();
                 $.ajax({
@@ -292,7 +359,9 @@
                     columnDefs: [{
                         "targets": 11,
                         "data": null,
-                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button> <button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='checkout(this)'></button>"
+                        "defaultContent":   "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>" +
+                                            "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='checkout(this)'></button>" +
+                                            "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GatePass(this)'></button>"
                     }]
                 });
         };
@@ -361,7 +430,108 @@
                 });
             });
         }
+        function GatePass(ele) {
+            alert();
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            $(function () {
 
+                $.ajax({
+                    cache: false,
+                    type: "Post",
+                    url: '@Url.Action("GetPassId", "Visitor")',
+                    data: { "id": dataRow.Id },
+                    success: function (json, textStatus) {
+                        GatePass1();
+                    },
+                    error: function () {
+                        //alert("Data Not Found");
+                    }
+                });              
+            });
+        }
+        function GatePass1() {
+
+            window.open('/Visitor/GetReport');
+
+           // var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+           // //printDiv("test")
+           // alert(dataRow.Id);
+           //// DownloadFile("Sample.pdf");
+
+           // e.preventDefault();
+           // var id = dataRow.Id;
+
+
+            //$(function () {
+            //    $.ajax({
+            //        type: "GET",
+            //        url: "/Visitor/GetReport",
+            //        data: '{id:"' + dataRow.Id + '" }',
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        responseType: 'arraybuffer',
+            //        success: function (response) {
+            //            window.open(response);
+            //        },
+            //        failure: function (response) {
+            //            alert(response.d);
+            //        },
+            //        error: function (response) {
+            //            alert(response.d);
+            //        }
+            //    });
+            //});
+        }
+        function DownloadFile(fileName) {
+            //Set the File URL.
+            var url = "Files/" + fileName;
+
+            //Create XMLHTTP Request.
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.responseType = "blob";
+            req.onload = function () {
+                //Convert the Byte Data to BLOB object.
+                var blob = new Blob([req.response], { type: "application/octetstream" });
+
+                //Check the Browser type and download the File.
+                var isIE = false || !!document.documentMode;
+                if (isIE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                    var url = window.URL || window.webkitURL;
+                    link = url.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    a.setAttribute("download", fileName);
+                    a.setAttribute("href", link);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            };
+            req.send();
+        };
+        function LoadPDF(data) {
+
+            var arrrayBuffer = base64ToArrayBuffer(data); //data is the base64 encoded string
+            var blob = new Blob([arrrayBuffer], { type: "application/pdf" });
+            var link = window.URL.createObjectURL(blob);
+            //window.open(link, '', 'height=700,width=1000');
+
+
+        }
+
+        function base64ToArrayBuffer(base64) {
+
+            var binaryString = window.atob(base64);
+            var binaryLen = binaryString.length;
+            var bytes = new Uint8Array(binaryLen);
+            for (var i = 0; i < binaryLen; i++) {
+                var ascii = binaryString.charCodeAt(i);
+                bytes[i] = ascii;
+            }
+            return bytes;
+        }
     </script>
     <!-- jQuery -->
     @*<script src="../plugins/jquery/jquery.min.js"></script>*@
@@ -485,6 +655,27 @@
                 });
             });
         });
+
+        function printDiv(divName) {
+           //   var printContents = document.getElementById(divName).innerHTML;
+           ///* var printContents = "test";*/
+           //var originalContents = document.body.innerHTML;
+
+           // document.body.innerHTML = printContents;
+           // $("test").css('display', 'none');
+           // window.print();
+
+           // document.body.innerHTML = originalContents;
+
+            var divContents = document.getElementById("test").innerHTML;
+            var a = window.open('', '', 'height=500, width=750');
+            a.document.write('<html>');
+            a.document.write('<body>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
 
     </script>
 
