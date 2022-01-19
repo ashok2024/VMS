@@ -361,7 +361,7 @@ namespace VMS.Controllers.Visitor
                             tB.IdProof = visitor.IdProof;
                             tB.IdProofNumber = visitor.IdProofNo;
                             tB.Photo = string.IsNullOrEmpty(visitor.PhotoPathCapture) ? visitor.PhotoPath : visitor.PhotoPathCapture;
-                            tB.CertificateImagePath = string.IsNullOrEmpty(visitor.certificatePath) ? visitor.captureCertificate : visitor.certificatePath;
+                            tB.CertificateImagePath = string.IsNullOrEmpty(visitor.captureCertificate) ? visitor.certificatePath : visitor.captureCertificate;
                             tB.EmailId = visitor.EmailId;
                             tB.Contact = visitor.Contact;
                             tB.Purpose = visitor.Purpose;
