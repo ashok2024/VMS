@@ -26,7 +26,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-<sectio0n class="content">
+<section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -34,23 +34,35 @@
                     <div class="card-header card-header-primary card-header-icon">
                         <div class="toolbar">
                             <div id="divFilter">
-                                <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
-                                <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
-                                @*<button type="button" class="btn btn-primary anchorDetail float-right">Add Visitor</button>*@
-                                <div style="float:right; padding-right:5px;">
-                                    @using (Html.BeginForm("RejectExportToPdf", "Report", FormMethod.Post))
-                                    {
-                                        <input type="hidden" name="GridHtml" />
-                                        <button class="btn btn-info" id="btnpdf" type="submit">Export to PDF</button>
-                                    }
-                                </div>
-                                <div style="float:right; padding-right:5px;">
-                                    @using (Html.BeginForm("RejectExportToExcel", "Report", FormMethod.Post))
-                                    {
-                                        <button class="btn btn-info" type="submit">Export to Excel</button>
-                                    }
-                                </div>
-
+                                <div class="row">
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                        <div class="form-group">
+                                            <div>
+                                                @using (Html.BeginForm("RejectExportToPdf", "Report", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="GridHtml" />
+                                                    <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
+                                                }
+                                            </div>
+                                            <div>
+                                                @using (Html.BeginForm("RejectExportToExcel", "Report", FormMethod.Post))
+                                                {
+                                                    <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                               
                             </div>
                             <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
                                 <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
@@ -105,8 +117,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
-                                    @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
-                                    <button class="btn btn-info search" id="filter" type="button">Search</button>
+                                    <div class="form-group">
+                                        <button class="btn btn-info search" id="filter" type="button">Search</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,24 +127,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12" style="overflow:auto">
-                                <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
-                                    <thead>
-                                        <tr style="vertical-align:bottom;">
-                                            <th>Visitor Id</th>
-                                            <th>Visitor Name</th>
-                                            <th>Visitor Company</th>
-                                            <th>Visitor Contact</th>
-                                            <th>Employee Name</th>
-                                            <th>Department</th>
-                                            <th>In Time</th>
-                                            <th>Out Time</th>
-                                            <th>From Date</th>
-                                            <th>To Date</th>
-                                            <th>Purpose</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Visitor Id</th>
+                                                <th>Visitor Name</th>
+                                                <th>Visitor Company</th>
+                                                <th>Visitor Contact</th>
+                                                <th>Employee Name</th>
+                                                <th>Department</th>
+                                                <th>In Time</th>
+                                                <th>Out Time</th>
+                                                <th>From Date</th>
+                                                <th>To Date</th>
+                                                <th>Purpose</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 
@@ -143,7 +158,7 @@
             <!-- end col-md-12 -->
         </div>
     </div>
-</sectio0n>
+</section>
 <!-- /.content -->
 <!-- Page specific script -->
 
@@ -167,7 +182,7 @@
                 table.destroy();
                 $.ajax({
                     type: "POST",
-                    url: "/Report/FilterGetRejectedVisitorList",
+                    url: '@Url.Action("FilterGetRejectedVisitorList", "Report")',
                     data: '{contactname:"' + contact + '", company: "' + company + '", dept:"' + dept + '", fromdate: "' + fdate + '", todate:"' + tdate + '", inTime: "' + time + '" }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -204,7 +219,7 @@
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url: "/Report/A_GetRejectedVisitorList",
+                    url: '@Url.Action("A_GetRejectedVisitorList", "Report")',
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

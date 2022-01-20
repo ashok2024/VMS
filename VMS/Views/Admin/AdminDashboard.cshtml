@@ -107,13 +107,19 @@
                     <div class="inner">
                         <div class="row">
                             <div class="col-md-4">
-                                @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                <div class="form-group">
+                                    @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                </div>
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-info open" type="button" style="float:right;">Door Open</button>
+                                <div class="form-group">
+                                    <button class="btn btn-info open" type="button">Door Open</button>
+                                </div>
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-info cls" type="button">Door Close</button>
+                                <div class="form-group">
+                                    <button class="btn btn-info cls" type="button">Door Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>

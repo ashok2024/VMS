@@ -172,14 +172,14 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Photo</label>
                                 <div class="input-group">
-                                    <div class="col-2">
+                                    <div class="col-7">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="Photo">
                                             <label class="custom-file-label" for="Photo">Choose file</label>
                                         </div>
                                     </div>
                                     <div class="col-5">
-                                        <img id="imgPreview" height="125" width="230" src="~/Content/assets/img/image_placeholder.jpg" />
+                                        <img id="imgPreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
                                     </div>
                                 </div>
                                 @Html.HiddenFor(m => m.PhotoPath)
@@ -189,31 +189,27 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12" style="padding-top:50px">
+                                <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12">
                                     <div class="row">
-                                        <div id="LiveCamera" style="margin-bottom:15px;"></div>
+                                        <div id="LiveCamera"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4" style="margin-top:5px">
+                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6" >
                                             <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
                                         </div>
-                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4">
-                                        </div>
-                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4" style="margin-top:5px">
+                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
                                             <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top:5px">
-                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-6">
+                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
                                             <div id="results">
-                                                <img id="img" src="" style="width:200px" />
+                                                <img id="img" src="" style="width:150px" />
                                             </div>
                                         </div>
-                                        <div class="col-3 col-sm-12 col-lg-3 col-xs-12 col-md-3">
-                                        </div>
-                                        <div class="col-4 col-sm-12 col-lg-4 col-xs-12 col-md-4">
+                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
                                             <div id="resultsCertificate">
-                                                <img id="img1" src="" style="width:200px" />
+                                                <img id="img1" src="" style="width:150px" />
                                             </div>
                                         </div>
                                     </div>
@@ -222,14 +218,14 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Certificate</label>
                                 <div class="input-group">
-                                    <div class="col-2">
+                                    <div class="col-7">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="certificate">
                                             <label class="custom-file-label" for="Photo">Choose file</label>
                                         </div>
                                     </div>
                                     <div class="col-5">
-                                        <img id="certificatePreview" height="125" width="230" src="~/Content/assets/img/image_placeholder.jpg" />
+                                        <img id="certificatePreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
                                     </div>
                                 </div>                               
                             </div>
@@ -397,8 +393,8 @@
     <!-- Configure web cam settings -->
     <script language="JavaScript">
         Webcam.set({
-            width: 474,
-            height: 375,
+            width: 333,
+            height: 312,
             image_format: 'png',
             jpeg_quality: 100
         });
@@ -419,7 +415,7 @@
                 debugger;
                 $.ajax({
                     type: "POST",
-                    url: "/Visitor/UploadCaptureFile",
+                    url: '@Url.Action("UploadCaptureFile", "Visitor")',
                     data: '{data:"' + data + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -453,7 +449,7 @@
                 debugger;
                 $.ajax({
                     type: "POST",
-                    url: "/Visitor/UploadCaptureCertificate",
+                    url: '@Url.Action("UploadCaptureCertificate", "Visitor")',
                     data: '{data:"' + data + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

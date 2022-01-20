@@ -35,36 +35,59 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
-                        <div class="toolbar">
-                            <div id="divFilter">
-                                <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
-                                <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
-                                <button type="button" class="btn btn-primary anchorDetail float-right">Add Employee</button>
-                                <div style="float:right; padding-right:5px;">
-                                    @using (Html.BeginForm("EmpExportToPdf", "Master", FormMethod.Post))
-                                    {
-                                        <input type="hidden" name="GridHtml" />
-                                        <button class="btn btn-info" id="btnpdf" type="submit" style="float:left;">Export to PDF</button>
-                                    }
+                        <div id="divFilter">
+                            <div class="row">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                    </div>
                                 </div>
-                                <div style="float:right; padding-right:5px;">
-                                    @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
-                                    {
-                                        <button class="btn btn-info" type="submit" style="float:left;">Export to Excel</button>
-                                    }
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                    </div>
                                 </div>
-                                <div style="float:right; padding-right:5px;">
-                                    @using (Html.BeginForm("Employee", "Master", FormMethod.Post, new { user = Model, enctype = "multipart/form-data" }))
-                                    {
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12  col-lg-4 col-md-4">
+                                    <div class="form-group">
                                         <div>
-                                            @Html.HiddenFor(m => m.UserId)
-                                            @Html.HiddenFor(m => m.UserName)
-                                            <input type="file" id="FileUpload" name="FileUpload" class="" />
-                                            <input type="submit" value="Upload" id="btnSubmit" class="btn btn-info" />
+                                            @using (Html.BeginForm("EmpExportToPdf", "Master", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="GridHtml" />
+                                                <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
+                                            }
                                         </div>
-                                    }
+                                        <div>
+                                            @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
+                                            {
+                                                <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
-
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary anchorDetail float-right">Add Employee</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12  col-lg-12 col-md-12">
+                                    <div style="float:right;">
+                                        @using (Html.BeginForm("Employee", "Master", FormMethod.Post, new { user = Model, enctype = "multipart/form-data" }))
+                                        {
+                                            <div>
+                                                @Html.HiddenFor(m => m.UserId)
+                                                @Html.HiddenFor(m => m.UserName)
+                                                <input type="file" id="FileUpload" name="FileUpload" class="" style="width:250px;" />
+                                                <input type="submit" value="Upload" id="btnSubmit" class="btn btn-info" />
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                             <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
                                 <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
@@ -99,30 +122,34 @@
                                 </div>
                                 <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
                                     @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
-                                    <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
-                                    <thead>
-                                        <tr style="vertical-align:bottom;">
-                                            <th>Employee Code</th>
-                                            <th>Name</th>
-                                            <th>Phone</th>
-                                            <th>Email Id</th>
-                                            <th>Company</th>
-                                            <th>Department</th>
-                                            <th>Designation</th>
-                                            <th>User Type</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                            <div class="col-sm-12" style="overflow:auto;">
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Employee Code</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Email Id</th>
+                                                <th>Company</th>
+                                                <th>Department</th>
+                                                <th>Designation</th>
+                                                <th>User Type</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -170,7 +197,7 @@
             table.destroy();
             $.ajax({
                 type: "POST",
-                url: "/Master/GetEmployeeFilterList",
+                url: '@Url.Action("GetEmployeeFilterList", "Master")',
                 data: '{EmpCode:"' + empCode + '",EmpName:"' + empName + '", companyName: "' + companyName + '", Department: "' + Department + '", Designation: "' + Designation + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -194,7 +221,7 @@
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url: "/Master/A_GetEmployeeList",
+                    url: '@Url.Action("A_GetEmployeeList", "Master")',
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

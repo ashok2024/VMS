@@ -55,22 +55,24 @@
                                     </div>
                                                         </div>*@
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Employee Code</th>
-                                                    <th>Employee Name</th>
-                                                    <th>Device SR. No.</th>
-                                                    <th>Device Name</th>
-                                                    <th>Date & Time</th>
-                                                    <th>Status</th>
-                                                    <th>Command</th>
-                                                    <th>Page</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
+                                    <div class="col-sm-12" style="overflow:auto;">
+                                        <div class="form-group">
+                                            <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Employee Code</th>
+                                                        <th>Employee Name</th>
+                                                        <th>Device SR. No.</th>
+                                                        <th>Device Name</th>
+                                                        <th>Date & Time</th>
+                                                        <th>Status</th>
+                                                        <th>Command</th>
+                                                        <th>Page</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +99,7 @@
         $(function () {
             $.ajax({
                 type: "POST",
-                url: "/Setting/A_GetApiMoniorList",
+                url: '@Url.Action("A_GetApiMoniorList", "Setting")',
                 data: '{}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
