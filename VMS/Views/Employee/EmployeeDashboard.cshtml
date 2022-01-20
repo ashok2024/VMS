@@ -119,6 +119,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6 col-6" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box" style="background-color:white;">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info open" type="button" style="float:right;">Door Open</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info cls" type="button">Door Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- ./col -->
         </div>
     </div><!-- /.container-fluid -->
@@ -158,6 +176,61 @@
             $(".rejected").click(function () {
                 var visitedURL = $("#WebUIUrl").val() + '/EmployeeReport/GetEmployeeRejectedVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
                 return window.location.href = visitedURL;
+            });
+
+            $(".open").click(function () {
+
+                debugger;
+                var DeviceId = $('#DeviceId').val();
+
+                if (DeviceId == "") {
+                    alert("Please select device");
+                    return false;
+                }
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("OpenCloseDevice", "Setting")',
+                    data: { DeviceId: DeviceId, type: "open" },
+                    success: function (data) {
+                        debugger;
+                        if (data == true) {
+                            alert("Door Open Successfully");
+                        }
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+            });
+
+            $(".cls").click(function () {
+
+                debugger;
+
+                var DeviceId = $('#DeviceId').val();
+
+                if (DeviceId == "") {
+                    alert("Please select device");
+                    return false;
+                }
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("OpenCloseDevice", "Setting")',
+                    data: { DeviceId: DeviceId, type: "close" },
+                    success: function (data) {
+                        debugger;
+                        if (data == true) {
+                            alert("Door Closed Successfully");
+                        }
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
             });
         });
 

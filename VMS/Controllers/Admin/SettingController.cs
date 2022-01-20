@@ -238,7 +238,7 @@ namespace VMS.Controllers.Admin
             return Json(Model);
         }
 
-        private static List<DeviceModel> GetDevices()
+        public List<DeviceModel> GetDevices()
         {
             List<DeviceModel> Model = new List<DeviceModel>();
 

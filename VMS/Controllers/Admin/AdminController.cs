@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VMS.Controllers.Account;
 using VMS.Middleware;
 using VMS.Models.Admin;
+using VMS.Controllers.Admin;
 
 namespace VMS.Controllers.Admin
 {
@@ -35,6 +36,8 @@ namespace VMS.Controllers.Admin
             {
                 AdminDashboardModel dashboardModel = new AdminDashboardModel();
                 dashboardModel = GetAdminDashboardDetails();
+                Admin.SettingController _settingController = new SettingController();
+                ViewBag.DeviceList = new SelectList(_settingController.GetDevices(), "DeviceId", "DeviceName");
                 return View("AdminDashboard", dashboardModel);
             }
         }
@@ -72,5 +75,6 @@ namespace VMS.Controllers.Admin
             }
             return Model;
         }
+
     }
 }

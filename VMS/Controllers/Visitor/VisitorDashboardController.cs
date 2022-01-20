@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VMS.Controllers.Account;
 using VMS.Middleware;
 using VMS.Models.Visitor;
+using VMS.Controllers.Admin;
 
 namespace VMS.Controllers.Visitor
 {
@@ -34,6 +35,8 @@ namespace VMS.Controllers.Visitor
             {
                 VisitorDashboardModel dashboardModel = new VisitorDashboardModel();
                 dashboardModel = GetVisitorDashboardDetails();
+                Admin.SettingController _settingController = new SettingController();
+                ViewBag.DeviceList = new SelectList(_settingController.GetDevices(), "DeviceId", "DeviceName");
                 return View("VisitorDashboard", dashboardModel);
             }
         }

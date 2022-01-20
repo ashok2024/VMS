@@ -12,6 +12,7 @@ using VMS.Controllers.Account;
 using VMS.Middleware;
 using VMS.Models.Employee;
 using VMS.Models.Visitor;
+using VMS.Controllers.Admin;
 
 namespace VMS.Controllers.Employee
 {
@@ -45,6 +46,8 @@ namespace VMS.Controllers.Employee
             {
                 EmployeeDashboardModel dashboardModel = new EmployeeDashboardModel();
                 dashboardModel = GetEmployeeDashboardDetails(Convert.ToInt32(userId));
+                Admin.SettingController _settingController = new SettingController();
+                ViewBag.DeviceList = new SelectList(_settingController.GetDevices(), "DeviceId", "DeviceName");
                 return View("EmployeeDashboard", dashboardModel);
             }
         }
