@@ -615,9 +615,9 @@
             });
 
 
-        });    
+        });
 
-        function contactchange() {            
+        function contactchange() {
                 var Contact = $("#Contact").val();
 
                 if (Contact != "") {
@@ -628,7 +628,7 @@
                         url: '@Url.Action("GetVisitorData", "Visitor")',
                         data: { "Contact": Contact },
                      success: function (json, textStatus) {
-                            convertDatetime(json.FromDate, json.ToDate, json.PUCEndDate);
+                         convertDatetime(json.VisitDateFrom, json.VisitDateTo, json.PUCEndDate);
                             json = json || {};
                             $("#Name").val(json.Name);
                             $("#Company").val(json.Company);
@@ -642,24 +642,27 @@
                             $('#DeviceId').val(json.DeviceId);
                             $('#CardNo').val(json.CardNo);
                             $('#IdProof').val(json.IdProof);
-                            $('#IdProofNo').val(json.IdProofNumber);
+                         $('#IdProofNo').val(json.IdProofNo);
                             $('#VehicleNo').val(json.VehicleNo);
                             $('#VehicleType').val(json.VehicleType);
                             $('#VehiclePUCNo').val(json.VehiclePUCNo);
                            /* $('#PUCEndDate').val(json.PUCEndDate);*/
                             $('#Purpose').val(json.Purpose);
-                            $('#Material').val(json.Material);
-                            $('#Remark').val(json.Remark);
+                         $('#Material').val(json.Material);
+                         $('#Remark').val(json.Remark);
                          $('#Priority').val(json.Priority);
-
-                         var img = $("#WebUIUrl").val() + json.Photo;
+                         $('#EmployeeId').val(json.EmployeeId);
+                         $('#Department').val(json.EmployeeDepartment);
+                         $('#Designation').val(json.Designation);
+                         var img = $("#WebUIUrl").val() + json.PhotoPath;
                         // document.getElementById('results').innerHTML = '<img style="width:200px" id="img" />';
                          $("#img").attr('src', img);
 
-                         var img = $("#WebUIUrl").val() + json.CertificateImagePath;
+                         var img = $("#WebUIUrl").val() + json.captureCertificate;
                          //document.getElementById('resultsCertificate').innerHTML = '<img style="width:200px" id="img1" />';
                          $("#img1").attr('src', img);
-
+                         $('#PhotoPath').val(json.PhotoPath);
+                         $('#captureCertificate').val(json.captureCertificate);
                         },
                         error: function () {
                             //alert("Data Not Found");
@@ -668,7 +671,7 @@
                     }
         }
 
-        function convertDatetime(date1, d2, d3) {  
+        function convertDatetime(date1, d2, d3) {
             if (date1 && date1 != null && date1 != "") {
                 var date = new Date(parseInt(date1.substr(6)));
                 var month = ("0" + (date.getMonth() + 1)).slice(-2);
