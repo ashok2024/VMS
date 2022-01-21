@@ -36,9 +36,23 @@
                     <div class="card-header card-header-primary card-header-icon">
                         <div class="toolbar">
                             <div id="divFilter">
-                                <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
-                                <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
-                                <button type="button" class="btn btn-primary anchorDetail float-right">Add Delivery</button>
+                                <div class="row">
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary anchorDetail float-right">Add Delivery</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 @*<div style="float:right; padding-right:5px;">
                                         @using (Html.BeginForm("ExportToPdf", "Visitor", FormMethod.Post))
                                         {
@@ -106,20 +120,22 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12" style="overflow:auto">
-                                <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
-                                    <thead>
-                                        <tr style="vertical-align:bottom;">
-                                            <th>Delivery Number</th>
-                                            <th>Delivery Company</th>
-                                            <th>Delivery Person Name</th>
-                                            <th>Employee Name</th>
-                                            <th>Delivery Time</th>
-                                            <th>Delivery Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Delivery Number</th>
+                                                <th>Delivery Company</th>
+                                                <th>Delivery Person Name</th>
+                                                <th>Employee Name</th>
+                                                <th>Delivery Time</th>
+                                                <th>Delivery Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +180,7 @@
             table.destroy();
             $.ajax({
                 type: "POST",
-                url: "/Courier/FilterGetCourierList",
+                url: '@Url.Action("FilterGetCourierList", "Courier")',
                 data: '{Employee:"' + Employee + '", Number: "' + Number + '", Company: "' + Company + '", FromDate: "' + FromDate + '", Time: "' + Time + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -187,7 +203,7 @@
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url: "/Courier/A_GetCouriersList",
+                    url: '@Url.Action("A_GetCouriersList", "Courier")',
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

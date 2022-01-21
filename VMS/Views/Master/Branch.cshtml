@@ -41,9 +41,23 @@
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="toolbar">
                                     <div id="divFilter">
-                                        <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
-                                        <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
-                                        <button type="button" class="btn btn-primary anchorDetail float-right">Add Branch</button>
+                                        <div class="row">
+                                            <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary anchorDetail float-right">Add Branch</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
                                         <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
@@ -65,7 +79,9 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2" style="margin-top:30px">
-                                            <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -75,21 +91,22 @@
                                     <!--        Here you can write extra buttons/actions for the toolbar              -->
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Branch</th>
-                                                    <th>Company</th>
-                                                    <th>Branch Contact Person</th>
-                                                    <th>Phone</th>
-                                                    <th>Address</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-
+                                    <div class="col-sm-12" style="overflow:auto;">
+                                        <div class="form-group">
+                                            <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Branch</th>
+                                                        <th>Company</th>
+                                                        <th>Branch Contact Person</th>
+                                                        <th>Phone</th>
+                                                        <th>Address</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +147,6 @@
         });
 
         $(".filter").click(function () {
-            debugger;
             var Branch = $("#ddlBranch option:selected").val();
             var companyName = $("#ddlCompanyName option:selected").val();
             var BranchContactPerson = $("#ddlBranchContactPerson option:selected").val();
@@ -138,7 +154,7 @@
             table.destroy();
             $.ajax({
                 type: "POST",
-                url: "/Master/GetBranchFilterList",
+                url:  '@Url.Action("GetBranchFilterList", "Master")',
                 data: '{Branch:"' + Branch + '", companyName: "' + companyName + '", BranchContactPerson: "' + BranchContactPerson + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -161,7 +177,7 @@
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url: "/Master/A_GetBranchList",
+                    url: '@Url.Action("A_GetBranchList", "Master")',
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -176,7 +192,6 @@
             });
         }
         function OnSuccess(response) {
-            debugger;
             $("#tblCustomers").DataTable(
                 {
                     bLengthChange: true,
