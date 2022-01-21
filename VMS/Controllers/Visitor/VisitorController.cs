@@ -730,6 +730,11 @@ namespace VMS.Controllers.Visitor
                     visitor.VisitDateFrom = Convert.ToDateTime(item.FromDate);
                     visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
                     visitor.Purpose = item.Purpose;
+                    var visitorStatus = entities.VisitorStatusTBs.Where(d => d.VisitId == visitor.Id).FirstOrDefault();
+                    if (visitorStatus != null)
+                        visitor.Status = visitorStatus.Status;
+                    else
+                        visitor.Status = "";
                     Model.Add(visitor);
                 }
             }
@@ -1171,12 +1176,35 @@ namespace VMS.Controllers.Visitor
             foreach (var item in visitorEntries)
             {
                 string fdate = string.Format("{0:dd-MM-yyyy}", item.VisitDateFrom);
+                
                 dt.Rows.Add(item.VisitorId, item.Name, item.Company, item.Contact, item.EmployeeName, item.Department, item.InTime, item.OutTime, fdate, item.VisitDateTo);
             }
 
             using (XLWorkbook wb = new XLWorkbook())
             {
-                wb.Worksheets.Add(dt);
+                IXLWorksheet sheet = wb.Worksheets.Add(dt);
+                int rowCount = 1;
+                foreach (var item in visitorEntries)
+                {
+                    if (!String.IsNullOrEmpty(item.Status) && item.Status.ToLower() == "approve")
+                    {
+                        for (int i = 1; i < dt.Columns.Count+1; i++)
+                        {
+                            sheet.Cell(rowCount+1, i).Style.Fill.SetBackgroundColor(XLColor.Green);
+                        }
+                    }
+                    else if(!String.IsNullOrEmpty(item.Status) && item.Status.ToLower() == "reject")
+                    {
+                        for (int i = 1; i < dt.Columns.Count+1; i++)
+                        {
+                            sheet.Cell(rowCount + 1, i).Style.Fill.SetBackgroundColor(XLColor.Red);
+                        }
+                    }
+                    
+                    rowCount++;
+                }
+                               
+                sheet.Cell(2, 3).Style.Fill.SetBackgroundColor(XLColor.Cyan);
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
@@ -1189,7 +1217,7 @@ namespace VMS.Controllers.Visitor
         public ActionResult ExportToPdf(int? pageNumber)
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[10] { new DataColumn("VisitorId"),
+            dt.Columns.AddRange(new DataColumn[11] { new DataColumn("VisitorId"),
                                             new DataColumn("VisitorName"),
                                             new DataColumn("VisitorCompany"),
                                             new DataColumn("VisitorContact"),
@@ -1198,7 +1226,8 @@ namespace VMS.Controllers.Visitor
                                             new DataColumn("InTime"),
                                             new DataColumn("OutTime"),
                                             new DataColumn("FromDate"),
-                                            new DataColumn("ToDate"),});
+                                            new DataColumn("ToDate"),
+                                            new DataColumn("Status")});
 
             visitorEntries = GetVisitors();
 
@@ -1206,7 +1235,7 @@ namespace VMS.Controllers.Visitor
             {
                 string fdate = string.Format("{0:dd-MM-yyyy}", item.VisitDateFrom);
                 string tdate = string.Format("{0:dd-MM-yyyy}", item.VisitDateTo);
-                dt.Rows.Add(item.VisitorId, item.Name, item.Company, item.Contact, item.EmployeeName, item.Department, item.InTime, item.OutTime, fdate, tdate);
+                dt.Rows.Add(item.VisitorId, item.Name, item.Company, item.Contact, item.EmployeeName, item.Department, item.InTime, item.OutTime, fdate, tdate,item.Status);
             }
 
             if (dt.Rows.Count > 0)
@@ -1248,20 +1277,107 @@ namespace VMS.Controllers.Visitor
                 table.AddCell(new Phrase("FromDate", font1));
                 table.AddCell(new Phrase("ToDate", font1));
                 table.HeaderRows = 1;
-
+                
                 foreach (DataRow data in dt.Rows)
                 {
-                    table.AddCell(new Phrase(data["VisitorId"].ToString(), font2));
-                    table.AddCell(new Phrase(data["VisitorName"].ToString(), font2));
-                    table.AddCell(new Phrase(data["VisitorCompany"].ToString(), font2));
-                    table.AddCell(new Phrase(data["VisitorContact"].ToString(), font2));
-                    table.AddCell(new Phrase(data["EmployeeName"].ToString(), font2));
-                    table.AddCell(new Phrase(data["Department"].ToString(), font2));
-                    table.AddCell(new Phrase(data["InTime"].ToString(), font2));
-                    table.AddCell(new Phrase(data["OutTime"].ToString(), font2));
-                    table.AddCell(new Phrase(data["FromDate"].ToString(), font2));
-                    table.AddCell(new Phrase(data["ToDate"].ToString(), font2));
+                    if (data["Status"].ToString().ToLower() == "approve")
+                    {
+                        cell = new PdfPCell(new Phrase(data["VisitorId"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        
+                        table.AddCell(cell);
 
+                        cell = new PdfPCell(new Phrase(data["VisitorName"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["VisitorCompany"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["VisitorContact"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["EmployeeName"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["Department"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["InTime"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["OutTime"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["FromDate"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["ToDate"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Green);
+                        table.AddCell(cell);
+                    }
+                    else if (data["Status"].ToString().ToLower() == "reject")
+                    {
+                        cell = new PdfPCell(new Phrase(data["VisitorId"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["VisitorName"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["VisitorCompany"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["VisitorContact"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["EmployeeName"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["Department"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["InTime"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["OutTime"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["FromDate"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+
+                        cell = new PdfPCell(new Phrase(data["ToDate"].ToString(), font2));
+                        cell.BackgroundColor = new BaseColor(System.Drawing.Color.Red);
+                        table.AddCell(cell);
+                    }
+                    else
+                    {
+                        table.AddCell(new Phrase(data["VisitorId"].ToString(), font2));
+                        table.AddCell(new Phrase(data["VisitorName"].ToString(), font2));
+                        table.AddCell(new Phrase(data["VisitorCompany"].ToString(), font2));
+                        table.AddCell(new Phrase(data["VisitorContact"].ToString(), font2));
+                        table.AddCell(new Phrase(data["EmployeeName"].ToString(), font2));
+                        table.AddCell(new Phrase(data["Department"].ToString(), font2));
+                        table.AddCell(new Phrase(data["InTime"].ToString(), font2));
+                        table.AddCell(new Phrase(data["OutTime"].ToString(), font2));
+                        table.AddCell(new Phrase(data["FromDate"].ToString(), font2));
+                        table.AddCell(new Phrase(data["ToDate"].ToString(), font2));
+                    }
                     pdfRowIndex++;
                 }
 
