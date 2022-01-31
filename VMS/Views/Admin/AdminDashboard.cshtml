@@ -53,7 +53,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-4 col-6 upcoming" style="cursor:pointer;">
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
@@ -164,6 +164,11 @@
 
             $(".rejected").click(function () {
                 var visitedURL = $("#WebUIUrl").val() + '/Report/GetRejectedVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+                return window.location.href = visitedURL;
+            });
+
+            $(".upcoming").click(function () {
+                var visitedURL = $("#WebUIUrl").val() + '/Report/GetUpcomingVisitorList?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
                 return window.location.href = visitedURL;
             });
 
