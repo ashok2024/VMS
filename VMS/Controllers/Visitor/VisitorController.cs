@@ -2,6 +2,12 @@
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.tool.xml.html;
+using iTextSharp.tool.xml.parser;
+using iTextSharp.tool.xml.pipeline.css;
+using iTextSharp.tool.xml.pipeline.end;
+using iTextSharp.tool.xml.pipeline.html;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1878,11 +1884,17 @@ namespace VMS.Controllers.Visitor
             var vistor = db.VisitorEntryTBs.Where(x => x.Id == VisitorId).FirstOrDefault();
 
             StringBuilder sb = new StringBuilder();
-            string logo = Server.MapPath("~") + "\\dist\\img\\logo.png";
+            string logo = Server.MapPath("~") + "dist\\img\\logo.png";
             string photo = "";
+           string  CSS_STYLE = "th { background-color: #C0C0C0; font-size: 16pt; }"
+                               + "td { font-size: 10pt; }";
             if (!string.IsNullOrEmpty(vistor.Photo))
             {
                 photo = Server.MapPath("~") + vistor.Photo;
+            }
+            else
+            {
+                photo = Server.MapPath("~") + "dist\\img\\avatar.png";
             }
             StringBuilder htmlStr = new StringBuilder("");
             htmlStr.Append("<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'>");
@@ -1899,11 +1911,11 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("<body><div style='padding: 20px;'>");
 
             //htmlStr.Append("<table cellpadding='5' border='1' style='border: 1px solid #ccc; padding: 20px;'>");
-            htmlStr.Append("<table border='1' bordercolor='grey' cellpadding='5' style='padding: 20px;'>");
+            htmlStr.Append("<table border='1' bordercolor='red' cellpadding='5' class='tableDetails' style='padding: 20px; background-color:red'>");
 
 
             htmlStr.Append("<tr>");
-            htmlStr.Append("<td rowspan='2' style='text-align: center;'> <img src= " + logo + " width='180' height='55'></td>");
+            htmlStr.Append("<td rowspan='2' style='text-align: center;'> <img src= '" + logo + "' width='180' height='55'></td>");
             htmlStr.Append("<td colspan='2' style='font-weight: bold;text-align: center;'>HR INDUSTRY</td>");
             htmlStr.Append("</tr>");
 
@@ -1919,41 +1931,41 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
-            htmlStr.Append("<td rowspan='3' style='text-align: center;'><img src= " + photo + " width='80' height='80'></td>");
+            htmlStr.Append("<td rowspan='3' style='text-align: center;'><img src= '" + photo + "' width='80' height='80'></td>");
             htmlStr.Append("<td>Name: " + vistor.Name + "</td>");
-            htmlStr.Append("<td>Vehicle No: " + vistor.VehicleNo + "</td>");
+            htmlStr.Append("<td rowspan='3'>Vehicle No: " + vistor.VehicleNo + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             //htmlStr.Append("<td></td>");
             htmlStr.Append("<td>Address: " + vistor.Address + "</td>");
-            htmlStr.Append("<td>" + vistor.VehicleNo + "</td>");
+            //htmlStr.Append("<td>" + vistor.VehicleNo + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             //htmlStr.Append("<td></td>");
             htmlStr.Append("<td>Mobile No: " + vistor.Contact + "</td>");
-            htmlStr.Append("<td></td>");
+            //htmlStr.Append("<td></td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             htmlStr.Append("<td colspan='2'>Repersentaing M/S: </td>");
-            htmlStr.Append("<td>Time In</td>");
+            htmlStr.Append("<td rowspan='2'>Time In:" + vistor.InTime + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             htmlStr.Append("<td colspan='2'>Person to be visited: " + vistor.Name + "</td>");
-            htmlStr.Append("<td>" + vistor.InTime + "</td>");
+            //htmlStr.Append("<td>" + vistor.InTime + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             htmlStr.Append("<td colspan='2'>Purpose to be visited: " + vistor.Purpose + "</td>");
-            htmlStr.Append("<td>Time Out</td>");
+            htmlStr.Append("<td rowspan='2'>Time Out:" + vistor.OutTime + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
             htmlStr.Append("<td colspan='2'>Goods allowed in: </td>");
-            htmlStr.Append("<td>" + vistor.OutTime + "</td>");
+            //htmlStr.Append("<td>" + vistor.OutTime + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
@@ -2039,9 +2051,21 @@ namespace VMS.Controllers.Visitor
                 //byte[] bytes = memoryStream.ToArray();
                 //memoryStream.Close();
                 //Response.Clear();
-
+                string stylesheetPath = "~/dist/css/StyleSheet.css";
                 PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+
+                HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
+                htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
+                ICSSResolver cssResolver = XMLWorkerHelper.GetInstance().GetDefaultCssResolver(true);
+                cssResolver.AddCssFile(Server.MapPath(stylesheetPath), true);
+                IPipeline pipeline = new CssResolverPipeline(cssResolver, 
+                                     new HtmlPipeline(htmlContext, 
+                                     new PdfWriterPipeline(pdfDoc, writer)));
+                var worker = new XMLWorker(pipeline, true);
+                var xmlParse = new XMLParser(true, worker);
+
                 pdfDoc.Open();
+           
                 htmlparser.Parse(sr);
 
                 pdfDoc.Close();
