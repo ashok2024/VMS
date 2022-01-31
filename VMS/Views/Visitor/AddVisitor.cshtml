@@ -52,305 +52,416 @@
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.VisitorId)
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
-                            <div class="form-group">
-                                <label>Employee</label>
-                                @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control controlSize" })
-                                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Department</label>
-                                @*<input type="text" class="form-control" id="Department" >*@
-                                @Html.TextBoxFor(m => m.Department, new { @class = "form-control controlSize", autocomplete = "off", placeholder = "Department", disabled = "disabled" })
-                            </div>
-                            <div class="form-group">
-                                <label>Designation</label>
-                                @*<input type="text" class="form-control controlSize" id="Designation" placeholder="Designation" disabled="disabled">*@
-                                @Html.TextBoxFor(m => m.Designation, new { @class = "form-control controlSize", autocomplete = "off", placeholder = "Designation", disabled = "disabled" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Contact</label>
-                                @Html.TextBoxFor(m => m.Contact, new { maxlength = 10, @class = "form-control controlSize", autocomplete = "off", placeholder = "Visitor Contact", onblur = "contactchange();" })
-                                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Name</label>
-                                @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Name" })
-                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Company</label>
-                                @Html.TextBoxFor(m => m.Company, new { maxlength = 100, @class = "form-control controlSize", autocomplete = "off", placeholder = "Company Name" })
-                                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Email Id</label>
-                                @Html.TextBoxFor(m => m.EmailId, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Email Id" })
-                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Type</label>
-                                @Html.DropDownList("VisitorType", ViewBag.VisitorTypeList as SelectList, "Select Visitor Type", new { @class = "form-control controlSize" })
-                            </div>
-                            <div class="form-group">
-                                <label>Visitor Address</label>
-                                @Html.TextBoxFor(m => m.Address, new { maxlength = 150, @class = "form-control controlSize", autocomplete = "off", placeholder = "Address" })
-                            </div>
-                            <div class="form-group">
-                                <div class="bootstrap-timepicker">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>In Time</label>
-                                        <div class="input-group date controlSize" id="Intimepicker" data-target-input="nearest">
-                                            @Html.TextBoxFor(m => m.InTime, new { @class = "form-control datetimepicker-input", @data_target = "#Intimepicker" })
-                                            <div class="input-group-append" data-target="#Intimepicker" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.input group -->
+                                        <label>Employee</label>
+                                        @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
                                     </div>
-                                    <!-- /.form group -->
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="bootstrap-timepicker">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Out Time</label>
-                                        <div class="input-group date controlSize" id="Outtimepicker" data-target-input="nearest">
-                                            @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
-                                            @Html.TextBoxFor(m => m.OutTime, new { @class = "form-control datetimepicker-input", @data_target = "#Outtimepicker" })
-                                            <div class="input-group-append" data-target="#Outtimepicker" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Visit Date From</label>
-                                <div class="input-group date controlSize" id="datefrom" data-target-input="nearest">
-                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
-                                    @Html.TextBoxFor(m => m.VisitDateFrom, new { @class = "form-control datetimepicker-input", @data_target = "#datefrom" })
-                                    <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        <label>Department</label>
+                                        @*<input type="text" class="form-control" id="Department" >*@
+                                        @Html.TextBoxFor(m => m.Department, new { @class = "form-control", autocomplete = "off", placeholder = "Department", disabled = "disabled" })
                                     </div>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.VisitDateFrom, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group">
-                                <label>Visit Date To</label>
-                                <div class="input-group date controlSize" id="dateto" data-target-input="nearest">
-                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
-                                    @Html.TextBoxFor(m => m.VisitDateTo, new { @class = "form-control datetimepicker-input", @data_target = "#dateto" })
-                                    <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Designation</label>
+                                        @*<input type="text" class="form-control controlSize" id="Designation" placeholder="Designation" disabled="disabled">*@
+                                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control", autocomplete = "off", placeholder = "Designation", disabled = "disabled" })
                                     </div>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.VisitDateTo, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
-                <!--/.col (left) -->
+            </div>
 
-                <div class="col-md-6">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputFile">Photo</label>
-                                <div class="input-group">
-                                    <div class="col-7">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="Photo">
-                                            <label class="custom-file-label" for="Photo">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <img id="imgPreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Contact</label>
+                                        @Html.TextBoxFor(m => m.Contact, new { maxlength = 10, @class = "form-control", autocomplete = "off", placeholder = "Visitor Contact", onblur = "contactchange();" })
+                                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                @Html.HiddenFor(m => m.PhotoPath)
-                                @Html.HiddenFor(m => m.PhotoPathCapture)
-                                @Html.HiddenFor(m => m.captureCertificate)
-                                @Html.HiddenFor(m => m.certificatePath)
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Name</label>
+                                        @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Name" })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Company</label>
+                                        @Html.TextBoxFor(m => m.Company, new { maxlength = 100, @class = "form-control", autocomplete = "off", placeholder = "Company Name" })
+                                        @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Email Id</label>
+                                        @Html.TextBoxFor(m => m.EmailId, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Email Id" })
+                                        @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Type</label>
+                                        @Html.DropDownList("VisitorType", ViewBag.VisitorTypeList as SelectList, "Select Visitor Type", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Visitor Address</label>
+                                        @Html.TextBoxFor(m => m.Address, new { maxlength = 150, @class = "form-control", autocomplete = "off", placeholder = "Address" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="form-group">
-                                <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12">
-                                    <div class="row">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="bootstrap-timepicker">
+                                            <div class="form-group">
+                                                <label>In Time</label>
+                                                <div class="input-group date" id="Intimepicker" data-target-input="nearest">
+                                                    @Html.TextBoxFor(m => m.InTime, new { @class = "form-control datetimepicker-input", @data_target = "#Intimepicker" })
+                                                    <div class="input-group-append" data-target="#Intimepicker" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                            <!-- /.form group -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="bootstrap-timepicker">
+                                            <div class="form-group">
+                                                <label>Out Time</label>
+                                                <div class="input-group date" id="Outtimepicker" data-target-input="nearest">
+                                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
+                                                    @Html.TextBoxFor(m => m.OutTime, new { @class = "form-control datetimepicker-input", @data_target = "#Outtimepicker" })
+                                                    <div class="input-group-append" data-target="#Outtimepicker" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                            <!-- /.form group -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Visit Date From</label>
+                                        <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                            @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                            @Html.TextBoxFor(m => m.VisitDateFrom, new { @class = "form-control datetimepicker-input", @data_target = "#datefrom" })
+                                            <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.VisitDateFrom, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Visit Date To</label>
+                                        <div class="input-group date" id="dateto" data-target-input="nearest">
+                                            @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                            @Html.TextBoxFor(m => m.VisitDateTo, new { @class = "form-control datetimepicker-input", @data_target = "#dateto" })
+                                            <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.VisitDateTo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Photo</label>
+                                        <div class="input-group">
+                                            <div class="col-7">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="Photo">
+                                                    <label class="custom-file-label" for="Photo">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <img id="imgPreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
+                                            </div>
+                                        </div>
+                                        @Html.HiddenFor(m => m.PhotoPath)
+                                        @Html.HiddenFor(m => m.PhotoPathCapture)
+                                        @Html.HiddenFor(m => m.captureCertificate)
+                                        @Html.HiddenFor(m => m.certificatePath)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Certificate</label>
+                                        <div class="input-group">
+                                            <div class="col-7">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="certificate">
+                                                    <label class="custom-file-label" for="Photo">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <img id="certificatePreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <div id="LiveCamera"></div>
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6" >
-                                            <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
-                                        </div>
-                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
-                                            <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-top:5px">
-                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
-                                            <div id="results">
-                                                <img id="img" src="" style="width:150px" />
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="results">
+                                                    <img id="img" src="" style="width:150px" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6 col-sm-12 col-lg-6 col-xs-12 col-md-6">
-                                            <div id="resultsCertificate">
-                                                <img id="img1" src="" style="width:150px" />
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="resultsCertificate">
+                                                    <img id="img1" src="" style="width:150px" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Certificate</label>
-                                <div class="input-group">
-                                    <div class="col-7">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="certificate">
-                                            <label class="custom-file-label" for="Photo">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <img id="certificatePreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
-                                    </div>
-                                </div>                               
-                            </div>
-                            @*<div class="form-group">
-            <div class="col-md-6" style="padding-top:50px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Live Web Camera</div>
-                    <div class="panel-body">
-                        <div id="LiveCamera" style="margin-bottom:15px;"></div>
-                        <form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-4">
-                                    <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Card Number</label>
+                                        @Html.TextBoxFor(m => m.CardNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Card Number" })
+                                        @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                <div class="col-4">
-
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Id Proof</label>
+                                        @Html.DropDownList("IdProof", ViewBag.IdProofList as SelectList, "Select Id Proof", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.IdProof, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                    <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3" style="padding-top:15px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Captured Image</div>
-                    <div class="panel-body">
-                        <div id="results" style="width:100px;height:100px">
-                            Your snapshot will appear here...
-                            <img id="img" src="" style="width:200px"/>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6" style="padding-top:15px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Captured Snapshot/ Certificate</div>
-                    <div class="panel-body">
-                        <div id="resultsCertificate">Your Certificate will appear here...
-                           <img id="img1" src="" style="width:200px"/>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                </div>
-            </div>
-        </div>*@
-
-                            <div class="form-group">
-                                <label>Device</label>
-                                @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control controlSize" })
-                                @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group">
-                                <label>Card Number</label>
-                                @Html.TextBoxFor(m => m.CardNo, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Card Number" })
-                                @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group">
-                                <label>Id Proof</label>
-                                @Html.DropDownList("IdProof", ViewBag.IdProofList as SelectList, "Select Id Proof", new { @class = "form-control controlSize" })
-                                @Html.ValidationMessageFor(model => model.IdProof, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Id Proof Number</label>
-                                @Html.TextBoxFor(m => m.IdProofNo, new { maxlength = 15, @class = "form-control controlSize", autocomplete = "off", placeholder = "Id Proof Number" })
-                                @Html.ValidationMessageFor(model => model.IdProofNo, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Vehicle Type</label>
-                                @Html.DropDownList("VehicleType", ViewBag.VehicleTypeList as SelectList, "Select VehicleType", new { @class = "form-control controlSize" })
-                            </div>
-                            <div class="form-group">
-                                <label>Vehicle Number</label>
-                                @Html.TextBoxFor(m => m.VehicleNo, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Vehicle Number" })
-                            </div>
-                            <div class="form-group">
-                                <label>Vehicle PUC Number</label>
-                                @Html.TextBoxFor(m => m.VehiclePUCNo, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Vehicle PUC No." })
-                            </div>
-                            <div class="form-group">
-                                <label>PUC End Date</label>
-                                <div class="input-group date controlSize" id="enddate" data-target-input="nearest">
-                                    @*<input type="text" class="form-control controlSize datetimepicker-input" data-target="#reservationdate" />*@
-                                    @Html.TextBoxFor(m => m.PUCEndDate, new { @class = "form-control datetimepicker-input", @data_target = "#enddate" })
-                                    <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Id Proof Number</label>
+                                        @Html.TextBoxFor(m => m.IdProofNo, new { maxlength = 15, @class = "form-control", autocomplete = "off", placeholder = "Id Proof Number" })
+                                        @Html.ValidationMessageFor(model => model.IdProofNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Add Purpose</label>
-                                @Html.TextBoxFor(m => m.Purpose, new { maxlength = 200, @class = "form-control controlSize", autocomplete = "off", placeholder = "Purpose" })
-                                @Html.ValidationMessageFor(model => model.Purpose, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                <label>Material</label>
-                                @Html.DropDownList("Material", ViewBag.MaterialList as SelectList, "Select Material", new { @class = "form-control controlSize" })
-                            </div>
-                            <div class="form-group">
-                                <label>Remarks</label>
-                                @Html.TextBoxFor(m => m.Remark, new { maxlength = 200, @class = "form-control controlSize", autocomplete = "off", placeholder = "Remark" })
-                            </div>
-                            <div class="form-group">
-                                <label>Priority</label>
-                                @Html.DropDownList("Priority", ViewBag.PriorityList as SelectList, "Select Priority", new { @class = "form-control controlSize" })
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-danger cancel" style="margin-left:40%;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Vehicle Type</label>
+                                        @Html.DropDownList("VehicleType", ViewBag.VehicleTypeList as SelectList, "Select VehicleType", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Vehicle Number</label>
+                                        @Html.TextBoxFor(m => m.VehicleNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Vehicle Number" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Vehicle PUC Number</label>
+                                        @Html.TextBoxFor(m => m.VehiclePUCNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Vehicle PUC No." })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>PUC End Date</label>
+                                        <div class="input-group date" id="enddate" data-target-input="nearest">
+                                            @*<input type="text" class="form-control controlSize datetimepicker-input" data-target="#reservationdate" />*@
+                                            @Html.TextBoxFor(m => m.PUCEndDate, new { @class = "form-control datetimepicker-input", @data_target = "#enddate" })
+                                            <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Add Purpose</label>
+                                        @Html.TextBoxFor(m => m.Purpose, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Purpose" })
+                                        @Html.ValidationMessageFor(model => model.Purpose, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Material</label>
+                                        @Html.DropDownList("Material", ViewBag.MaterialList as SelectList, "Select Material", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Remarks</label>
+                                        @Html.TextBoxFor(m => m.Remark, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Remark" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Priority</label>
+                                        @Html.DropDownList("Priority", ViewBag.PriorityList as SelectList, "Select Priority", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Device</label>
+                                        @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control controlSize" })
+                                        @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-danger cancel float-right">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
