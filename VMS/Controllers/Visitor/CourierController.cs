@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -222,6 +223,8 @@ namespace VMS.Controllers.Visitor
                 Model.Time = data.Time;
                 Model.Date = Convert.ToDateTime(data.Date);
                 Model.Description = data.Description;
+                Model.photo = data.PhotoPath;
+                Model.certificate = data.CertifactePath;
 
             }
             catch (Exception ex)
@@ -279,6 +282,8 @@ namespace VMS.Controllers.Visitor
                         check.Date = courier.Date;
                         check.Description = courier.Description;
                         check.UserId = Convert.ToInt32(userid);
+                        check.PhotoPath = courier.photo;
+                        check.CertifactePath = courier.certificate;
                         db.Entry(check).State = EntityState.Modified;
                         db.SaveChanges();
                     }
@@ -294,6 +299,8 @@ namespace VMS.Controllers.Visitor
                         tB.Time = courier.Time;
                         tB.Date = courier.Date;
                         tB.Description = courier.Description;
+                        tB.PhotoPath = courier.photo;
+                        tB.CertifactePath = courier.certificate;
                         tB.UserId = Convert.ToInt32(userid);
                         db.CourierTBs.Add(tB);
                         db.SaveChanges();
@@ -354,6 +361,48 @@ namespace VMS.Controllers.Visitor
             }
 
             return Json(couriers, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UploadCaptureFile(string data)
+        {
+            string _imgname = Guid.NewGuid().ToString();
+
+            string imageName = _imgname + ".png";
+            string path = Server.MapPath("/Uploads/Courier/Photos/");
+            if ((!System.IO.Directory.Exists(path)))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            var _comPath = path + imageName;
+
+            Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+            data = regex.Replace(data, string.Empty);
+            byte[] imageBytes = Convert.FromBase64String(data);
+            System.IO.File.WriteAllBytes(_comPath, imageBytes);
+
+            return Json(Convert.ToString(imageName), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UploadCaptureCertificate(string data)
+        {
+            string _imgname = Guid.NewGuid().ToString();
+
+            string imageName = _imgname + ".png";
+            string path = Server.MapPath("/Uploads/Courier/Certificate/");
+            if ((!System.IO.Directory.Exists(path)))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            var _comPath = path + imageName;
+
+            Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+            data = regex.Replace(data, string.Empty);
+            byte[] imageBytes = Convert.FromBase64String(data);
+            System.IO.File.WriteAllBytes(_comPath, imageBytes);
+
+            return Json(Convert.ToString(imageName), JsonRequestBehavior.AllowGet);
         }
     }
 }

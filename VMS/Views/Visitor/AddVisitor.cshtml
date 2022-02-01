@@ -439,6 +439,33 @@
                                         <label>Device</label>
                                         @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control controlSize" })
                                         @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
+                                        @*<table class="table" id="datatables">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Device Name</th>
+                    <th>Device Serial No</th>
+                    <th>Device Account Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.DeviceListSave != null)
+                {
+                    foreach (var item in ViewBag.DeviceListSave)
+                    {
+                        var checkBoxId = "chk" + @item.DeviceAccountId;
+                        <tr>
+                            <td><input type="checkbox" id="@item.DeviceAccountId" class="clsdev" value="@item.DeviceAccountId" />    </td>
+                            <td>@item.DeviceName</td>
+                            <td>@item.DeviceSerialNo</td>
+                            <td>@item.DeviceAccountId</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        @Html.HiddenFor(m => m.DeviceId)*@
                                     </div>
                                 </div>
                             </div>
@@ -591,8 +618,17 @@
 
 
         $(function () {
-
+            var dev = '';
             debugger;
+            $('.clsdev').click(function () {               
+                var getchkid = $(this).attr('id');
+                var isChecked = $('#' + getchkid).is(':checked');
+
+                if ($('#' + getchkid).is(':checked') == true) {
+                    dev += getchkid + ",";                    
+                }
+                alert(dev);
+            });
 
             $("#imgPreview").css("display", "none");
             $("#certificatePreview").css("display", "none");

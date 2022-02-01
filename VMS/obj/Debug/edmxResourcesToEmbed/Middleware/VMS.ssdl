@@ -50,6 +50,8 @@
     <Property Name="UserId" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="200" />
     <Property Name="EmployeeId" Type="int" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CertifactePath" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="DBSettingTB">
     <Key>
@@ -217,6 +219,7 @@
     <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
     <Property Name="DeviceId" Type="int" />
     <Property Name="CardNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CertificateImagePath" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="VisitorStatusTB">
     <Key>
