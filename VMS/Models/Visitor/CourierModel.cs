@@ -25,6 +25,8 @@ namespace VMS.Models.Visitor
         public string Description { get; set; }
         public string photo { get; set; }
         public string certificate { get; set; }
+        public string PhotoPath { get; set; }
+        public string certificatePath { get; set; }
     }
 
     public class CourierSearchModel

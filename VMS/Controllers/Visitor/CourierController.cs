@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using VMS.Controllers.Account;
 using VMS.Middleware;
@@ -225,7 +227,6 @@ namespace VMS.Controllers.Visitor
                 Model.Description = data.Description;
                 Model.photo = data.PhotoPath;
                 Model.certificate = data.CertifactePath;
-
             }
             catch (Exception ex)
             {
@@ -248,15 +249,15 @@ namespace VMS.Controllers.Visitor
 
             ViewBag.ActivePage = "CourierList";
 
-            string sessionid = (System.Web.HttpContext.Current.Session["SessionId"] != null) ? System.Web.HttpContext.Current.Session["SessionId"].ToString() : String.Empty;
-            if (string.IsNullOrEmpty(sessionid))
-            {
-                return RedirectToAction("LogOut", "Account");
-            }
-            if (AppUser == null)
-            {
-                return RedirectToAction("LogOut", "Account");
-            }
+            //string sessionid = (System.Web.HttpContext.Current.Session["SessionId"] != null) ? System.Web.HttpContext.Current.Session["SessionId"].ToString() : String.Empty;
+            //if (string.IsNullOrEmpty(sessionid))
+            //{
+            //    return RedirectToAction("LogOut", "Account");
+            //}
+            //if (AppUser == null)
+            //{
+            //    return RedirectToAction("LogOut", "Account");
+            //}
 
             //if (supplier.Id == 0)
             //{
@@ -282,8 +283,8 @@ namespace VMS.Controllers.Visitor
                         check.Date = courier.Date;
                         check.Description = courier.Description;
                         check.UserId = Convert.ToInt32(userid);
-                        check.PhotoPath = courier.photo;
-                        check.CertifactePath = courier.certificate;
+                        check.PhotoPath = courier.photo = String.IsNullOrEmpty(courier.photo) ? courier.PhotoPath : courier.photo;
+                        check.CertifactePath = courier.certificate = String.IsNullOrEmpty(courier.certificate) ? courier.certificatePath: courier.certificate ;
                         db.Entry(check).State = EntityState.Modified;
                         db.SaveChanges();
                     }
@@ -299,8 +300,8 @@ namespace VMS.Controllers.Visitor
                         tB.Time = courier.Time;
                         tB.Date = courier.Date;
                         tB.Description = courier.Description;
-                        tB.PhotoPath = courier.photo;
-                        tB.CertifactePath = courier.certificate;
+                        tB.PhotoPath = courier.photo = String.IsNullOrEmpty(courier.photo) ? courier.PhotoPath : courier.photo;
+                        tB.CertifactePath = courier.certificate = String.IsNullOrEmpty(courier.certificate) ? courier.certificatePath : courier.certificate;
                         tB.UserId = Convert.ToInt32(userid);
                         db.CourierTBs.Add(tB);
                         db.SaveChanges();
@@ -403,6 +404,87 @@ namespace VMS.Controllers.Visitor
             System.IO.File.WriteAllBytes(_comPath, imageBytes);
 
             return Json(Convert.ToString(imageName), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult UploadFile()
+        {
+            string _imgname = string.Empty;
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                var pic = System.Web.HttpContext.Current.Request.Files["MyImages"];
+                if (pic.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(pic.FileName);
+                    var _ext = Path.GetExtension(pic.FileName);
+
+                    _imgname = Guid.NewGuid().ToString();
+                    string path1 = Server.MapPath("/Uploads/Courier/Upload_Photos/");
+                    if ((!System.IO.Directory.Exists(path1)))
+                    {
+                        System.IO.Directory.CreateDirectory(path1);
+                    }
+                    _imgname = "VS_" + _imgname + _ext;
+                    var _comPath = path1 + _imgname;
+                   
+
+                    ViewBag.Msg = _comPath;
+                    var path = _comPath;
+
+                    // Saving Image in Original Mode
+                    pic.SaveAs(path);
+
+                    // resizing image
+                    MemoryStream ms = new MemoryStream();
+                    WebImage img = new WebImage(_comPath);
+
+                    if (img.Width > 200)
+                        img.Resize(200, 200);
+                    img.Save(_comPath);
+                    // end resize
+                }
+            }
+            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
+        }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult UploadFileCertificate()
+        {
+            string _imgname = string.Empty;
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                var pic = System.Web.HttpContext.Current.Request.Files["MyImages"];
+                if (pic.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(pic.FileName);
+                    var _ext = Path.GetExtension(pic.FileName);
+
+                    _imgname = Guid.NewGuid().ToString();
+                    string path1 = Server.MapPath("/Uploads/Courier/Upload_Certificates/");
+                    if ((!System.IO.Directory.Exists(path1)))
+                    {
+                        System.IO.Directory.CreateDirectory(path1);
+                    }
+                    _imgname = "VS_" + _imgname + _ext;
+                    var _comPath = path1 + _imgname;
+
+
+                    ViewBag.Msg = _comPath;
+                    var path = _comPath;
+
+                    // Saving Image in Original Mode
+                    pic.SaveAs(path);
+
+                    // resizing image
+                    MemoryStream ms = new MemoryStream();
+                    WebImage img = new WebImage(_comPath);
+
+                    if (img.Width > 200)
+                        img.Resize(200, 200);
+                    img.Save(_comPath);
+                    // end resize
+                }
+            }
+            return Json(Convert.ToString(_imgname), JsonRequestBehavior.AllowGet);
         }
     }
 }

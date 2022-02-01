@@ -2275,6 +2275,7 @@
       <DependentUpon>VMS.edmx</DependentUpon>
     </Content>
     <Content Include="Doc\Emp.xlsx" />
+    <Content Include="Views\EmployeeReport\GetUpcomingVisitorListEmp.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
