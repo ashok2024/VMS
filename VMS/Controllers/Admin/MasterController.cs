@@ -2247,11 +2247,58 @@ namespace VMS.Controllers.Admin
 
                 ViewBag.CompanyList = new SelectList(GetCompanyList(), "Id", "Name");
                 ViewBag.DepartmentList = new SelectList(GetDepartmentList(), "Id", "Name");
-
+                ViewBag.DepartmentList = new SelectList(GetDepartmentList(), "Id", "Name");
                 return View("UploadEmployeeToDevice", emp);
             }
         }
+        [HttpPost]
+        public JsonResult EmployeeList()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            List<EmployeeModel> Model = new List<EmployeeModel>();
 
+            var res = GetEmployeeList();
+            return Json(res);
+        }
+        [HttpPost]
+        public JsonResult VisitorUploadList()
+        {
+            VMSDBEntities entities = new VMSDBEntities();
+            var res = entities.VisitorTBs.ToList();
+            return Json(res);
+        }
+        [HttpGet]
+        public ActionResult UploadVisitorToDevice()
+        {
+            string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
+            ViewBag.UserId = userId;
+            string userName = (Request["userName"] == null) ? "" : Request["userName"].ToString();
+            ViewBag.UserName = userName;
+
+            ViewBag.ActivePage = "UploadEmployee";
+
+            if (AppUser == null)
+            {
+                return RedirectToAction("LogOut", "Account");
+            }
+            else
+            {
+                ViewData["GetDeviceList"] = GetDevices();
+                ViewData["GetEmployeeList"] = GetEmployeeList();
+
+                SessionModel emp = new SessionModel();
+                emp.UserId = userId;
+                emp.UserName = userName;
+
+                ViewBag.CompanyList = new SelectList(GetCompanyList(), "Id", "Name");
+                ViewBag.DepartmentList = new SelectList(GetDepartmentList(), "Id", "Name");
+                ViewBag.DepartmentList = new SelectList(GetDepartmentList(), "Id", "Name");
+                VMSDBEntities entities = new VMSDBEntities();
+                var res = entities.VisitorTBs.ToList();
+                ViewBag.Visitor = res;
+                return View("UploadVisitorToDevice", emp);
+            }
+        }
         [HttpPost]
         public JsonResult UploadEmployee(string dev, string Emp)
         {

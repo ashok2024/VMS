@@ -115,14 +115,14 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
 
                         @if (Convert.ToString(Session["LoggedUserType"]) == "Reception")
                         {
 
                             <li class="nav-item">
-                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" >
+                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })">
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
                                         Dashboard
@@ -299,6 +299,14 @@
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
                                         Upload Employee
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="44" href="@Url.Action("UploadVisitorToDevice", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Upload Visitor
                                     </p>
                                 </a>
                             </li>

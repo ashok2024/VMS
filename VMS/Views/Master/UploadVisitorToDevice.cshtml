@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Upload Employee</h1>
+                <h1>Upload Visitor</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -82,23 +82,23 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Employee List</h4>
+                                <h4 class="card-title">Visitor List</h4>
                             </div>
                             <div class="card-body">
                                 <div class="toolbar" style="margin-bottom:15px;">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <!--<div class="col-md-4">
                                             <label>Company</label>
                                             @Html.DropDownList("CompanyId", ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control" })
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Dept</label>
-                                            @*@Html.DropDownList("DepartmentId", ViewBag.VisitorName as SelectList, "Select VisitorName", new { @class = "form-control" })*@
-                                        </div>
-                                        <div class="col-md-1">
+                                        <!--<div class="col-md-4">
+                                            <label>Dept</label>-->
+                                            <!--@*@Html.DropDownList("DepartmentId", ViewBag.VisitorName as SelectList, "Select VisitorName", new { @class = "form-control" })*@
+                                        <!--</div>-->
+                                        <!--<div class="col-md-1">
                                             <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
-                                        </div>
-                                        <div class="col-md-1" style="margin-left:37px;">
+                                        </div>-->
+                                        <div class="col-md-1" style="">
                                             <button class="btn btn-info delete" type="button" id="btn_del" style="margin-top:32px;">Upload</button>
                                         </div>
                                     </div>
@@ -106,12 +106,26 @@
                                 <table class="table" id="empdatatables">
                                     <thead>
                                         <tr>
-                                            <th>Employee Name</th>
-                                            <th>Deaprtment</th>
-                                            <th>Branch</th>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Company</th>
                                         </tr>
                                     </thead>
-                                </table>
+                                    <tbody>
+
+                                        @foreach (var item in ViewBag.Visitor)
+                                        {
+                                            var checkBoxId = "chk" + @item.Id;
+                                            <tr>
+                                                <td><input type="checkbox" id="@item.Id" class="clsVis" value="@item.Id" />    </td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Company</td>
+                                                <td>@item.Contact</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>                                
                             </div>
                             <input type="hidden" id="checkemp" />
                             <!-- end content-->
@@ -144,16 +158,14 @@
 
     <script>
         var dev = ''; var emp = '';
-        $(function () {
-            dataLoad();
-        })
-        function dataLoad() {
+       
+        @*function dataLoad() {
             var table = $("#empdatatables").DataTable();
             table.destroy();
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("EmployeeList", "Master")',
+                    url: '@Url.Action("VisitorUploadList", "Master")',
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -168,6 +180,7 @@
             });
         }
         function OnSuccess(response) {
+         
             $("#empdatatables").DataTable(
                 {
                     bLengthChange: true,
@@ -175,16 +188,38 @@
                     bSort: true,
                     bPaginate: true,
                     data: response,
-                    columns: [{ 'data': 'Name' },
-                        { 'data': 'Department' },
-                        { 'data': 'Branch' },
-                    ]
+                    columns: [{'data':'Id'},
+                        { 'data': 'Name' },
+                        { 'data': 'Contact' },
+                        { 'data': 'Company' },
+                    ],
+                    'columnDefs': [{
+                        'targets': 0,
+                        'searchable': false,
+                        'orderable': false,
+                        'className': 'dt-body-center',
+                        'render': function (data, type, full, meta) {
+                            debugger;
+                            return '<input type="checkbox" name="id[]" id=' + full.Id + ' class="clsVisitor" value="'  + $('<div/>').text(data).html() + '">';
+                        }
+                    }],
                 });
-        };
+        };*@
 
         $(function () {
 
+            $('.clsVis').click(function () {
+               
+                var getchkid = $(this).attr('id');
+                var isChecked = $('#' + getchkid).is(':checked');
+
+                if ($('#' + getchkid).is(':checked') == true) {
+                    emp += getchkid + ",";
+                }
+            });
+
             $('.clsdev').click(function () {
+                
                 var getchkid = $(this).attr('id');
                 var isChecked = $('#' + getchkid).is(':checked');
 
@@ -193,14 +228,7 @@
                 }
             });
 
-            $('.clsemp').click(function () {
-                var getchkid = $(this).attr('id');
-                var isChecked = $('#' + getchkid).is(':checked');
-
-                if ($('#' + getchkid).is(':checked') == true) {
-                    emp += getchkid + ",";
-                }
-            });
+           
 
             $('#btn_del').click(function () {
                 debugger;
@@ -254,7 +282,7 @@
                         for (var i = 0; i < data.length; i++) {
 
 
-                            $("#empdatatables").append("<tr><td><input type='checkbox' id='" + data[i].EmpCode + "' class='clsemp' value=" + data[i].EmpCode + " /></td><td>" + data[i].EmpCode + "</td> <td>" + data[i].Name + "</td><td>" + data[i].Company + "</td><td>" + data[i].Department + "</td></tr>");
+                            $("#empdatatables").append("<tr><td><input type='checkbox' id='" + data[i].EmpCode + "' class='' value=" + data[i].EmpCode + " /></td><td>" + data[i].EmpCode + "</td> <td>" + data[i].Name + "</td><td>" + data[i].Company + "</td><td>" + data[i].Department + "</td></tr>");
                         }
                         //$("#datatables").DataTable();
                     },
