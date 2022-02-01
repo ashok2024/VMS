@@ -2,12 +2,12 @@
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-using iTextSharp.tool.xml.html;
-using iTextSharp.tool.xml.parser;
-using iTextSharp.tool.xml.pipeline.css;
-using iTextSharp.tool.xml.pipeline.end;
-using iTextSharp.tool.xml.pipeline.html;
+//using iTextSharp.tool.xml;
+//using iTextSharp.tool.xml.html;
+//using iTextSharp.tool.xml.parser;
+//using iTextSharp.tool.xml.pipeline.css;
+//using iTextSharp.tool.xml.pipeline.end;
+//using iTextSharp.tool.xml.pipeline.html;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -2054,15 +2054,15 @@ namespace VMS.Controllers.Visitor
                 string stylesheetPath = "~/dist/css/StyleSheet.css";
                 PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
 
-                HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
-                htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
-                ICSSResolver cssResolver = XMLWorkerHelper.GetInstance().GetDefaultCssResolver(true);
-                cssResolver.AddCssFile(Server.MapPath(stylesheetPath), true);
-                IPipeline pipeline = new CssResolverPipeline(cssResolver, 
-                                     new HtmlPipeline(htmlContext, 
-                                     new PdfWriterPipeline(pdfDoc, writer)));
-                var worker = new XMLWorker(pipeline, true);
-                var xmlParse = new XMLParser(true, worker);
+                //HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
+                //htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
+                //ICSSResolver cssResolver = XMLWorkerHelper.GetInstance().GetDefaultCssResolver(true);
+                //cssResolver.AddCssFile(Server.MapPath(stylesheetPath), true);
+                //IPipeline pipeline = new CssResolverPipeline(cssResolver, 
+                //                     new HtmlPipeline(htmlContext, 
+                //                     new PdfWriterPipeline(pdfDoc, writer)));
+                //var worker = new XMLWorker(pipeline, true);
+                //var xmlParse = new XMLParser(true, worker);
 
                 pdfDoc.Open();
            
