@@ -2365,7 +2365,7 @@
     <Content Include="Views\Master\DeleteEmployeeFromDevice.cshtml" />
     <Content Include="Views\Setting\DBSetting.cshtml" />
     <Content Include="Views\Setting\AddDBSetting.cshtml" />
-    <Content Include="Views\Master\UploadEmployeeToDevice.cshtml" />
+    <Content Include="Views\Master\UploadEmployeeToDevice1.cshtml" />
     <Content Include="Views\Setting\ApiMonitor.cshtml" />
     <Content Include="Scripts\webcamjs\bower.json" />
     <Content Include="Scripts\webcamjs\build.sh" />
@@ -2380,6 +2380,8 @@
     <Content Include="Scripts\webcamjs\LICENSE" />
     <Content Include="Scripts\webcamjs\package.json" />
     <Content Include="Scripts\webcamjs\README.md" />
+    <Content Include="Views\Master\UploadVisitorToDevice.cshtml" />
+    <Content Include="Views\Master\UploadEmployeeToDevice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
