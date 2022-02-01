@@ -233,5 +233,79 @@ namespace VMS.Controllers.Employee
             return Json(RejectedvisitorEntries, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult GetUpcomingVisitorListEmp()
+        {
+            string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
+            ViewBag.UserId = userId;
+            string userName = (Request["userName"] == null) ? "" : Request["userName"].ToString();
+            ViewBag.UserName = userName;
+
+            ViewBag.ActivePage = "VisitedVisitorList";
+
+            if (AppUser == null)
+            {
+                return RedirectToAction("LogOut", "Account");
+            }
+            else
+            {
+                ViewData["GetUpcomingVisitorListE"] = visitorEntries = GetUpcomingVisitors();
+                return View();
+            }
+        }
+
+        private static List<VisitorEntryModel> GetUpcomingVisitors(string userID = "")
+        {
+            List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
+
+            VMSDBEntities entities = new VMSDBEntities();
+
+            try
+            {
+                int intEmployeeID = 0;
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    intEmployeeID = Convert.ToInt32(userID);
+                }
+                var visitors = entities.VisitorEntryTBs.Where(d => d.FromDate > DateTime.Now
+                                                            && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
+                                                            ).ToList().OrderByDescending(d => d.Id);
+
+                foreach (var item in visitors)
+                {
+                    //var status = entities.VisitorStatusTBs.Where(d => d.VisitId == item.Id).FirstOrDefault();
+
+                    //if (status != null)
+                    //{
+                    //if (status.Status == "Approve")
+                    //{
+                    VisitorEntryModel visitor = new VisitorEntryModel();
+                    visitor.Id = item.Id;
+                    visitor.VisitorId = item.VisitorId;
+                    visitor.Name = item.Name;
+                    visitor.Company = item.Company;
+                    visitor.Contact = item.Contact;
+                    var user = entities.UserTBs.Where(d => d.UserId == item.EmployeeId).FirstOrDefault();
+                    visitor.EmployeeId = Convert.ToInt32(item.EmployeeId);
+                    visitor.EmployeeName = user.FirstName + " " + user.LastName;
+                    visitor.EmployeeDepartment = user.Department;
+                    visitor.InTime = item.InTime;
+                    visitor.OutTime = item.OutTime;
+                    visitor.VisitDateFrom = Convert.ToDateTime(item.FromDate);
+                    visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
+                    visitor.Purpose = item.Purpose;
+                    Model.Add(visitor);
+                    //}
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                return Model;
+                throw ex;
+            }
+            return Model;
+        }
     }
 }

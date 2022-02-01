@@ -34,10 +34,10 @@ namespace VMS.Controllers.Visitor
         #region Approved visitor report
 
         [HttpPost]
-        public JsonResult A_GetAprovedVisitorList()
-        {
+        public JsonResult A_GetAprovedVisitorList(string userID = "")
+        {            
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
-            Model = GetVisitedVisitors();
+            Model = GetVisitedVisitors(userID);
             return Json(Model);
         }
 
@@ -47,6 +47,7 @@ namespace VMS.Controllers.Visitor
             ViewBag.UserId = userId;
             string userName = (Request["userName"] == null) ? "" : Request["userName"].ToString();
             ViewBag.UserName = userName;
+            ViewData["userID"] = Convert.ToInt32(userId);
 
             ViewBag.ActivePage = "VisitedVisitorList";
 
@@ -61,24 +62,32 @@ namespace VMS.Controllers.Visitor
             }
         }
 
-        private static List<VisitorEntryModel> GetVisitedVisitors()
+        private static List<VisitorEntryModel> GetVisitedVisitors(string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
             VMSDBEntities entities = new VMSDBEntities();
-
+            int intEmployeeID = 0;
+            if (!string.IsNullOrEmpty(userID))
+            {
+                intEmployeeID = Convert.ToInt32(userID);
+            }
             try
             {
-                var visitors = entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
+                var visitors = (from d in entities.VisitorEntryTBs
+                               join c in entities.VisitorStatusTBs on d.Id equals c.VisitId
+                               where c.Status == "Approve" && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
+                               select d).ToList();
+                //var visitors = entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
 
                 foreach (var item in visitors)
                 {
-                    var status = entities.VisitorStatusTBs.Where(d => d.VisitId == item.Id).FirstOrDefault();
+                    //var status = entities.VisitorStatusTBs.Where(d => d.VisitId == item.Id).FirstOrDefault();
 
-                    if (status != null)
-                    {
-                        if (status.Status == "Approve")
-                        {
+                    //if (status != null)
+                    //{
+                    //    if (status.Status == "Approve")
+                    //    {
                             VisitorEntryModel visitor = new VisitorEntryModel();
                             visitor.Id = item.Id;
                             visitor.VisitorId = item.VisitorId;
@@ -95,8 +104,8 @@ namespace VMS.Controllers.Visitor
                             visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
                             visitor.Purpose = item.Purpose;
                             Model.Add(visitor);
-                        }
-                    }
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -127,13 +136,34 @@ namespace VMS.Controllers.Visitor
             }
         }
         [HttpPost]
-        public JsonResult A_GetUpcomingVisitorList()
+
+        public ActionResult GetUpcomingVisitorListE()
+        {
+            string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
+            ViewBag.UserId = userId;
+            string userName = (Request["userName"] == null) ? "" : Request["userName"].ToString();
+            ViewBag.UserName = userName;
+
+            ViewBag.ActivePage = "VisitedVisitorList";
+
+            if (AppUser == null)
+            {
+                return RedirectToAction("LogOut", "Account");
+            }
+            else
+            {
+                ViewData["GetUpcomingVisitorListE"] = visitorEntries = GetUpcomingVisitors();
+                return View();
+            }
+        }
+        [HttpPost]
+        public JsonResult A_GetUpcomingVisitorList(string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
-            Model = GetUpcomingVisitors();
+            Model = GetUpcomingVisitors(userID);
             return Json(Model);
         }
-        private static List<VisitorEntryModel> GetUpcomingVisitors()
+        private static List<VisitorEntryModel> GetUpcomingVisitors(string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
@@ -141,7 +171,14 @@ namespace VMS.Controllers.Visitor
 
             try
             {
-                var visitors = entities.VisitorEntryTBs.Where(d => d.FromDate > DateTime.Now).ToList().OrderByDescending(d => d.Id);
+                int intEmployeeID = 0;
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    intEmployeeID = Convert.ToInt32(userID);
+                }
+                var visitors = entities.VisitorEntryTBs.Where(d => d.FromDate > DateTime.Now 
+                                                            && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
+                                                            ).ToList().OrderByDescending(d => d.Id);
 
                 foreach (var item in visitors)
                 {
@@ -180,7 +217,7 @@ namespace VMS.Controllers.Visitor
         }
 
         [HttpPost]
-        public JsonResult FilterGetAprovedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
+        public JsonResult FilterGetAprovedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime, string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
@@ -201,10 +238,16 @@ namespace VMS.Controllers.Visitor
                     string strDate = todate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
                     tDate = Convert.ToDateTime(todate);
                 }
+                int intEmployeeID = 0;
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    intEmployeeID = Convert.ToInt32(userID);
+                }
 
                 var objData = (from d in entities.VisitorEntryTBs
                                join c in entities.VisitorStatusTBs on d.Id equals c.VisitId
                                where (c.Status == "Approve"
+                                             && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
                                              && (!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
                                              && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
                                              && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
@@ -243,7 +286,7 @@ namespace VMS.Controllers.Visitor
 
         
         [HttpPost]
-        public JsonResult FilterGetUpcomingVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
+        public JsonResult FilterGetUpcomingVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime, string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
@@ -265,9 +308,15 @@ namespace VMS.Controllers.Visitor
                     string strDate = todate; /* todate.Split('/')[1] + "/" + todate.Split('/')[0] + "/" + todate.Split('/')[2];*/
                     tDate = Convert.ToDateTime(todate);
                 }
+                int intEmployeeID = 0;
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    intEmployeeID = Convert.ToInt32(userID);
+                }
 
                 var objData = (from d in entities.VisitorEntryTBs
                                where (d.FromDate > DateTime.Now
+                                             && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
                                              && (!string.IsNullOrEmpty(company) ? d.Company.ToLower() == company.ToLower() : true)
                                              && (!string.IsNullOrEmpty(contactname) ? d.Name.ToLower() == contactname.ToLower() : true)
                                              && (!string.IsNullOrEmpty(dept) ? d.Name.ToLower() == dept.ToLower() : true)
@@ -346,10 +395,10 @@ namespace VMS.Controllers.Visitor
         #region rejected visitor report
 
         [HttpPost]
-        public JsonResult A_GetRejectedVisitorList()
+        public JsonResult A_GetRejectedVisitorList(string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
-            Model = GetRejectedVisitors();
+            Model = GetRejectedVisitors(userID);
             return Json(Model);
         }
 
@@ -373,7 +422,7 @@ namespace VMS.Controllers.Visitor
             }
         }
 
-        private static List<VisitorEntryModel> GetRejectedVisitors()
+        private static List<VisitorEntryModel> GetRejectedVisitors(string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 
@@ -381,16 +430,25 @@ namespace VMS.Controllers.Visitor
 
             try
             {
-                var visitors = entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
+                int intEmployeeID = 0;
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    intEmployeeID = Convert.ToInt32(userID);
+                }
+                var visitors = (from d in entities.VisitorEntryTBs
+                                join c in entities.VisitorStatusTBs on d.Id equals c.VisitId
+                                where c.Status == "Reject" && (!string.IsNullOrEmpty(userID) ? d.EmployeeId == intEmployeeID : true)
+                                select d).ToList();
+                //var visitors = entities.VisitorEntryTBs.ToList().OrderByDescending(d => d.Id);
 
                 foreach (var item in visitors)
                 {
-                    var status = entities.VisitorStatusTBs.Where(d => d.VisitId == item.Id).FirstOrDefault();
+                    //var status = entities.VisitorStatusTBs.Where(d => d.VisitId == item.Id).FirstOrDefault();
 
-                    if (status != null)
-                    {
-                        if (status.Status == "Reject")
-                        {
+                    //if (status != null)
+                    //{
+                    //    if (status.Status == "Reject")
+                    //    {
                             VisitorEntryModel visitor = new VisitorEntryModel();
                             visitor.Id = item.Id;
                             visitor.VisitorId = item.VisitorId;
@@ -407,8 +465,8 @@ namespace VMS.Controllers.Visitor
                             visitor.VisitDateTo = Convert.ToDateTime(item.ToDate);
                             visitor.Purpose = item.Purpose;
                             Model.Add(visitor);
-                        }
-                    }
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -419,7 +477,7 @@ namespace VMS.Controllers.Visitor
             return Model;
         }
         [HttpPost]
-        public JsonResult FilterGetRejectedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime)
+        public JsonResult FilterGetRejectedVisitorList(string contactname, string company, string dept, string fromdate, string todate, string inTime, string userID = "")
         {
             List<VisitorEntryModel> Model = new List<VisitorEntryModel>();
 

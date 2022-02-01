@@ -1,10 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "GetEmployeeVisitedVisitorList";
+    ViewBag.Title = "GetUpcomingVisitorListEmp";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
+    List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetUpcomingVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
 }
-
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -16,12 +15,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Approved Visitors List</h1>
+                <h1>Upcoming Visitors List</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Report</a></li>
-                    <li class="breadcrumb-item active">Approved Visitors</li>
+                    <li class="breadcrumb-item active">Upcoming Visitors</li>
                 </ol>
             </div>
         </div>
@@ -46,23 +45,23 @@
                                             <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
                                         </div>
                                     </div>
-                                    @*<div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
-                                        <div class="form-group">
-                                            <div>
-                                                @using (Html.BeginForm("VisitExportToPdf", "Report", FormMethod.Post))
-                                                {
-                                                    <input type="hidden" name="GridHtml" />
-                                                    <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
-                                                }
-                                            </div>
-                                            <div>
-                                                @using (Html.BeginForm("VisitExportToExcel", "Report", FormMethod.Post))
-                                                {
-                                                    <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>*@
+                                    <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                        @*<div class="form-group">
+                                                <div>
+                                                    @using (Html.BeginForm("UpcomingVisitExportToPdf", "Report", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="GridHtml" />
+                                                        <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    @using (Html.BeginForm("UpcomingVisitExportToExcel", "Report", FormMethod.Post))
+                                                    {
+                                                        <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                                    }
+                                                </div>
+                                            </div>*@
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
@@ -186,7 +185,7 @@
                 table.destroy();
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("FilterGetAprovedVisitorList", "Report")',
+                    url: '@Url.Action("FilterGetUpcomingVisitorList", "Report")',
                     data: '{contactname:"' + contact + '", company: "' + company + '", dept:"' + dept + '", fromdate: "' + fdate + '", todate:"' + tdate + '", inTime: "' + time + '" , userID: "' + userID + '" }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -224,7 +223,7 @@
             $(function () {
                 $.ajax({
                     type: "POST",
-                    url:'@Url.Action("A_GetAprovedVisitorList", "Report")',
+                    url:'@Url.Action("A_GetUpcomingVisitorList", "Report")',
                     data: '{userID:"' + userID + '" }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -297,7 +296,33 @@
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <script>
+
+        var AddURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
+        var EditURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+
+        $(function () {
+
+            $('#datefrom').datetimepicker({
+                format: 'L'
+            });
+
+            $('#dateto').datetimepicker({
+                format: 'L'
+            });
+
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            $(".anchorDetail").click(function () {
+                return window.location.href = AddURL;
+            });
+
+
+
+        });
+
+    </script>
+
 }
-
-
-
