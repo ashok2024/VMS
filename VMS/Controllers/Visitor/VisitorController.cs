@@ -1916,7 +1916,7 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("<body><div style='padding: 20px;'>");
 
             //htmlStr.Append("<table cellpadding='5' border='1' style='border: 1px solid #ccc; padding: 20px;'>");
-            htmlStr.Append("<table border='1' bordercolor='red' cellpadding='5' class='tableDetails' style='padding: 20px; background-color:red'>");
+            htmlStr.Append("<table border='1' bordercolor='red' cellpadding='1' class='tableDetails' style='padding: 20px; background-color:red'>");
 
 
             htmlStr.Append("<tr>");
@@ -1932,11 +1932,11 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("<tr>");
             htmlStr.Append("<td>Visitor Id: " + vistor.VisitorId + "</td>");
             htmlStr.Append("<td>Visitor Pass: </td>");
-            htmlStr.Append("<td>Date : " + DateTime.Now.ToString("dd-MM-yyyy") + "</td>");
+            htmlStr.Append("<td style='width: 135px;'>Date : " + DateTime.Now.ToString("dd-MM-yyyy") + "</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
-            htmlStr.Append("<td rowspan='3' style='text-align: center;'><img src= '" + photo + "' width='80' height='80'></td>");
+            htmlStr.Append("<td rowspan='3' style='text-align: center;'><img src= '" + photo + "' width='70' height='70'></td>");
             htmlStr.Append("<td>Name: " + vistor.Name + "</td>");
             htmlStr.Append("<td rowspan='3'>Vehicle No: " + vistor.VehicleNo + "</td>");
             htmlStr.Append("</tr>");
@@ -1954,7 +1954,7 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
-            htmlStr.Append("<td colspan='2'>Repersentaing M/S: </td>");
+            htmlStr.Append("<td colspan='2'>Repersentaing M/S:</td>");
             htmlStr.Append("<td rowspan='2'>Time In:" + vistor.InTime + "</td>");
             htmlStr.Append("</tr>");
 
@@ -1974,9 +1974,9 @@ namespace VMS.Controllers.Visitor
             htmlStr.Append("</tr>");
 
             htmlStr.Append("<tr>");
-            htmlStr.Append("<td>Signature of Visitor</td>");
-            htmlStr.Append("<td>Signature of Visited Persone</td>");
-            htmlStr.Append("<td>Signature of Security</td>");
+            htmlStr.Append("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Signature of Visitor</td>");
+            htmlStr.Append("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Signature of Visited Persone</td>");
+            htmlStr.Append("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Signature of Security</td>");
             htmlStr.Append("</tr>");
 
             htmlStr.Append("</table>");

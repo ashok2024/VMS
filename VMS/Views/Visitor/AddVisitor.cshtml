@@ -58,13 +58,16 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Employee Details</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Employee</label>
+                                        <label>Employee</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
                                     </div>
@@ -94,27 +97,30 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor Details</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Visitor Contact</label>
+                                        <label>Visitor Contact</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.Contact, new { maxlength = 10, @class = "form-control", autocomplete = "off", placeholder = "Visitor Contact", onblur = "contactchange();" })
                                         @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Visitor Name</label>
+                                        <label>Visitor Name</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.Name, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Name" })
                                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Visitor Company</label>
+                                        <label>Visitor Company</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.Company, new { maxlength = 100, @class = "form-control", autocomplete = "off", placeholder = "Company Name" })
                                         @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
                                     </div>
@@ -151,6 +157,9 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor Time</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
@@ -192,7 +201,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Visit Date From</label>
+                                        <label>Visit Date From</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         <div class="input-group date" id="datefrom" data-target-input="nearest">
                                             @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
                                             @Html.TextBoxFor(m => m.VisitDateFrom, new { @class = "form-control datetimepicker-input", @data_target = "#datefrom" })
@@ -205,7 +214,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Visit Date To</label>
+                                        <label>Visit Date To</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         <div class="input-group date" id="dateto" data-target-input="nearest">
                                             @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
                                             @Html.TextBoxFor(m => m.VisitDateTo, new { @class = "form-control datetimepicker-input", @data_target = "#dateto" })
@@ -227,6 +236,9 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor Photos</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
@@ -309,27 +321,30 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor I'd</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Card Number</label>
+                                        <label>Card Number</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.CardNo, new { maxlength = 50, @class = "form-control", autocomplete = "off", placeholder = "Card Number" })
                                         @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Id Proof</label>
+                                        <label>Id Proof</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.DropDownList("IdProof", ViewBag.IdProofList as SelectList, "Select Id Proof", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.IdProof, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Id Proof Number</label>
+                                        <label>Id Proof Number</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.IdProofNo, new { maxlength = 15, @class = "form-control", autocomplete = "off", placeholder = "Id Proof Number" })
                                         @Html.ValidationMessageFor(model => model.IdProofNo, "", new { @class = "text-danger" })
                                     </div>
@@ -345,6 +360,9 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor Vehical Details</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
@@ -390,13 +408,16 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class="navbar navbar-expand  navbar-custom">
+                            <h5 class="contentHeader">Visitor Tools</h5>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Add Purpose</label>
+                                        <label>Add Purpose</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.TextBoxFor(m => m.Purpose, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Purpose" })
                                         @Html.ValidationMessageFor(model => model.Purpose, "", new { @class = "text-danger" })
                                     </div>
@@ -436,7 +457,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Device</label>
+                                        <label>Device</label><label style="color: #e33545; padding-left: 3px;">*</label>
                                         @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control controlSize" })
                                         @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
                                         @*<table class="table" id="datatables">

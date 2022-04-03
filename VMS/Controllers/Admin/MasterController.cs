@@ -65,7 +65,7 @@ namespace VMS.Controllers.Admin
                 return View();
             }
         }
-        private List<SelectListItem> GetCompanyName()
+        public List<SelectListItem> GetCompanyName()
         {
             VMSDBEntities entities = new VMSDBEntities();
             List<SelectListItem> companyName = new List<SelectListItem>();
@@ -89,7 +89,7 @@ namespace VMS.Controllers.Admin
             }
             return contactPersone;
         }
-        private static List<CompanyModel> GetCompanyList()
+        public List<CompanyModel> GetCompanyList()
         {
             List<CompanyModel> Model = new List<CompanyModel>();
 

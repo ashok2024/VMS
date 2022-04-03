@@ -305,6 +305,83 @@ namespace VMS.Controllers.Admin
             return Model;
         }
 
+        public List<DeviceModel> GetDevicesByCompanyId(int companyId)
+        {
+            List<DeviceModel> Model = new List<DeviceModel>();
+
+            VMSDBEntities entities = new VMSDBEntities();
+
+            try
+            {
+                var Ids = (from e in entities.UserTBs
+                               join c in entities.CompanyTBs on e.CompanyId equals c.Id
+                               where  c.Id == companyId && e.DeviceId != null
+                               select new
+                               {
+                                   DeviceId = e.DeviceId
+                               }).ToList();
+
+                var DeviceIds = Ids.Select(x => x.DeviceId).ToList();
+                var data = entities.DevicesTBs.Where(x => DeviceIds.Contains(x.DeviceId)).ToList().OrderByDescending(d => d.DeviceId);
+                //var data = entities.DevicesTBs.ToList().OrderByDescending(d => d.DeviceId);
+
+                foreach (var item in data)
+                {
+                    DeviceModel courier = new DeviceModel();
+                    courier.DeviceId = item.DeviceId;
+                    courier.DeviceName = item.DeviceName;
+                    courier.DeviceSerialNo = item.DeviceSerialNo;
+                    courier.DeviceAccountId = item.DeviceAccountId;
+                    courier.DeviceStatus = item.DeviceStatus;
+                    courier.DeviceLocation = item.DeviceLocation;
+                    courier.DeviceIPAddress = item.DeviceIPAddress;
+                    courier.Port = item.Port;
+                    courier.UserName = item.UserName;
+                    courier.Password = item.Password;
+
+                    string url = "http://" + item.DeviceIPAddress + ":" + item.Port + "/ISAPI/ContentMgmt/DeviceMgmt/deviceList?format=json";
+
+                    string req = "{\"SearchDescription\" : {\"position\":0,\"maxResult\":5}}";
+
+                    //req = string.Empty;
+                    string reps = string.Empty;
+                    string strMatchNum = string.Empty;
+                    clienthttp clnt = new clienthttp();
+                    int iet = clnt.HttpRequest(item.UserName, item.Password, url, "POST", req, ref reps);
+                    if (iet == (int)HttpStatus.Http200)
+                    {
+                        DeviceSearchRoot dr = JsonConvert.DeserializeObject<DeviceSearchRoot>(reps);
+                        strMatchNum = Convert.ToString(dr.SearchResult.numOfMatches);
+
+                        if ("0" != strMatchNum)
+                        {
+                            foreach (var dev in dr.SearchResult.MatchList)
+                            {
+                                if (dev.Device.EhomeParams.EhomeID == item.DeviceAccountId)
+                                {
+                                    var devicedt = dev.Device;
+                                    courier.DeviceStatus = devicedt.devStatus;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        courier.DeviceStatus = "Not Available";
+                    }
+
+
+                    Model.Add(courier);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Model;
+                throw ex;
+            }
+            return Model;
+        }
+
         public ActionResult AddDevice(int DeviceId)
         {
             string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();

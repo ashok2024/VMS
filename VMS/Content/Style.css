@@ -7,3 +7,7 @@
 .padding0 {
     padding: 0px 5px 1px 5px;
 }
+.contentHeader {
+    margin-bottom: auto;
+    color: white;
+}

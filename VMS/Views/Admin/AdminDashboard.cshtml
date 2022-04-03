@@ -26,6 +26,56 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+            <div class="col-lg-4 col-6" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box" style="background-color:white;">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    @Html.DropDownList("CompanyId", ViewBag.CompanyList as SelectList, "Select Company", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box" style="background-color:white;">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Device</label>
+                                    @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6" style="cursor:pointer">
+                <!-- small box -->
+                <div class="small-box" style="background-color:white;">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                        <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
+                                        <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-4 col-6 totalvisits" style="cursor:pointer;">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -108,7 +158,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })
+                                    @*@Html.DropDownList("DeviceId", ViewBag.DeviceList as SelectList, "Select Device", new { @class = "form-control" })*@
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -151,6 +201,10 @@
 
         $(function () {
 
+            $('#datefrom').datetimepicker({
+                format: 'L'
+            });
+
             $(".totalvisits").click(function () {
                 debugger;
                 var newURL = URL;
@@ -175,6 +229,46 @@
             $(".totaldelivery").click(function () {
                 debugger;
                 return window.location.href = deliveryURL;
+            });
+
+            $('#CompanyId').change(function () {
+
+                debugger;
+                var CompanyId = $('#CompanyId').val();
+
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: '@Url.Action("GetDevices", "Admin")',
+                    data: { CompanyId: CompanyId},
+                    success: function (data) {
+                        if (data == true) {
+                            //alert("Door Open Successfully");
+                        }
+                    },
+                    error: function (result) {
+                        alert(result);
+                    }
+                });
+            });
+
+            $('#DeviceId').change(function () {
+                var DeviceId = $('#DeviceId').val();
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: '@Url.Action("GetFilter", "Admin")',
+                    data: { DeviceId: DeviceId },
+                    success: function (data) {
+                        if (data == true) {
+                            //alert("Door Open Successfully");
+                        }
+                    },
+                    error: function (result) {
+                        alert(result);
+                    }
+                });
             });
 
              $(".open").click(function () {
