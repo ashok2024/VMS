@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VMS</RootNamespace>
     <AssemblyName>VMS</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -78,6 +79,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -113,11 +115,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -158,6 +157,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -2275,6 +2275,7 @@
       <DependentUpon>VMS.edmx</DependentUpon>
     </Content>
     <Content Include="Doc\Emp.xlsx" />
+    <Content Include="Views\EmployeeReport\GetUpcomingVisitorListEmp.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2365,7 +2366,7 @@
     <Content Include="Views\Master\DeleteEmployeeFromDevice.cshtml" />
     <Content Include="Views\Setting\DBSetting.cshtml" />
     <Content Include="Views\Setting\AddDBSetting.cshtml" />
-    <Content Include="Views\Master\UploadEmployeeToDevice.cshtml" />
+    <Content Include="Views\Master\UploadEmployeeToDevice1.cshtml" />
     <Content Include="Views\Setting\ApiMonitor.cshtml" />
     <Content Include="Scripts\webcamjs\bower.json" />
     <Content Include="Scripts\webcamjs\build.sh" />
@@ -2380,6 +2381,8 @@
     <Content Include="Scripts\webcamjs\LICENSE" />
     <Content Include="Scripts\webcamjs\package.json" />
     <Content Include="Scripts\webcamjs\README.md" />
+    <Content Include="Views\Master\UploadVisitorToDevice.cshtml" />
+    <Content Include="Views\Master\UploadEmployeeToDevice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2435,6 +2435,142 @@ namespace VMS.Controllers.Admin
             return Json(res);
         }
 
+
+        [HttpPost]
+        public JsonResult UploadVisitor(string dev, string Emp)
+        {
+            VMSDBEntities db = new VMSDBEntities();
+            bool res = true;
+
+            string[] devices = dev.Split(',');
+
+            string[] empdt = Emp.Split(',');
+            string strEmployrrList = string.Empty;
+            List<string> listEmployeeNo = new List<string>();
+            foreach (var item in empdt)
+            {
+                if (item != "")
+                {
+                    listEmployeeNo.Add(item.ToString());
+                }
+            }
+
+            //for (int i = 0; i < listEmployeeNo.Count; i++)
+            //{
+            //    strEmployrrList += "{\"employeeNo\":\"" + listEmployeeNo[i] + "\"}";
+            //    if (1 != listEmployeeNo.Count - i)
+            //    {
+            //        strEmployrrList += ",";
+            //    }
+            //}
+
+            foreach (string d in devices)
+            {
+                if (d != "")
+                {
+                    var dv = db.DevicesTBs.Where(x => x.DeviceAccountId == d).FirstOrDefault();
+
+                    string url = "http://" + dv.DeviceIPAddress + ":" + dv.Port + "/ISAPI/ContentMgmt/DeviceMgmt/deviceList?format=json";
+
+                    string req = "{\"SearchDescription\" : {\"position\":0,\"maxResult\":5}}";
+
+                    //req = string.Empty;
+                    string reps = string.Empty;
+                    string strMatchNum = string.Empty;
+                    clienthttp clnt = new clienthttp();
+                    int iet = clnt.HttpRequest(dv.UserName, dv.Password, url, "POST", req, ref reps);
+                    if (iet == (int)HttpStatus.Http200)
+                    {
+                        DeviceSearchRoot dr = JsonConvert.DeserializeObject<DeviceSearchRoot>(reps);
+                        strMatchNum = Convert.ToString(dr.SearchResult.numOfMatches);
+
+                        if ("0" != strMatchNum)
+                        {
+                            foreach (var devv in dr.SearchResult.MatchList)
+                            {
+                                if (devv.Device.EhomeParams.EhomeID == dv.DeviceAccountId)
+                                {
+                                    var devicedt = devv.Device;
+
+                                    ApiMonitorTB at = new ApiMonitorTB();
+                                    at.Command = "Check Device Exist";
+                                    at.Page = "Upload Visitor";
+                                    at.time = DateTime.Now;
+                                    at.DeviceSRNO = dv.DeviceSerialNo;
+                                    at.DeviceName = dv.DeviceName;
+                                    at.EmpCode = "";
+                                    at.EmpName = "";
+                                    at.Status = "Success";
+                                    db.ApiMonitorTBs.Add(at);
+                                    db.SaveChanges();
+
+                                    for (int i = 0; i < listEmployeeNo.Count; i++)
+                                    {
+                                        strEmployrrList += ",";
+
+                                        string filePath = System.IO.Path.Combine(Server.MapPath("/Uploads/"), "M+ANIL_1002788.jpg");
+                                        string strEmployeeID = listEmployeeNo[i];
+                                        string strReq = "{ \"FaceInfo\": {\"employeeNo\": \"" + strEmployeeID + "\",\"faceLibType\": \"blackFD\" }}";
+                                        string strUrl = "http://" + dv.DeviceIPAddress + ":" + dv.Port + "/ISAPI/Intelligent/FDLib/FaceDataRecord?format=json&devIndex=" + devicedt.devIndex;
+                                        string strRsp = string.Empty;
+
+                                        string fileKeyName = "FaceImage";
+                                        NameValueCollection stringDict = new NameValueCollection();
+                                        stringDict.Add("FaceDataRecord", strReq);
+
+                                        clnt = new clienthttp();
+                                        int iRet = clnt.HttpPostData(dv.UserName, dv.Password, strUrl, fileKeyName, filePath, stringDict, ref strRsp);
+                                        if (iRet != (int)HttpStatus.Http200)
+                                        {
+                                            at = new ApiMonitorTB();
+                                            at.Command = "Face Upload";
+                                            at.Page = "Upload Visitor";
+                                            at.time = DateTime.Now;
+                                            at.DeviceSRNO = dv.DeviceSerialNo;
+                                            at.DeviceName = dv.DeviceName;
+                                            at.EmpCode = strEmployeeID;
+                                            var emp = db.UserTBs.Where(c => c.EmpCode == at.EmpCode).FirstOrDefault();
+                                            at.EmpName = emp.Name;
+                                            at.Status = "Success";
+                                            db.ApiMonitorTBs.Add(at);
+                                            db.SaveChanges();
+                                        }
+                                        else
+                                        {
+                                            at = new ApiMonitorTB();
+                                            at.Command = "Face Upload";
+                                            at.Page = "Upload Visitor";
+                                            at.time = DateTime.Now;
+                                            at.DeviceSRNO = dv.DeviceSerialNo;
+                                            at.DeviceName = dv.DeviceName;
+                                            at.EmpCode = strEmployeeID;
+                                            var emp = db.UserTBs.Where(c => c.EmpCode == at.EmpCode).FirstOrDefault();
+                                            at.EmpName = emp.Name;
+                                            at.Status = "Failed";
+                                            db.ApiMonitorTBs.Add(at);
+                                            db.SaveChanges();
+                                        }
+                                    }
+
+                                    //string strReq = "{\"UserInfoDetail\": {\"mode\": \"byEmployeeNo\",\"EmployeeNoList\": [" + strEmployrrList + "]}}";
+                                    //string strUrl = "http://" + dv.DeviceIPAddress + ":" + dv.Port + "/ISAPI/AccessControl/UserInfoDetail/Delete?format=json&devIndex=" + devicedt.devIndex;
+                                    //string strRsp = string.Empty;
+                                    //clnt = new clienthttp();
+                                    //int iRet = clnt.HttpRequest(dv.UserName, dv.Password, strUrl, "PUT", strReq, ref strRsp);
+                                    //if (iRet == (int)HttpStatus.Http200)
+                                    //{
+                                    //    res = true;
+                                    //}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            return Json(res);
+        }
         #endregion
 
     }

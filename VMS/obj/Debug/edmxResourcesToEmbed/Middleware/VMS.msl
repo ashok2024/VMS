@@ -43,6 +43,8 @@
     <EntitySetMapping Name="CourierTBs">
       <EntityTypeMapping TypeName="VMSDBModel.CourierTB">
         <MappingFragment StoreEntitySet="CourierTB">
+          <ScalarProperty Name="CertifactePath" ColumnName="CertifactePath" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -201,6 +203,7 @@
     <EntitySetMapping Name="VisitorEntryTBs">
       <EntityTypeMapping TypeName="VMSDBModel.VisitorEntryTB">
         <MappingFragment StoreEntitySet="VisitorEntryTB">
+          <ScalarProperty Name="CertificateImagePath" ColumnName="CertificateImagePath" />
           <ScalarProperty Name="CardNo" ColumnName="CardNo" />
           <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
           <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />

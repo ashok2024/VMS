@@ -55,6 +55,8 @@
           <Property Name="UserId" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="EmployeeId" Type="int" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CertifactePath" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="DBSettingTB">
           <Key>
@@ -222,7 +224,7 @@
           <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
           <Property Name="DeviceId" Type="int" />
           <Property Name="CardNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="CertificateImagePath" Type="nvarchar" MaxLength="1500" />
+          <Property Name="CertificateImagePath" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="VisitorStatusTB">
           <Key>
@@ -336,6 +338,8 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CertifactePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DBSettingTB">
           <Key>
@@ -503,7 +507,7 @@
           <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeviceId" Type="Int32" />
           <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CertificateImagePath" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VisitorStatusTB">
           <Key>
@@ -575,6 +579,8 @@
           <EntitySetMapping Name="CourierTBs">
             <EntityTypeMapping TypeName="VMSDBModel.CourierTB">
               <MappingFragment StoreEntitySet="CourierTB">
+                <ScalarProperty Name="CertifactePath" ColumnName="CertifactePath" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

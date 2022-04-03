@@ -234,7 +234,7 @@ namespace VMS.Controllers.Employee
         }
         #endregion
 
-        [HttpPost]
+        
         public ActionResult GetUpcomingVisitorListEmp()
         {
             string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();

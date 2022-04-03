@@ -49,86 +49,208 @@
 
         @using (Html.BeginForm("Save", "Courier", new { userId = ViewBag.UserId, userName = ViewBag.userName }))
         {
-            @Html.HiddenFor(m=>m.Id)
+            @Html.HiddenFor(m => m.Id)
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-6">
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Delivery Number</label>
-                                @Html.TextBoxFor(m => m.CourierNo, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Number" })
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Employee</label>
+                                    <label>Delivery Number</label>
+                                    @Html.TextBoxFor(m => m.CourierNo, new { maxlength = 50, @class = "form-control ", autocomplete = "off", placeholder = "Delivery Number" })
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Delivery Company</label>
-                                @Html.TextBoxFor(m => m.CourierCompany, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Company" })
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <label>Delivery Company</label>
+                                    @Html.TextBoxFor(m => m.CourierCompany, new { maxlength = 50, @class = "form-control ", autocomplete = "off", placeholder = "Delivery Company" })
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Delivery Person Name</label>
-                                @Html.TextBoxFor(m => m.CourierPersonName, new { maxlength = 50, @class = "form-control controlSize", autocomplete = "off", placeholder = "Delivery Person Name" })
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <label>Delivery Person Name</label>
+                                    @Html.TextBoxFor(m => m.CourierPersonName, new { maxlength = 50, @class = "form-control ", autocomplete = "off", placeholder = "Delivery Person Name" })
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Employee</label>
-                                @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control controlSize" })
-                                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })                                
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Employee</label>
+                                    @Html.DropDownList("EmployeeId", ViewBag.EmpList as SelectList, "Select Employee", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!--/.col (left) -->
 
-                <div class="col-md-6">
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="bootstrap-timepicker">
-                                    <div class="form-group">
-                                        <label>Delivery Time</label>
-                                        <div class="input-group date controlSize" id="timepicker" data-target-input="nearest">
-                                            @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
-                                            @Html.TextBoxFor(m => m.Time, new { @class = "form-control datetimepicker-input", @data_target = "#timepicker" })
-                                            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!--/.col (left) -->
+
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="bootstrap-timepicker">
+                                        <div class="form-group">
+                                            <label>Delivery Time</label>
+                                            <div class="input-group date " id="timepicker" data-target-input="nearest">
+                                                @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker" />*@
+                                                @Html.TextBoxFor(m => m.Time, new { @class = "form-control datetimepicker-input", @data_target = "#timepicker" })
+                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                </div>
                                             </div>
+                                            @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                                            <!-- /.input group -->
                                         </div>
-                                        @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Delivery Date</label>
-                                <div class="input-group date controlSize" id="reservationdate" data-target-input="nearest">
-                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
-                                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control datetimepicker-input", @data_target = "#reservationdate" })
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        <!-- /.form group -->
                                     </div>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                @Html.TextBoxFor(m => m.Description, new { maxlength = 200, @class = "form-control controlSize", autocomplete = "off", placeholder = "Description" })
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Delivery Date</label>
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                        @*<input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />*@
+                                        @Html.TextBoxFor(m => m.Date, new { @class = "form-control datetimepicker-input", @data_target = "#reservationdate" })
+                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-danger cancel" style="margin-left:40%;">Cancel</button>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    @Html.TextBoxFor(m => m.Description, new { maxlength = 200, @class = "form-control", autocomplete = "off", placeholder = "Description" })
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Photo</label>
+                                    <div class="input-group">
+                                        <div class="col-7">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="Photo">
+                                                <label class="custom-file-label" for="Photo">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <img id="imgPreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Certificate</label>
+                                    <div class="input-group">
+                                        <div class="col-7">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="certificateUpload">
+                                                <label class="custom-file-label" for="Photo">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <img id="certificatePreview" height="125" width="120" src="~/Content/assets/img/image_placeholder.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div id="LiveCamera"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="results">
+                                                <img id="img" src="" style="width:150px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="button" class="btn btn-primary" value="Capture Certificate" onClick="CaptureSnapshotCovidCertificate()">
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="resultsCertificate">
+                                                <img id="img1" src="" style="width:150px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.HiddenFor(m => m.photo)
+                                    @Html.HiddenFor(m => m.certificate)
+                                    @Html.HiddenFor(m => m.PhotoPath)
+                                    @Html.HiddenFor(m => m.certificatePath)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-5"></div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="button" class="btn btn-danger cancel" style="margin-left:40%;">Cancel</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5"></div>
+                                        </div>                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
         }
 
     </div><!-- /.container-fluid -->
@@ -163,13 +285,157 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js"></script>
     <!-- Page specific script -->
+    <script src="~/Scripts/webcamjs/webcam.js"></script>
+    <!-- Configure web cam settings -->
+    <script language="JavaScript">
+        Webcam.set({
+            width: 333,
+            height: 312,
+            image_format: 'png',
+            jpeg_quality: 100
+        });
+        Webcam.attach('#LiveCamera');
+    </script>
     <script>
+       
         $(function () {
+            $("#imgPreview").css("display", "none");
+            $("#certificatePreview").css("display", "none");
+            var Id = $("#Id").val();
+            var ImagePath = $("#WebUIUrl").val() + $("#PhotoPath").val();
+
+            if (Id > 0) {              
+                var img = $("#WebUIUrl").val() + $("#photo").val();
+
+                var img1 = $("#WebUIUrl").val() + $("#certificate").val();
+                
+                $("#img").attr('src', img);
+                $("#img1").attr('src', img1);
+
+            }
+
+            $(document).on('change', '#Photo', function () {
+                var data = new FormData();
+                var files = $("#Photo").get(0).files;
+                if (files.length > 0) {
+                    data.append("MyImages", files[0]);
+                }
+
+                $.ajax({
+                    url: $("#WebUIUrl").val() + "/Courier/UploadFile",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        //code after success
+                        debugger;
+                        // $("#ImageName").val(response);
+                        $("#imgPreview").css("display", "block");
+                        $("#PhotoPath").val('/Uploads/Courier/Upload_Photos/' + response);
+                        $("#imgPreview").attr('src', '/Uploads/Courier/Upload_Photos/' + response);
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+
+                });
+
+
+            });
+
+            $(document).on('change', '#certificateUpload', function () {
+                var data = new FormData();
+                var files = $("#certificateUpload").get(0).files;
+                if (files.length > 0) {
+                    data.append("MyImages", files[0]);
+                }
+
+                $.ajax({
+                    url: $("#WebUIUrl").val() + "/Courier/UploadFileCertificate",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        //code after success
+                        debugger;
+                        // $("#ImageName").val(response);
+                        $("#certificatePreview").css("display", "block");
+                        $("#certificatePath").val('/Uploads/Courier/Upload_Certificates/' + response);
+                        $("#certificatePreview").attr('src', '/Uploads/Courier/Upload_Certificates/' + response);
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+
+                });
+
+
+            });
+        });
+
+        function CaptureSnapshot() {
+            Webcam.snap(function (data) {
+                // display results in page
+                //    document.getElementById('results').innerHTML = '<img style="width:200px" src="' + data + '"/>';
+                // Send image data to the controller to store locally or in database
+
+                $("#img").attr('src', data);
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadCaptureFile", "Courier")',
+                    data: '{data:"' + data + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#photo").val('/Uploads/Courier/Photos/' + response);
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+                });              
+
+            });
+
+
+        }
+        function CaptureSnapshotCovidCertificate() {
+            Webcam.snap(function (data) {
+                // display results in page
+                //document.getElementById('resultsCertificate').innerHTML = '<img style="width:200px" src="' + data + '"/>';
+                // Send image data to the controller to store locally or in database
+                $("#img1").attr('src', data);
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadCaptureCertificate", "Courier")',
+                    data: '{data:"' + data + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#certificate").val('/Uploads/Courier/Certificate/' + response);
+                    },
+                    error: function (er) {
+                        // alert(er);
+                    }
+                });
+
+
+            });
+
+
+        }
+        $(function () {
+
+       
+           
 
             //Timepicker
             $('#timepicker').datetimepicker({
                 format: 'LT'
-            })           
+            })
 
             //Date picker
             $('#reservationdate').datetimepicker({
@@ -202,7 +468,7 @@
 
                 var url = $("#WebUIUrl").val() + "/Courier/GetCourierList?userId=@ViewBag.UserId&userName=@ViewBag.UserName";
                 return window.location.href = url;
-            });            
+            });
         })
     </script>
 }

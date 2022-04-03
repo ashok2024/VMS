@@ -8,11 +8,9 @@
 
 
 <!-- DataTables -->
-@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 <!-- Main content -->
 
 <section class="content-header">
@@ -24,7 +22,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Upload Visitor</li>
+                    <li class="breadcrumb-item active">Upload Employee</li>
                 </ol>
             </div>
         </div>
@@ -47,7 +45,7 @@
 
                                     </div>
                                 </div>
-                                <table class="table" id="datatables">
+                                <table class="table table-bordered" id="datatables">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -93,7 +91,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label>Dept</label>
-                                            @*@Html.DropDownList("DepartmentId", ViewBag.VisitorName as SelectList, "Select VisitorName", new { @class = "form-control" })*@
+                                            @Html.DropDownList("DepartmentId", ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" })
                                         </div>
                                         <div class="col-md-1">
                                             <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
@@ -103,14 +101,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table" id="empdatatables">
+                                <table class="table table-bordered" id="empdatatables">
                                     <thead>
                                         <tr>
-                                            <th>Employee Name</th>
-                                            <th>Deaprtment</th>
-                                            <th>Branch</th>
+                                            <th></th>
+                                            <th>Emp Code</th>
+                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Department</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+
+                                        @foreach (var item in employees)
+                                        {
+                                            var checkBoxId = "chk" + @item.EmpCode;
+                                            <tr>
+                                                <td><input type="checkbox" id="@item.EmpCode" class="clsemp" value="@item.EmpCode" /></td>
+                                                <td>@item.EmpCode</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Company</td>
+                                                <td>@item.Department</td>
+                                            </tr>
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
                             <input type="hidden" id="checkemp" />
@@ -144,44 +158,6 @@
 
     <script>
         var dev = ''; var emp = '';
-        $(function () {
-            dataLoad();
-        })
-        function dataLoad() {
-            var table = $("#empdatatables").DataTable();
-            table.destroy();
-            $(function () {
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("EmployeeList", "Master")',
-                    data: '{}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: OnSuccess,
-                    failure: function (response) {
-                        alert(response.d);
-                    },
-                    error: function (response) {
-                        alert(response.d);
-                    }
-                });
-            });
-        }
-        function OnSuccess(response) {
-            $("#empdatatables").DataTable(
-                {
-                    bLengthChange: true,
-                    bFilter: true,
-                    bSort: true,
-                    bPaginate: true,
-                    data: response,
-                    columns: [{ 'data': 'Name' },
-                        { 'data': 'Department' },
-                        { 'data': 'Branch' },
-                    ]
-                });
-        };
-
         $(function () {
 
             $('.clsdev').click(function () {

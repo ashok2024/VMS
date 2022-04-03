@@ -24,5 +24,7 @@ namespace VMS.Middleware
         public Nullable<int> UserId { get; set; }
         public string Description { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public string PhotoPath { get; set; }
+        public string CertifactePath { get; set; }
     }
 }

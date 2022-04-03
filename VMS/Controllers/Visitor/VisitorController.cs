@@ -57,10 +57,12 @@ namespace VMS.Controllers.Visitor
         // GET: VisitorList
         public ActionResult GetVisitorList()
         {
+           
             string userId = (Request["userId"] == null) ? "" : Request["userId"].ToString();
             ViewBag.UserId = userId;
             string userName = (Request["userName"] == null) ? "" : Request["userName"].ToString();
             ViewBag.UserName = userName;
+            
 
             ViewBag.ActivePage = "VisitorList";
 
@@ -88,7 +90,7 @@ namespace VMS.Controllers.Visitor
             ViewBag.UserName = userName;
 
             ViewBag.ActivePage = "VisitorList";
-
+            ViewBag.DeviceListSave = db.DevicesTBs.ToList().OrderByDescending(x => x.DeviceId);
             string sessionid = (System.Web.HttpContext.Current.Session["SessionId"] != null) ? System.Web.HttpContext.Current.Session["SessionId"].ToString() : String.Empty;
             if (string.IsNullOrEmpty(sessionid))
             {
@@ -906,6 +908,9 @@ namespace VMS.Controllers.Visitor
                 DeviceModel emp = new DeviceModel();
                 emp.DeviceId = item.DeviceId;
                 emp.DeviceName = item.DeviceName;
+                emp.DeviceAccountId = item.DeviceAccountId;
+                emp.DeviceSerialNo = item.DeviceSerialNo;
+                emp.DeviceStatus = item.DeviceStatus;
                 Model.Add(emp);
             }
 
@@ -2090,5 +2095,6 @@ namespace VMS.Controllers.Visitor
             vId = id;
             return Json(Convert.ToString(id), JsonRequestBehavior.AllowGet);
         }
+        
     }
 }
