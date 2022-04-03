@@ -3,12 +3,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
 }
+<style>
 
+    #section-to-print, #section-to-print * {
+        visibility: visible;
+    }
 
+    #section-to-print {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .tblClass{
+        padding:25px;
+    }    
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -26,139 +41,463 @@
 </section>
 <section class="content">
     <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Visitor List</h4>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Visitor</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="toolbar" style="margin-bottom:15px;">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <label>Visitor Contact</label>
-                                            <input type="text" class="form-control" id="contact" placeholder="Visitor Contact" maxlength="10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="toolbar">
+                            <div id="divFilter">
+                                <div class="row">
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Visitor Company</label>
-                                            <input type="text" class="form-control" id="Company" placeholder="Visitor Company" maxlength="50">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
                                         </div>
-                                        <div class="col-md-1">
-                                            <label>Dept</label>
-                                            <input type="text" class="form-control" id="Department" placeholder="Department" maxlength="50">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>From Date</label>
-                                            <div class="input-group date" id="datefrom" data-target-input="nearest">
-                                                <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
-                                                <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12  col-lg-6 col-md-6">
+                                        <div class="form-group">
+                                            <div>
+                                                @using (Html.BeginForm("ExportToPdf", "Visitor", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="GridHtml" />
+                                                    <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
+                                                }
+                                            </div>
+                                            <div>
+                                                @using (Html.BeginForm("ExportToExcel", "Visitor", FormMethod.Post))
+                                                {
+                                                    <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                                }
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>To Date</label>
-                                            <div class="input-group date" id="dateto" data-target-input="nearest">
-                                                <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
-                                                <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>In Time</label>
-                                            <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                                <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
-                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
-                                        </div>
-                                        <div class="col-md-2">
-                                            @using (Html.BeginForm("ExportToExcel", "Visitor", FormMethod.Post))
-                                            {
-                                                <button class="btn btn-info" type="submit" style="margin-top:20px;float:left;">Export to Excel</button>
-                                            }
-                                        </div>
-                                        <div class="col-md-3">
-                                            @using (Html.BeginForm("ExportToPdf", "Visitor", FormMethod.Post))
-                                            {
-                                                <input type="hidden" name="GridHtml" />
-                                                <button class="btn btn-info" id="btnpdf" type="submit" style="margin-top:20px;">Export to PDF</button>
-                                            }
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary anchorDetail float-right">Add Visitor</button>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered" id="datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Visitor Id</th>
-                                            <th>Visitor Name</th>
-                                            <th>Visitor Company</th>
-                                            <th>Visitor Contact</th>
-                                            <th>Employee Name</th>
-                                            <th>Department</th>
-                                            <th>In Time</th>
-                                            <th>Out Time</th>
-                                            <th>From Date</th>
-                                            <th>To Date</th>
-                                            <th>Purpose</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in visitors)
-                                        {
-                                            <tr>
-                                                <td>@item.VisitorId</td>
-                                                <td>@item.Name</td>
-                                                <td>@item.Company</td>
-                                                <td>@item.Contact</td>
-                                                <td>@item.EmployeeName</td>
-                                                <td>@item.EmployeeDepartment</td>
-                                                <td>@item.InTime</td>
-                                                <td>@item.OutTime</td>
-                                                <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateFrom)</td>
-                                                <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateTo)</td>
-                                                <td>@item.Purpose</td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="btn btn-primary edit" title="Edit" data-id="@item.Id"><i class="fas fa-edit"></i></a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
                             </div>
-                            <!-- end content-->
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Visitor Contact</label>
+                                        <input type="text" class="form-control" id="contact" placeholder="Visitor Contact" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Visitor Company</label>
+                                        <input type="text" class="form-control" id="Company" placeholder="Visitor Company" maxlength="50">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1">
+                                    <div class="form-group">
+                                        <label>Dept</label>
+                                        <input type="text" class="form-control" id="Department" placeholder="Department" maxlength="50">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                            <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
+                                            <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <div class="input-group date" id="dateto" data-target-input="nearest">
+                                            <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
+                                            <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>In Time</label>
+                                        <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                            <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
+                                            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
+                                    @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
+                                    <button class="btn btn-info search" id="filter" type="button">Search</button>
+                                </div>
+                            </div>
                         </div>
-                        <!--  end card  -->
                     </div>
-                    <!-- end col-md-12 -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12" style="overflow:auto">
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Visitor Id</th>
+                                                <th>Visitor Name</th>
+                                                <th>Visitor Company</th>
+                                                <th>Visitor Contact</th>
+                                                <th>Employee Name</th>
+                                                <th>Department</th>
+                                                <th>In Time</th>
+                                                <th>Out Time</th>
+                                                <th>From Date</th>
+                                                <th>To Date</th>
+                                                <th>Purpose</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @*<table class="table table-bordered" id="datatables">
+                                <thead>
+                                    <tr>
+                                        <th>Visitor Id</th>
+                                        <th>Visitor Name</th>
+                                        <th>Visitor Company</th>
+                                        <th>Visitor Contact</th>
+                                        <th>Employee Name</th>
+                                        <th>Department</th>
+                                        <th>In Time</th>
+                                        <th>Out Time</th>
+                                        <th>From Date</th>
+                                        <th>To Date</th>
+                                        <th>Purpose</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in visitors)
+                                    {
+                                        <tr>
+                                            <td>@item.VisitorId</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Company</td>
+                                            <td>@item.Contact</td>
+                                            <td>@item.EmployeeName</td>
+                                            <td>@item.EmployeeDepartment</td>
+                                            <td>@item.InTime</td>
+                                            <td>@item.OutTime</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateFrom)</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateTo)</td>
+                                            <td>@item.Purpose</td>
+                                            <td>
+                                                <a href="javascript:void(0);" class="btn btn-primary edit" title="Edit" data-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>*@
+                    </div>
+                    <!-- end content-->
                 </div>
+                <!--  end card  -->
             </div>
+            <!-- end col-md-12 -->
+        </div>
+    </div>
+    <div id="non-printable" style="display:none">
+        Your normal page contents
+    </div>    
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
 
 @section scripts
 {
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
+    <script type="text/javascript">
+        var AddURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
+        var EditURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        $("#filter").click(function () {
+            debugger;
+            var contact = $("#contact").val();
+            var company = $("#Company").val();
+            var dept = $("#Department").val();
+            var fdate = $("#fromdate").val();
+            var tdate = $("#todate").val();
+            var time = $("#time").val();
+
+                var table = $("#tblCustomers").DataTable();
+                table.destroy();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FilterGetVisitorList", "Visitor")',
+                    data: '{contactname:"' + contact + '", company: "' + company + '", dept:"' + dept + '", fromdate: "' + fdate + '", todate:"' + tdate + '", inTime: "' + time + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+        });
+
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
+        });
+
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+        //End Advance Filter
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURL;
+        });
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("A_GetVisitorList", "Visitor")',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+
+                    columns: [{ 'data': 'VisitorId' },
+                        { 'data': 'Name' },
+                        { 'data': 'Company' },
+                        { 'data': 'Contact' },
+                        { 'data': 'EmployeeName' },
+                        { 'data': 'EmployeeDepartment' },
+                        { 'data': 'InTime' },
+                        { 'data': 'OutTime' },
+                        {
+                            'data': 'VisitDateFrom', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
+                        {
+                            'data': 'VisitDateTo', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
+                        { 'data': 'Purpose' },
+                        ],
+                    columnDefs: [{
+                        "targets": 11,
+                        "data": null,
+                        "defaultContent":   "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none;margin-right:1px;' onclick='GetUsersDetails(this)'></button>" +
+                                            "<button class='btn btn-info nav-icon fas fa-circle padding0' style='text-decoration-style:none;margin-right:1px;' onclick='checkout(this)'></button>" +
+                                            "<button class='btn btn-info fa fa-image padding0' style='text-decoration-style:none;margin-right:1px;' onclick='GatePass(this)'></button>"
+                    }]
+                });
+        };
+
+
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+        function GetUsersDetails(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var newURL = EditURL + "&Id=" + dataRow.Id;
+            return window.location.href = newURL;
+        }
+        $(function () {
+            $(".edit").click(function () {
+
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                if (id == undefined)
+                    id = 0;
+                var options = { "backdrop": "static", keyboard: true };
+
+                var newURL = EditURL + "&Id=" + id;
+
+                return window.location.href = newURL;
+            });
+        });
+        function checkout(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("checkout", "Visitor")',
+                    data: '{Id:"' + dataRow.Id + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        dataLoad();
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function GatePass(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            $(function () {
+
+                $.ajax({
+                    cache: false,
+                    type: "Post",
+                    url: '@Url.Action("GetPassId", "Visitor")',
+                    data: { "id": dataRow.Id },
+                    success: function (json, textStatus) {
+                        GatePass1();
+                    },
+                    error: function () {
+                        //alert("Data Not Found");
+                    }
+                });
+            });
+        }
+        function GatePass1() {
+
+            window.open('/Visitor/GatePass');
+
+           // var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+           // //printDiv("test")
+           // alert(dataRow.Id);
+           //// DownloadFile("Sample.pdf");
+
+           // e.preventDefault();
+           // var id = dataRow.Id;
+
+
+            //$(function () {
+            //    $.ajax({
+            //        type: "GET",
+            //        url: "/Visitor/GatePass",
+            //        data: '{id:"' + dataRow.Id + '" }',
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        responseType: 'arraybuffer',
+            //        success: function (response) {
+            //            window.open(response);
+            //        },
+            //        failure: function (response) {
+            //            alert(response.d);
+            //        },
+            //        error: function (response) {
+            //            alert(response.d);
+            //        }
+            //    });
+            //});
+        }
+        function DownloadFile(fileName) {
+            //Set the File URL.
+            var url = "Files/" + fileName;
+
+            //Create XMLHTTP Request.
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.responseType = "blob";
+            req.onload = function () {
+                //Convert the Byte Data to BLOB object.
+                var blob = new Blob([req.response], { type: "application/octetstream" });
+
+                //Check the Browser type and download the File.
+                var isIE = false || !!document.documentMode;
+                if (isIE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                    var url = window.URL || window.webkitURL;
+                    link = url.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    a.setAttribute("download", fileName);
+                    a.setAttribute("href", link);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            };
+            req.send();
+        };
+        function LoadPDF(data) {
+
+            var arrrayBuffer = base64ToArrayBuffer(data); //data is the base64 encoded string
+            var blob = new Blob([arrrayBuffer], { type: "application/pdf" });
+            var link = window.URL.createObjectURL(blob);
+            //window.open(link, '', 'height=700,width=1000');
+
+
+        }
+
+        function base64ToArrayBuffer(base64) {
+
+            var binaryString = window.atob(base64);
+            var binaryLen = binaryString.length;
+            var bytes = new Uint8Array(binaryLen);
+            for (var i = 0; i < binaryLen; i++) {
+                var ascii = binaryString.charCodeAt(i);
+                bytes[i] = ascii;
+            }
+            return bytes;
+        }
+    </script>
+    <!-- jQuery -->
+    @*<script src="../plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap 4 -->
+    @*<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+    <!-- AdminLTE App -->
+    @*<script src="../dist/js/adminlte.min.js"></script>*@
+
+    <!-- jQuery -->
+    @*<script src="../plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap 4 -->
+    @*<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+    <!-- AdminLTE App -->
+    @*<script src="../dist/js/adminlte.min.js"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="../dist/js/demo.js"></script>*@
+
+    @*<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>*@
 
     <script>
 
@@ -198,7 +537,7 @@
             });
 
              // data filteration
-            $(".search").click(function () {
+            $(".search1").click(function () {
 
                 debugger;
                 var contact = $('#contact').val();
@@ -264,6 +603,27 @@
                 });
             });
         });
+
+        function printDiv(divName) {
+           //   var printContents = document.getElementById(divName).innerHTML;
+           ///* var printContents = "test";*/
+           //var originalContents = document.body.innerHTML;
+
+           // document.body.innerHTML = printContents;
+           // $("test").css('display', 'none');
+           // window.print();
+
+           // document.body.innerHTML = originalContents;
+
+            var divContents = document.getElementById("test").innerHTML;
+            var a = window.open('', '', 'height=500, width=750');
+            a.document.write('<html>');
+            a.document.write('<body>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
 
     </script>
 

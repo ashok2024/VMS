@@ -11,11 +11,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    @*<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">*@
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    @*<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">*@
     <!-- iCheck -->
-    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    @*<link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">*@
     <!-- JQVMap -->
     <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
     <!-- IonIcons -->
@@ -29,31 +29,44 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
 
+    <link href="~/Content/Style.css" rel="stylesheet" />
     <style>
-        .text-white{
-            color:#f6f6f6;
+        .text-white {
+            color: #f6f6f6;
         }
 
         .bg-yellow-active {
             background: #db8b0b !important;
         }
-        .bg-yellow-active a {
-            color: #f6f6f6 !important;
-        }
+
+            .bg-yellow-active a {
+                color: #f6f6f6 !important;
+            }
 
         .bg-logo {
             background-color: #273972 !important;
         }
+
         .navbar-custom {
             background: #273972 !important;
-            
         }
+
             .navbar-custom a {
                 color: #f6f6f6 !important;
             }
 
         .custom-active {
             background-color: #273972 !important;
+        }
+        .custom-active-master {
+            background-color: #585993 !important;
+        }
+        td {
+            border: 1px solid #A5A5A5;
+        }
+
+        th {
+            border: 1px solid #A5A5A5;
         }
     </style>
 </head>
@@ -81,7 +94,7 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" role="button">
+                    <a class="nav-link" href="@Url.Action("LogOut", "Account", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" role="button">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
@@ -109,7 +122,7 @@
                         {
 
                             <li class="nav-item">
-                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link active">
+                                <a id="1" href="@Url.Action("VisitorDashboard", "VisitorDashboard", new { userId = ViewBag.UserId, userName = ViewBag.UserName })">
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
                                         Dashboard
@@ -290,6 +303,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a id="44" href="@Url.Action("UploadVisitorToDevice", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Upload Visitor
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a id="33" href="@Url.Action("DeleteEmployeeFromDevice", "Master", new { userId = ViewBag.UserId, userName = ViewBag.UserName })" class="nav-link">
                                     <i class="nav-icon far fa-image"></i>
                                     <p>
@@ -432,6 +453,9 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
 
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    @*<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>*@
+
     <script>
         $(document).ready(function () {
             $().ready(function () {
@@ -548,9 +572,15 @@
                 $(".nav li a").removeClass("custom-active");
 
                 $('#' + identifier).addClass('custom-active');
+                $('#21').addClass('custom-active');
                 $('#' + collapseanchor).addClass('custom-active');
                 $('#' + collapseli).addClass('menu-open');
 
+                if (collapseanchor == "masterforms" || collapseanchor == "settingforms" || collapseanchor ==  "userReports")
+                {
+                    $('#' + identifier).addClass('custom-active-master');
+                }
+                /*#db8b0b*/
                 //end
             });
         });

@@ -5,11 +5,12 @@
     List<VMS.Models.Employee.EmployeeModel> employees = ViewData["GetEmployeeList"] as List<VMS.Models.Employee.EmployeeModel>;
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 
 <section class="content-header">
     <div class="container-fluid">
@@ -30,122 +31,261 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Employee List</h4>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Employee</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div id="divFilter">
+                            <div class="row">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="toolbar">
-                                    <div class="row" style="margin-bottom:10px;">
-                                        <div class="col-md-2">
-                                            @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
-                                            {
-                                                <button class="btn btn-info" type="submit" style="float:left;">Export to Excel</button>
-                                            }
-                                        </div>
-                                        <div class="col-md-2">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12  col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <div>
                                             @using (Html.BeginForm("EmpExportToPdf", "Master", FormMethod.Post))
                                             {
                                                 <input type="hidden" name="GridHtml" />
-                                                <button class="btn btn-info" id="btnpdf" type="submit" style="float:left;">Export to PDF</button>
+                                                <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
                                             }
                                         </div>
-                                        <div class="col-md-2">
-                                            <a href="/Master/DownloadExcel/" class="btn btn-info"><img width="25" height="25" title="Download Excel format" alt="Download Excel" /></a>
+                                        <div>
+                                            @using (Html.BeginForm("EmpExportToExcel", "Master", FormMethod.Post))
+                                            {
+                                                <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                            }
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary anchorDetail float-right">Add Employee</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12  col-lg-12 col-md-12">
+                                    <div style="float:right;">
                                         @using (Html.BeginForm("Employee", "Master", FormMethod.Post, new { user = Model, enctype = "multipart/form-data" }))
                                         {
-                                            <div class="col-md-4">
+                                            <div>
                                                 @Html.HiddenFor(m => m.UserId)
                                                 @Html.HiddenFor(m => m.UserName)
-                                                <input type="file" id="FileUpload" name="FileUpload" class="" />
-                                                <input type="submit" value="Upload" id="btnSubmit" class="btn btn-primary" />
+                                                <input type="file" id="FileUpload" name="FileUpload" class="" style="width:250px;" />
+                                                <input type="submit" value="Upload" id="btnSubmit" class="btn btn-info" />
                                             </div>
                                         }
                                     </div>
                                 </div>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee Code</th>
-                                            <th>Name</th>
-                                            <th>Phone</th>
-                                            <th>Email Id</th>
-                                            <th>Company</th>
-                                            <th>Department</th>
-                                            <th>Designation</th>
-                                            <th>User Type</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in employees)
-                                        {
-                                        <tr>
-                                            <td>@item.EmpCode</td>
-                                            <td>@item.Name</td>
-                                            <td>@item.Phone</td>
-                                            <td>@item.Email</td>
-                                            <td>@item.Company</td>
-                                            <td>@item.Department</td>
-                                            <td>@item.Designation</td>
-                                            <td>@item.UserType</td>
-                                            <td><a href="@Url.Action("AddEmployee","Master",new { userId = ViewBag.UserId, userName = ViewBag.UserName,EmpId=item.UserId })" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a></td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
                             </div>
-                            <!-- end content-->
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Employee Code</label>
+                                        <input type="text" class="form-control" id="empCode" placeholder="Employee Code">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="empName" placeholder="Employee Name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-", new { id = "ddlCompanyName", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Department, "-Select-", new { id = "ddlDepartment", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Designation</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Designation, "-Select-", new { id = "ddlDesignation", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
+                                    @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!--  end card  -->
                     </div>
-                    <!-- end col-md-12 -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12" style="overflow:auto;">
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Employee Code</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Email Id</th>
+                                                <th>Company</th>
+                                                <th>Department</th>
+                                                <th>Designation</th>
+                                                <th>User Type</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
                 </div>
+                <!--  end card  -->
             </div>
+            <!-- end col-md-12 -->
+        </div>
+    </div>
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
 
 @section scripts
 {
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <script>
-
+    <script type="text/javascript">
         var AddURL = $("#WebUIUrl").val() + '/Master/AddEmployee?userId=@ViewBag.UserId&userName=@ViewBag.UserName&EmpId=0';
+        var EditURL = $("#WebUIUrl").val() + '/Master/AddEmployee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
         var refreshURL = $("#WebUIUrl").val() + '/Master/Employee?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
-        $(function () {
-
-            $(".anchorDetail").click(function () {
-                return window.location.href = AddURL;
-            });
-
-            var res = "@ViewBag.Result";
-
-            if (res != '') {
-                alert(res);
-
-            }
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
         });
 
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+
+        $(".filter").click(function () {
+            debugger;
+            var empCode = $('#empCode').val();
+            var empName = $('#empName').val();
+            var Department = $("#ddlDepartment option:selected").val();
+            var companyName = $("#ddlCompanyName option:selected").val();
+            var Branch = $("#ddlBranch option:selected").val();
+            var Designation = $("#ddlDesignation option:selected").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetEmployeeFilterList", "Master")',
+                data: '{EmpCode:"' + empCode + '",EmpName:"' + empName + '", companyName: "' + companyName + '", Department: "' + Department + '", Designation: "' + Designation + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        //End Advance Filter
+
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURdebuL;
+        });
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("A_GetEmployeeList", "Master")',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+
+                    columns: [{ 'data': 'EmpCode' },
+                        { 'data': 'Name' },
+                        { 'data': 'Phone' },
+                        { 'data': 'Email' },
+                        { 'data': 'Company' },
+                        { 'data': 'Department' },
+                        { 'data': 'Designation' },
+                        { 'data': 'UserType' },
+                        ],
+                    columnDefs: [{
+                        "targets": 8,
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
+                    }]
+                });
+        };
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+        function GetUsersDetails(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var newURL = EditURL + "&EmpId=" + dataRow.UserId;
+            return window.location.href = newURL;
+        }
+    $(function () {
+        $(".edit").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            if (id == undefined)
+                id = 0;
+            var options = { "backdrop": "static", keyboard: true };
+
+            var newURL = EditURL + "&Id=" + id;
+
+            return window.location.href = newURL;
+        });
+    });
+
     </script>
-
+    <!-- jQuery -->
+    <!--<script src="../plugins/jquery/jquery.min.js"></script>-->
+    <!-- Bootstrap 4 -->
+    <!--<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+    <!-- AdminLTE App -->
+    <!--<script src="../dist/js/adminlte.min.js"></script>-->
 }
-

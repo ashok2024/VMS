@@ -2,14 +2,15 @@
 @{
     ViewBag.Title = "Department";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<VMS.Models.Admin.DepartmentModel> employees = ViewData["GetDepartmentList"] as List<VMS.Models.Admin.DepartmentModel>;
+    //List<VMS.Models.Admin.DepartmentModel> employees = ViewData["GetDepartmentList"] as List<VMS.Models.Admin.DepartmentModel>;
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 
 <section class="content-header">
     <div class="container-fluid">
@@ -30,94 +31,202 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Department List</h4>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Department</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="divFilter">
+                            <div class="row">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary anchorDetail float-right">Add Department</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="toolbar">
-                                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Department, "-Select-", new { id = "ddlDepartment", @class = "form-control" })
+                                    </div>
                                 </div>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Company</th>
-                                            <th>Branch</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in employees)
-                                        {
-                                        <tr>
-                                            <td>@item.Name</td>
-                                            <td>@item.CompanyName</td>
-                                            <td>@item.BranchName</td>
-                                            <td><a href="javascript:void(0);" class="btn btn-info edit" title="Edit" data-id="@item.Id"><i class="fas fa-edit"></i></a></td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        @Html.DropDownList("CompanyName", (IEnumerable<SelectListItem>)ViewBag.CompanyName, "-Select-", new { id = "ddlCompanyName", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Branch</label>
+                                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Branch, "-Select-", new { id = "ddlBranch", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2" style="margin-top:30px">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info filter" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- end content-->
                         </div>
-                        <!--  end card  -->
                     </div>
-                    <!-- end col-md-12 -->
+                    <div class="card-body">
+                        <div class="toolbar">
+                            <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="overflow:auto;">
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr>
+                                                <th>Department</th>
+                                                <th>Company</th>
+                                                <th>Branch</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
                 </div>
+                    <!--  end card  -->
+                </div>
+                <!-- end col-md-12 -->
             </div>
+        </div>
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
-
 @section scripts
 {
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <script>
-
+    <script type="text/javascript">
         var AddURL = $("#WebUIUrl").val() + '/Master/AddDepartment?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
         var EditURL = $("#WebUIUrl").val() + '/Master/AddDepartment?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
-        $(function () {
-
-            $(".anchorDetail").click(function () {
-                return window.location.href = AddURL;
-            });
-
-            $(".edit").click(function () {
-
-                debugger;
-                var $buttonClicked = $(this);
-                var id = $buttonClicked.attr('data-id');
-                if (id == undefined)
-                    id = 0;
-                var options = { "backdrop": "static", keyboard: true };
-
-                var newURL = EditURL + "&Id=" + id;
-
-                return window.location.href = newURL;
-            });
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
         });
 
-    </script>
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
 
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+
+        $(".filter").click(function () {
+            var Department = $("#ddlDepartment option:selected").val();
+            var companyName = $("#ddlCompanyName option:selected").val();
+            var Branch = $("#ddlBranch option:selected").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetDepartmentFilterList", "Master")',
+                data: '{Branch:"' + Branch + '", companyName: "' + companyName + '", Department: "' + Department + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        //End Advance Filter
+
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURL;
+        });
+
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url:  '@Url.Action("A_GetDepartmentList", "Master")',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [{ 'data': 'Name' },
+                    { 'data': 'CompanyName' },
+                    { 'data': 'BranchName' }
+                    ],
+                    columnDefs: [{
+                        "targets": 3,
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
+                    }]
+                });
+        };
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+        function GetUsersDetails(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var newURL = EditURL + "&Id=" + dataRow.Id;
+            return window.location.href = newURL;
+        }
+    $(function () {
+        $(".edit").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            if (id == undefined)
+                id = 0;
+            var options = { "backdrop": "static", keyboard: true };
+
+            var newURL = EditURL + "&Id=" + id;
+
+            return window.location.href = newURL;
+        });
+    });
+
+    </script>
+    <!-- jQuery -->
+    <!--<script src="../plugins/jquery/jquery.min.js"></script>-->
+    <!-- Bootstrap 4 -->
+    <!--<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+    <!-- AdminLTE App -->
+    <!--<script src="../dist/js/adminlte.min.js"></script>-->
 }
 
 

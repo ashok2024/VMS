@@ -2,13 +2,14 @@
 @{
     ViewBag.Title = "GetCourierList";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<VMS.Models.Visitor.CourierModel> couriers = ViewData["GetCourierList"] as List<VMS.Models.Visitor.CourierModel>;
 }
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 
 <section class="content-header">
     <div class="container-fluid">
@@ -29,140 +30,231 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Delivery List</h4>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm btn-default anchorDetail">Add Delivery</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="toolbar">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <label>Delivery Number</label>
-                                            <input type="text" class="form-control" id="Number" placeholder="Delivery Number" maxlength="10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="toolbar">
+                            <div id="divFilter">
+                                <div class="row">
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Delivery Company</label>
-                                            <input type="text" class="form-control" id="Company" placeholder="Delivery Company" maxlength="50">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Employee</label>
-                                            <input type="text" class="form-control" id="Employee" placeholder="Department" maxlength="50">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>From Date</label>
-                                            <div class="input-group date" id="datefrom" data-target-input="nearest">
-                                                <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
-                                                <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>To Date</label>
-                                            <div class="input-group date" id="dateto" data-target-input="nearest">
-                                                <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
-                                                <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Time</label>
-                                            <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                                <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
-                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <button class="btn btn-info search" type="button" style="margin:10px;">Search</button>
+                                    </div>
+                                    <div class="col-sm-8 col-xs-12  col-lg-8 col-md-8">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary anchorDetail float-right">Add Delivery</button>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered" id="datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Delivery Number</th>
-                                            <th>Delivery Company</th>
-                                            <th>Delivery Person Name</th>
-                                            <th>Employee Name</th>
-                                            <th>Delivery Time</th>
-                                            <th>Delivery Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in couriers)
+                                @*<div style="float:right; padding-right:5px;">
+                                        @using (Html.BeginForm("ExportToPdf", "Visitor", FormMethod.Post))
                                         {
-                                        <tr>
-                                            <td>@item.CourierNo</td>
-                                            <td>@item.CourierCompany</td>
-                                            <td>@item.CourierPersonName</td>
-                                            <td>@item.EmployeeName</td>
-                                            <td>@item.Time</td>
-                                            <td>@string.Format("{0:dd/MM/yyyy}", item.Date)</td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="btn btn-primary edit" title="Edit" data-id="@item.Id"><i class="fas fa-edit"></i></a>
-                                            </td>
-                                        </tr>
+                                            <input type="hidden" name="GridHtml" />
+                                            <button class="btn btn-info" id="btnpdf" type="submit">Export to PDF</button>
                                         }
-                                    </tbody>
-                                </table>
+                                    </div>
+                                    <div style="float:right; padding-right:5px;">
+                                        @using (Html.BeginForm("ExportToExcel", "Visitor", FormMethod.Post))
+                                        {
+                                            <button class="btn btn-info" type="submit">Export to Excel</button>
+                                        }
+                                    </div>*@
+
                             </div>
-                            <!-- end content-->
+
+                            <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Delivery Number</label>
+                                        <input type="text" class="form-control" id="Number" placeholder="Delivery Number" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Delivery Company</label>
+                                        <input type="text" class="form-control" id="Company" placeholder="Delivery Company" maxlength="50">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Employee</label>
+                                        @Html.DropDownList("FirstName", (IEnumerable<SelectListItem>)ViewBag.Employee, "-Select-", new { id = "ddlEmployee", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                            <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
+                                            <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                            <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
+                                            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
+                                    @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
+                                    <button class="btn btn-info search filter" type="button" id="btnSearch">Search</button>
+                                </div>
+                            </div>
                         </div>
-                        <!--  end card  -->
                     </div>
-                    <!-- end col-md-12 -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12" style="overflow:auto">
+                                <div class="form-group">
+                                    <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                        <thead>
+                                            <tr style="vertical-align:bottom;">
+                                                <th>Delivery Number</th>
+                                                <th>Delivery Company</th>
+                                                <th>Delivery Person Name</th>
+                                                <th>Employee Name</th>
+                                                <th>Delivery Time</th>
+                                                <th>Delivery Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
                 </div>
+                <!--  end card  -->
             </div>
+            <!-- end col-md-12 -->
+        </div>
+    </div>
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
 
 @section scripts
 {
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <script>
-
+    <script type="text/javascript">
         var AddURL = $("#WebUIUrl").val() + '/Courier/AddCourier?userId=@ViewBag.UserId&userName=@ViewBag.UserName&Id=0';
         var EditURL = $("#WebUIUrl").val() + '/Courier/AddCourier?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
 
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
+        });
+
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+
+        $(".filter").click(function () {
+            var Employee = $("#ddlEmployee option:selected").val();
+            var Number = $("#Number").val();
+            var Company = $("#Company").val();
+            var FromDate = $("#fromdate").val();
+            var Time = $("#time").val();
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("FilterGetCourierList", "Courier")',
+                data: '{Employee:"' + Employee + '", Number: "' + Number + '", Company: "' + Company + '", FromDate: "' + FromDate + '", Time: "' + Time + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        //End Advance Filter GetCourierListSearch
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURL;
+        });
+        function dataLoad() {
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("A_GetCouriersList", "Courier")',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [{ 'data': 'CourierNo' },
+                        { 'data': 'CourierCompany' },
+                        { 'data': 'CourierPersonName' },
+                        { 'data': 'EmployeeName' },
+                        { 'data': 'Time' },
+                        {
+                            'data': 'Date', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        }
+                        ],
+                    columnDefs: [{
+                        "targets": 6,
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-info fa fa-edit padding0' style='text-decoration-style:none' onclick='GetUsersDetails(this)'></button>"
+                    }]
+                });
+        };
+
+
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+        function GetUsersDetails(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var newURL = EditURL + "&Id=" + dataRow.Id;
+            return window.location.href = newURL;
+        }
         $(function () {
-
-            $('#datefrom').datetimepicker({
-                format: 'L'
-            });
-
-            $('#dateto').datetimepicker({
-                format: 'L'
-            });
-
-            $('#timepicker').datetimepicker({
-                format: 'LT'
-            })
-
-            $(".anchorDetail").click(function () {
-                return window.location.href = AddURL;
-            });
-
             $(".edit").click(function () {
 
                 debugger;
@@ -176,64 +268,16 @@
 
                 return window.location.href = newURL;
             });
-
-            // data filteration
-            $(".search").click(function () {
-
-                debugger;
-                var number = $('#Number').val();
-                var company = $('#Company').val();
-                var employee = $('#Employee').val();
-                var datefrom = $('#fromdate').val();
-                var dateto = $('#todate').val();
-                var time = $('#time').val();
-
-                var Data = {
-                    DeliveryNo: number,
-                    DeliveryCompany: company,
-                    EmployeeName: employee,
-                    FromDate: datefrom,
-                    ToDate: dateto,
-                    Time: time,
-                };
-
-                $.ajax({
-                    cache: false,
-                    type: "GET",                    
-                    url: '@Url.Action("GetCourierListSearch", "Courier")',                     
-                    data: Data,
-                    success: function (data) {
-                        debugger;
-                        $("#datatables").find("tr:not(:first)").remove();
-
-                        for (var i = 0; i < data.length; i++) {
-
-                            // from date
-                            var fdateString = data[i].Date.substr(6);
-                            var currentTime = new Date(parseInt(fdateString));
-                            var month = currentTime.getMonth() + 1;
-                            var day = currentTime.getDate();
-                            var year = currentTime.getFullYear();
-                            if (month.toString().length == 1)
-                                month = "0" + month.toString();
-                            if (day.toString().length == 1) {
-                                day = "0" + currentTime.getDate();
-                            }
-                            var date = day + "/" + month + "/" + year;                            
-
-                            $("#datatables").append("<tr><td>" + data[i].CourierNo + "</td><td>" + data[i].CourierCompany + "</td><td>" + data[i].CourierPersonName + "</td> <td>" + data[i].EmployeeName + "</td><td>" + data[i].Time + "</td><td>" + date + "</td><td class='text-right'><a href='javascript: void(0);' class='btn btn-primary edit' title='Edit' data-id=" + data[i].Id + "><i class='fas fa-edit'></i></a></td></tr>");
-                        }
-                        //$("#datatables").DataTable();
-                    },
-                    error: function (result) {
-                        alert("Error");
-                    }
-                });
-            });
-
         });
 
     </script>
-
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
 }
+
+
 

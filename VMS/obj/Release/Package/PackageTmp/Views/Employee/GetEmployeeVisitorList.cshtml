@@ -5,11 +5,28 @@
     List<VMS.Models.Visitor.VisitorEntryModel> visitors = ViewData["GetVisitorList"] as List<VMS.Models.Visitor.VisitorEntryModel>;
 }
 
+<style>
 
+    #section-to-print, #section-to-print * {
+        visibility: visible;
+    }
+
+    #section-to-print {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .tblClass {
+        padding: 25px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- DataTables -->
-<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+@*<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">*@
 <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
 
 <section class="content-header">
@@ -37,112 +54,135 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
-                                <h4 class="card-title">Visitor List</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="toolbar" style="margin-bottom:15px;">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <label>Visitor Contact</label>
-                                            <input type="text" class="form-control" id="contact" placeholder="Visitor Contact" maxlength="10">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Visitor Company</label>
-                                            <input type="text" class="form-control" id="Company" placeholder="Visitor Company" maxlength="50">
-                                        </div>                                       
-                                        <div class="col-md-2">
-                                            <label>From Date</label>
-                                            <div class="input-group date" id="datefrom" data-target-input="nearest">
-                                                <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
-                                                <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <div class="toolbar">
+                                    <div id="divFilter">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-info" id="btnFilter">Advance Filter</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-info" id="btnRefresh">Refresh</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12  col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    @*<div>
+                                                        @using (Html.BeginForm("ExportToPdf", "Employee", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" name="GridHtml" />
+                                                            <button class="btn btn-info" id="btnpdf" type="submit" style="float:right;">Export to PDF</button>
+                                                        }
+                                                    </div>
+                                                    <div>
+                                                        @using (Html.BeginForm("ExportToExcel", "Employee", FormMethod.Post))
+                                                        {
+                                                            <button class="btn btn-info" type="submit" style="float:right;margin-right: 5px;">Export to Excel</button>
+                                                        }
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary anchorDetail float-right">Add Visitor</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>To Date</label>
-                                            <div class="input-group date" id="dateto" data-target-input="nearest">
-                                                <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
-                                                <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                    <div class="row" id="collapseExample" style="border: 1px solid lightgray;margin: 10px 0px 0px 0px;">
+                                        <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>Visitor Contact</label>
+                                                <input type="text" class="form-control" id="contact" placeholder="Visitor Contact" maxlength="10">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 col-xs-12  col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>Visitor Company</label>
+                                                <input type="text" class="form-control" id="Company" placeholder="Visitor Company" maxlength="50">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>From Date</label>
+                                                <div class="input-group date" id="datefrom" data-target-input="nearest">
+                                                    <input type="text" id="fromdate" class="form-control datetimepicker-input" data-target="#datefrom" />
+                                                    <div class="input-group-append" data-target="#datefrom" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>In Time</label>
-                                            <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                                <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
-                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>To Date</label>
+                                                <div class="input-group date" id="dateto" data-target-input="nearest">
+                                                    <input type="text" id="todate" class="form-control datetimepicker-input" data-target="#dateto" />
+                                                    <div class="input-group-append" data-target="#dateto" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
+                                        <div class="col-sm-2 col-xs-12 col-lg-2 col-md-2">
+                                            <div class="form-group">
+                                                <label>In Time</label>
+                                                <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                                    <input type="text" id="time" class="form-control datetimepicker-input" data-target="#timepicker" />
+                                                    <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-12 col-lg-1 col-md-1" style="margin-top:30px">
+                                            @*<button type="button" class="btn btn-primary filter" id="btnSearch">Search</button>*@
+                                            <button class="btn btn-info search" id="filter" type="button">Search</button>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered" id="datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Visitor Id</th>
-                                            <th>Visitor Name</th>
-                                            <th>Visitor Company</th>
-                                            <th>Visitor Contact</th>
-                                            <th>In Time</th>
-                                            <th>Out Time</th>
-                                            <th>From Date</th>
-                                            <th>To Date</th>
-                                            <th>Purpose</th>
-                                            <th>Priority</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in visitors)
-                                        {
-                                        <tr>
-                                            <td>@item.VisitorId</td>
-                                            <td>@item.Name</td>
-                                            <td>@item.Company</td>
-                                            <td>@item.Contact</td>
-                                            <td>@item.InTime</td>
-                                            <td>@item.OutTime</td>
-                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateFrom)</td>
-                                            <td>@string.Format("{0:dd/MM/yyyy}", item.VisitDateTo)</td>
-                                            <td>@item.Purpose</td>
-                                            <td>@item.Priority</td>
-                                            <td>
-                                                @if (item.Status != null)
-                                                {
-                                                <a href="javascript:void(0);" class="btn btn-secondary status" title="View" data-id="@item.VisitorId"><i class="fas fa-eye"></i></a>
-                                                }
-                                                else
-                                                {
-                                                    <a href="javascript:void(0);" class="btn btn-primary approve" title="Approve" data-id="@item.Id"><i class="far fa-thumbs-up"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-secondary status" title="View" data-id="@item.VisitorId"><i class="fas fa-eye"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-danger reject" title="Reject" data-id="@item.Id"><i class="fas fa-thumbs-down"></i></a>
-                                                }
-
-                                            </td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12" style="overflow:auto">
+                                        <div class="form-group">
+                                            <table id="tblCustomers" class="display" style="width:100%; border: 1px solid #aaaaaa;">
+                                                <thead>
+                                                    <tr style="vertical-align:bottom;">
+                                                        <th>Visitor Id</th>
+                                                        <th>Visitor Name</th>
+                                                        <th>Visitor Company</th>
+                                                        <th>Visitor Contact</th>
+                                                        <th>In Time</th>
+                                                        <th>Out Time</th>
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                        <th>Purpose</th>
+                                                        <th>Priority</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                           
+                           
                             <!-- end content-->
                         </div>
-                        <!--  end card  -->
+                            <!--  end card  -->
+                        </div>
+                        <!-- end col-md-12 -->
                     </div>
-                    <!-- end col-md-12 -->
                 </div>
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 <!-- Page specific script -->
@@ -168,6 +208,206 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <script>
+        $("#filter").click(function () {
+            debugger;
+            var userID = $('#UserId').val()
+            var contact = $("#contact").val();
+            var company = $("#Company").val();
+            var fdate = $("#fromdate").val();
+            var tdate = $("#todate").val();
+            var time = $("#time").val();
+
+                var table = $("#tblCustomers").DataTable();
+                table.destroy();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FilterGetVisitorList", "Employee")',
+                    data: '{userID:"' + userID + '", contactname:"' + contact + '", company: "' + company + '", fromdate: "' + fdate + '", todate:"' + tdate + '", inTime: "' + time + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+        });
+
+        //Start Advance Filter
+        $(document).ready(function () {
+            $("#collapseExample").toggle();
+            dataLoad();
+        });
+
+        $("#btnFilter").click(function () {
+            $("#collapseExample").toggle();
+        });
+
+        $("#btnRefresh").click(function () {
+            dataLoad();
+        });
+        //End Advance Filter
+        $(".anchorDetail").click(function () {
+            return window.location.href = AddURL;
+        });
+        function dataLoad() {
+            var userID = $('#UserId').val()
+            var table = $("#tblCustomers").DataTable();
+            table.destroy();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("A_GetEmployeeVisitorList", "Employee")',
+                    data: '{userID:"' + userID + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        }
+        function OnSuccess(response) {
+            $("#tblCustomers").DataTable(
+                {
+                    bLengthChange: true,
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+
+                    columns: [{ 'data': 'VisitorId' },
+                        { 'data': 'Name' },
+                        { 'data': 'Company' },
+                        { 'data': 'Contact' },
+                        { 'data': 'InTime' },
+                        { 'data': 'OutTime' },
+                        {
+                            'data': 'VisitDateFrom', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
+                        {
+                            'data': 'VisitDateTo', 'render': function (jsonDate) {
+                                var date = new Date(parseInt(jsonDate.substr(6)));
+                                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                                return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                            }
+                        },
+                        { 'data': 'Purpose' },
+                        { 'data': 'Priority' }
+                        ],
+                    columnDefs: [{
+                        "targets": 10,
+                        "data": null,
+                        "defaultContent":   "<button class='btn btn-primary far fa-thumbs-up approve padding0' style='text-decoration-style:none;margin-right:1px;' onclick='ApproveData(this)'></button>" +
+                                            "<button class='btn btn-secondary fas fa-eye status padding0' style='text-decoration-style:none;margin-right:1px;' onclick='ViewData(this)'></button>" +
+                                            "<button class='btn btn-danger fas fa-thumbs-down reject padding0' style='text-decoration-style:none;margin-right:1px;' onclick='RejectData(this)'></button>"
+                    }]
+                });
+        };
+
+
+        $("#tblCustomers").dataTable({ searching: false, paging: false, info: false });
+
+
+        function ApproveData(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var Data = JSON.stringify({
+                "VisitId": dataRow.Id,
+                "UserId": $('#UserId').val(),
+                "Status": "Approve",
+            });
+
+            $.ajax({
+                type: "POST",
+                url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',
+                contentType: "application/json; charset=utf-8",
+                data: Data,
+                datatype: "json",
+                async: true,
+                cache: false,
+                success: function (data) {
+                    debugger;
+
+                    if (data == true) {
+
+                        toastr.options = {
+                            "newestOnTop": false,
+                            "showDuration": "300",
+                        }
+
+                        toastr.success('Approved Successfully.')
+
+                        //location.reload();
+
+                    }
+                },
+                error: function () {
+                    alert("Content load failed.");
+                }
+            });
+        }
+        function ViewData(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            //var newURL = EditURL + "&Id=" + dataRow.Id;
+            //return window.location.href = newURL;
+
+            var StatusURL = $("#WebUIUrl").val() + '/Employee/VisitorStatus?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
+            var newURL = StatusURL + "&VisitorId=" + dataRow.VisitorId;
+
+            return window.location.href = newURL;
+        }
+        function RejectData(ele) {
+            var dataRow = $('#tblCustomers').DataTable().row($(ele).closest('tr')).data();
+            var Data = JSON.stringify({
+                "VisitId": dataRow.Id,
+                "UserId": $('#UserId').val(),
+                "Status": "Reject",
+            });
+
+            $.ajax({
+                type: "POST",
+                url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',
+                data: Data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (data) {
+                    debugger;
+
+                    if (data == true) {
+
+                        toastr.options = {
+                            "newestOnTop": false,
+                            "showDuration": "300",
+                        }
+
+                        toastr.success('Rejected Successfully.')
+
+                        //location.reload();
+
+                    }
+                },
+                error: function () {
+                    alert("Content load failed.");
+                }
+            });
+        }
+
+
+
+
+
 
         var AddURL = $("#WebUIUrl").val() + '/Visitor/AddVisitor?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
         var StatusURL = $("#WebUIUrl").val() + '/Employee/VisitorStatus?userId=@ViewBag.UserId&userName=@ViewBag.UserName';
@@ -251,7 +491,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',                    
+                    url: $("#WebUIUrl").val() + '/Employee/SaveVisitStatus',
                     data: Data,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

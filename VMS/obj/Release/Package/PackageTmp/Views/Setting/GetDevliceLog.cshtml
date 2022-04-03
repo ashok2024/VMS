@@ -68,7 +68,7 @@
                                         <div class="col-md-1">
                                             <button class="btn btn-info download" type="button" style="margin-top:32px;float:left;">Download</button>
                                         </div>
-                                        <div class="col-md-1">
+                                        <div class="col-md-1" style="margin-left:20px;">
                                             <button class="btn btn-info search" type="button" style="margin-top:32px;">Search</button>
                                         </div>
 
@@ -82,35 +82,39 @@
 
                                     </div>
                                 </div>
-                                <table class="table table-bordered" id="datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Device Serial No</th>
-                                            <th>Employee Number</th>
-                                            <th>Employee Name</th>
-                                            <th>Card Number</th>
-                                            <th>User Type</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Verify Mode</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @*@foreach (var item in events)
-                                            {
+                                <div class="col-sm-12" style="overflow:auto;">
+                                    <div class="form-group">
+                                        <table class="table table-bordered" id="datatables">
+                                            <thead>
                                                 <tr>
-                                                    <td>@item.serialNo</td>
-                                                    <td>@item.employeeNoString</td>
-                                                    <td>@item.name</td>
-                                                    <td>@item.cardNo</td>
-                                                    <td>@item.userType</td>
-                                                    <td>@item.time</td>
-                                                    <td>@item.currentVerifyMode</td>
+                                                    <th>Device Serial No</th>
+                                                    <th>Employee Number</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Card Number</th>
+                                                    <th>User Type</th>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Verify Mode</th>
                                                 </tr>
-                                            }*@
-                                    </tbody>
-                                </table>
+                                            </thead>
+                                            <tbody>
+
+                                                @*@foreach (var item in events)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.serialNo</td>
+                                                            <td>@item.employeeNoString</td>
+                                                            <td>@item.name</td>
+                                                            <td>@item.cardNo</td>
+                                                            <td>@item.userType</td>
+                                                            <td>@item.time</td>
+                                                            <td>@item.currentVerifyMode</td>
+                                                        </tr>
+                                                    }*@
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <!-- end content-->
                         </div>
@@ -133,11 +137,11 @@
     <!-- jQuery -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
     <!-- AdminLTE App -->
-    <script src="../dist/js/adminlte.min.js"></script>
+    <!--<script src="../dist/js/adminlte.min.js"></script>-->
     <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
+    <!--<script src="../dist/js/demo.js"></script>-->
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
